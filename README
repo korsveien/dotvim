@@ -19,3 +19,6 @@ Switch to the `~/.vim` directory, and fetch submodules:
 Then make two new directories
     mkdir backup
     mkdir tmp
+
+To upgrade all subomules
+    git submodule foreach git pull origin maste
