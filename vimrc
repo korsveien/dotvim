@@ -86,7 +86,7 @@ let g:tex_flavor='latex'
 " *****************************************************************************
 
 "<Space> is the leader character
-let mapleader = " "
+let mapleader = " " 
 
 " Mappings for Tabularize plugin 
 nmap <Leader>; :Tabularize /;<Enter>
@@ -127,10 +127,10 @@ nmap <Leader>h  <c-w>h
 nmap <Leader>l  <c-w>l
 
 "echo the truth 
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+nnoremap <Left> :echo "Use h"<CR>
+nnoremap <Right> :echo "Use l"<CR>
+nnoremap <Up> :echo "Use k"<CR>
+nnoremap <Down> :echo "Use j"<CR>
 
 " Scroll faster
 nmap <C-j> 5j
@@ -164,6 +164,8 @@ nmap <Leader>b :BufExplorer<CR>
 
 " open FuzzyFinder
 nmap <Leader>f :FufFile<CR>
+
+imap <c-c> <esc>
 
 " ************************** COMPILING AND RUNNING ****************************
 " *****************************************************************************
