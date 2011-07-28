@@ -3,7 +3,7 @@
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
 set nocompatible
-set t_Co=256                         
+" set t_Co=256                         
 
 if has("autocmd")
     " Source the vimrc file after saving it
@@ -21,10 +21,10 @@ endif
 " ***************************************************************************** 
 set bg=light                     " used with color scheme
 " colorscheme zenburn             " 256-colored color schemes
-" colorscheme wombat256           
+colorscheme wombat256           
 " colorscheme molokai
 " colorscheme solarized
-colorscheme tango2
+" colorscheme tango2
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set number                      " use line numbers
