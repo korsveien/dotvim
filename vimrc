@@ -3,7 +3,7 @@
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
 set nocompatible
-" set t_Co=256                         
+set t_Co=256                         
 
 if has("autocmd")
     " Source the vimrc file after saving it
@@ -19,7 +19,7 @@ endif
 
 " ************************** SETTINGS ***************************************** 
 " ***************************************************************************** 
-set bg=light                     " used with color scheme
+set bg=dark                     " used with color scheme
 " colorscheme zenburn             " 256-colored color schemes
 colorscheme wombat256           
 " colorscheme molokai
@@ -96,7 +96,12 @@ vmap <Leader># :Tabularize /#<Enter>
 nmap <Leader>/ :Tabularize /\/\/<Enter>
 vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
-vmap <Leader>= :Tabularize /=<Enter> 
+vmap <Leader>= :Tabularize /=<Enter>
+
+" Toggle pastemode
+nnoremap <Leader>p :set invpaste paste?<CR>
+set pastetoggle=<Leader>p
+set showmode
 
 " Substitute on this line
 nmap <Leader>s :s///g<Left><Left><Left>
@@ -106,15 +111,6 @@ nmap <Leader>S :%s///gc<Left><Left><Left><Left>
 
 " Substitue visual selection
 vmap <Leader>s :s/\%V//g<Left><Left><Left>
-
-"autocomplete recurring symbols
-imap "" ""<Left>
-imap () ()<Left>
-imap '' ''<Left>
-imap [] []<Left>
-imap <> <><Left>
-imap {} {}<Left>
-imap <Bar><Bar> <Bar><Bar><Left>
 
 " Toggle highlighting
 nmap <Leader>w :nohls<Enter>

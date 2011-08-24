@@ -3,7 +3,7 @@ l by Drew Neil
 
 Installation:
 
-    git clone git://github.com/npkorsveien/dotvim.git ~/.vim
+    git clone git://github.com/nilspk/dotvim.git ~/.vim
 
 Create symlinks:
 
