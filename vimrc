@@ -20,11 +20,13 @@ endif
 " ************************** SETTINGS ***************************************** 
 " ***************************************************************************** 
 set bg=dark                     " used with color scheme
-" colorscheme zenburn             " 256-colored color schemes
-colorscheme wombat256           
+colorscheme zenburn             " 256-colored color schemes
+" colorscheme wombat256           
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
+" colorscheme railscasts
+" colorscheme darkspectrum
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set number                      " use line numbers

@@ -42,3 +42,6 @@
 	path = bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
     ignore = dirty
+[submodule "vim-arduino"]
+	path = vim-arduino
+	url = https://github.com/chrismetcalf/vim-arduino.git
