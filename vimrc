@@ -131,8 +131,10 @@ nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
 
 " Scroll faster
-nmap <Space> 6j
-nmap <Backspace> 6k
+nmap <C-j> 5j
+nmap <C-k> 5k
+nmap <Space> 10j
+nmap <Backspace> 10k
 
 " Bubble single lines by using unimpaired plugin
 nmap <C-h> [e

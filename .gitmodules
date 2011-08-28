@@ -42,8 +42,10 @@
     url = https://github.com/chrismetcalf/vim-arduino.git
     ignore = dirty
 [submodule "bundle/ctags_highlighting"]
-	path = bundle/ctags_highlighting
-	url = https://github.com/vim-scripts/CTAGS-Highlighting.git
+    path = bundle/ctags_highlighting
+    url = https://github.com/vim-scripts/CTAGS-Highlighting.git
+    ignore = dirty
 [submodule "bundle/fuzzyfinder"]
-	path = bundle/fuzzyfinder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
+    path = bundle/fuzzyfinder
+    url = https://github.com/vim-scripts/FuzzyFinder.git
+    ignore = dirty
