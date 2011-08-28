@@ -33,8 +33,8 @@ colorscheme zenburn             " 256-colored color schemes
 " colorscheme darkspectrum
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
-set number                      " use line numbers
 set autoindent                  " indenting
+set number                      " use line numbers
 set smartindent                 " indenting
 set hlsearch                    " highlight search
 set ignorecase                  " case insensitive
@@ -124,12 +124,6 @@ vmap <Leader>s :s/\%V//g<Left><Left><Left>
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-"Easier navigation between windows
-nmap <Leader>j  <c-w>j
-nmap <Leader>k  <c-w>k
-nmap <Leader>h  <c-w>h
-nmap <Leader>l  <c-w>l
-
 "echo the truth 
 nnoremap <Left> :echo "Use h"<CR>
 nnoremap <Right> :echo "Use l"<CR>
@@ -137,8 +131,8 @@ nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
 
 " Scroll faster
-nmap <C-j> 5j
-nmap <C-k> 5k
+nmap <Space> 6j
+nmap <Backspace> 6k
 
 " Bubble single lines by using unimpaired plugin
 nmap <C-h> [e
@@ -163,13 +157,8 @@ nmap <Leader>o ]<Space>
 " Edit .vimrc
 nmap <Leader>v :edit $MYVIMRC<CR>
 
-"open BufExplorer
-nmap <Leader>b :BufExplorer<CR>
-
 " open FuzzyFinder
 nmap <Leader>f :FufFile<CR>
-
-imap <c-c> <esc>
 
 " ************************** COMPILING AND RUNNING ****************************
 " *****************************************************************************
@@ -202,7 +191,7 @@ if has("autocmd")
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
     autocmd FileType    tex             map <Leader>r :!open %<.pdf<CR>
 
-    " Running lisp (there is no compile)
+    " Running scheme (there is no compile)
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
 
   augroup end

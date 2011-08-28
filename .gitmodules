@@ -44,3 +44,6 @@
 [submodule "bundle/ctags_highlighting"]
 	path = bundle/ctags_highlighting
 	url = https://github.com/vim-scripts/CTAGS-Highlighting.git
+[submodule "bundle/fuzzyfinder"]
+	path = bundle/fuzzyfinder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
