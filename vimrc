@@ -11,8 +11,8 @@ if has("autocmd")
 
     " Set syntax highligthing for arduino
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-    au InsertEnter * set cursorcolumn
-    au InsertLeave * set nocursorcolumn
+    " au InsertEnter * set cursorcolumn
+    " au InsertLeave * set nocursorcolumn
     autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=red ctermfg=black
     " autocmd BufEnter * match OverLenght /\%80v.*/
 endif
@@ -20,6 +20,10 @@ endif
 " ************************** SETTINGS ***************************************** 
 " ***************************************************************************** 
 set bg=dark                     " used with color scheme
+
+let g:zenburn_high_contrast = 1
+let g:zenburn_alternate_Visual = 1
+let g:zenburn_unfified_CursorColumn = 1
 colorscheme zenburn             " 256-colored color schemes
 " colorscheme wombat256           
 " colorscheme molokai

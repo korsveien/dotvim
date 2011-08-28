@@ -41,3 +41,6 @@
     path = bundle/arduino
     url = https://github.com/chrismetcalf/vim-arduino.git
     ignore = dirty
+[submodule "bundle/ctags_highlighting"]
+	path = bundle/ctags_highlighting
+	url = https://github.com/vim-scripts/CTAGS-Highlighting.git
