@@ -88,9 +88,11 @@ let g:tex_flavor='latex'
 " *****************************************************************************
 
 "<Space> is the leader character
-let mapleader = " " 
+" let mapleader = " " 
 
 " Mappings for Tabularize plugin 
+nmap <Leader>: :Tabularize /:<Enter>
+vmap <Leader>: :Tabularize /:<Enter>
 nmap <Leader>; :Tabularize /;<Enter>
 vmap <Leader>; :Tabularize /;<Enter>
 nmap <Leader># :Tabularize /#<Enter>
