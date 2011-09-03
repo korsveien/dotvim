@@ -7,7 +7,8 @@
     url = https://github.com/godlygeek/tabular.git
     ignore = dirty
 [submodule "bundle/nerdtree"]
-    path = bundle/nerdtree url = https://github.com/scrooloose/nerdtree.git
+    path = bundle/nerdtree 
+    url = https://github.com/scrooloose/nerdtree.git
     ignore = dirty
 [submodule "bundle/snipmate"]
     path = bundle/snipmate
