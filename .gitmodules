@@ -46,3 +46,7 @@
     path = bundle/fuzzyfinder
     url = https://github.com/vim-scripts/FuzzyFinder.git
     ignore = dirty
+[submodule "bundle/arduino"]
+    path = bundle/arduino
+    url = https://github.com/kingbin/vim-arduino.git
+    ignore = dirty
