@@ -133,8 +133,12 @@ nnoremap <Down> :echo "Use j"<CR>
 " Scroll faster
 nmap <C-j> 5j
 nmap <C-k> 5k
+vmap <C-j> 5j
+vmap <C-k> 5k
 nmap <Space> 10j
 nmap <Backspace> 10k
+vmap <Space> 10j
+vmap <Backspace> 10k
 
 " Bubble single lines by using unimpaired plugin
 nmap <C-h> [e
@@ -171,7 +175,7 @@ if has("autocmd")
     autocmd!
     autocmd FileType    python          map <Leader>r :!echo -- Running %; python %<CR>
     autocmd FileType    ruby            map <Leader>r :!echo -- Running %; ruby %<CR>
-    autocmd FileType    c,cpp,objc      map <F5> :make<CR>
+    autocmd FileType    c,cpp,objc,java map <Leader>m :make<CR>
 
     " For simple compiling when a makefile isn't feasible
     autocmd FileType    c               map <Leader>c :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
