@@ -59,8 +59,10 @@ set hlsearch                    " highlight search result
 
 " Specify words to be highlighted automatically
 highlight TODOS cterm=bold term=bold ctermbg=yellow ctermfg=black
+highlight Search cterm=bold term=bold ctermbg=lightblue ctermfg=black
+highlight IncSearch cterm=bold term=bold ctermbg=blue ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
-
+" 
 " customize the staus line
 set statusline=%#Time#%{strftime(\"\%a\ \%d\ \%b\ \%H:\%M\ \ \",localtime())}\ %#Filepath#[\%F]%#Filetype#\ %y%#Flags#\ %M\ \ %r\ %h\ %w\ %=%L\ lines\ \ \ %#Percentage#[%p%%]
 
@@ -105,6 +107,18 @@ nmap <Leader>/ :Tabularize /\/\/<Enter>
 vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
+
+:nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+set guioptions+=a
+function! MakePattern(text)
+  let pat = escape(a:text, '\')
+  let pat = substitute(pat, '\_s\+$', '\\s\\*', '')
+  let pat = substitute(pat, '^\_s\+', '\\s\\*', '')
+  let pat = substitute(pat, '\_s\+',  '\\_s\\+', 'g')
+  return '\\V' . escape(pat, '\"')
+endfunction
+vnoremap <silent> <F8> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
 
 " Toggle pastemode
 nnoremap <Leader>p :set invpaste paste?<CR>
