@@ -21,16 +21,15 @@ endif
 " ***************************************************************************** 
 set bg=dark                     " used with color scheme
 
+" colorscheme zenburn             " 256-colored color schemes
 let g:zenburn_high_contrast = 1
 let g:zenburn_alternate_Visual = 1
 let g:zenburn_unfified_CursorColumn = 1
-colorscheme zenburn             " 256-colored color schemes
-" colorscheme wombat256           
+
+colorscheme wombat256           
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
-" colorscheme railscasts
-" colorscheme darkspectrum
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
