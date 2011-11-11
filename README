@@ -1,4 +1,4 @@
-l by Drew Neil
+Tutorial by Drew Neil
 (http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/)
 
 Installation:
@@ -20,7 +20,7 @@ Then make two new directories
     mkdir tmp
 
 To upgrade all submodules
-    git submodule foreach git pull origin maste
+    git submodule foreach git pull origin master
 
 To ignore changes in submodules, add the line "ignore=dirty" to all
 submodule entries in .gitmodules.
