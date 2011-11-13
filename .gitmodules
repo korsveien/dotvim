@@ -54,3 +54,7 @@
     path = bundle/arduino
     url = git://github.com/tclem/vim-arduino.git
     ignore = dirty
+[submodule "bundle/tasklist"]
+    path = bundle/tasklist
+    url = git://github.com/vim-scripts/TaskList.vim.git
+    ignore = dirty

@@ -7,7 +7,7 @@ set t_Co=256
 
 if has("autocmd")
     " Source the vimrc file after saving it
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    " autocmd bufwritepost .vimrc source $MYVIMRC
 
     " Set syntax highligthing for arduino
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
@@ -22,9 +22,9 @@ endif
 set bg=dark                     " used with color scheme
 
 " colorscheme zenburn             " 256-colored color schemes
-let g:zenburn_high_contrast = 1
-let g:zenburn_alternate_Visual = 1
-let g:zenburn_unfified_CursorColumn = 1
+" let g:zenburn_high_contrast = 1
+" let g:zenburn_alternate_Visual = 1
+" let g:zenburn_unfified_CursorColumn = 1
 
 colorscheme wombat256           
 " colorscheme molokai
@@ -57,9 +57,9 @@ set nowrap                      " no line wrap
 set hlsearch                    " highlight search result
 
 " Specify words to be highlighted automatically
-highlight TODOS cterm=bold term=bold ctermbg=yellow ctermfg=black
-highlight Search cterm=bold term=bold ctermbg=lightblue ctermfg=black
-highlight IncSearch cterm=bold term=bold ctermbg=blue ctermfg=black
+highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
+highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
+highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
 " 
 " customize the staus line
@@ -76,24 +76,48 @@ call pathogen#helptags()
 let g:SuperTabDefaultCompletionType = "context"
 
 " Options for taglist
-let Tlist_Auto_Open=0
-let Tlist_Compact_Format=1
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-let Tlist_Enable_Fold_Column=0
-let Tlist_Exist_OnlyWindow=1
-let Tlist_File_Fold_Auto_Close=0
-let Tlist_Sort_Type="name"     
-let Tlist_Use_Right_Window=1
-let Tlist_WinWidth=40
+let Tlist_Show_One_File = 1 " Displaying tags for only one file~
+let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
+let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+let Tlist_Sort_Type = "order" " sort by order or name
+let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
+let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
+let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
+let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
+let Tlist_Close_On_Select = 1 " Close the taglist window when a file or tag is selected.
+let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
+let Tlist_WinWidth = 40
+let Tlist_Process_Files_Always = 1
 
 " LaTeX specifics
 let g:tex_flavor='latex'
 
-" ************************** MAPPINGS *****************************************
+" ************************** FUNCTIONS *****************************************
 " *****************************************************************************
 
-"<Space> is the leader character
-" let mapleader = " " 
+" goes to definition under cursor
+function! GotoDefinition()
+  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
+endfunction
+map <F9> :call GotoDefinition()<CR>
+imap <F9> <c-o>:call GotoDefinition()<CR>
+            
+" highlights all occurences of word without moving cursor
+let g:highlighting = 0
+function! Highlighting()
+  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
+    let g:highlighting = 0
+    return ":silent nohlsearch\<CR>"
+  endif
+  let @/ = '\<'.expand('<cword>').'\>'
+  let g:highlighting = 1
+  return ":silent set hlsearch\<CR>"
+endfunction
+nnoremap <silent> <expr> <F8> Highlighting()
+
+" ************************** MAPPINGS *****************************************
+" *****************************************************************************
 
 " Mappings for Tabularize plugin 
 nmap <Leader>: :Tabularize /:<Enter>
@@ -107,17 +131,6 @@ vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 
-:nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-
-set guioptions+=a
-function! MakePattern(text)
-  let pat = escape(a:text, '\')
-  let pat = substitute(pat, '\_s\+$', '\\s\\*', '')
-  let pat = substitute(pat, '^\_s\+', '\\s\\*', '')
-  let pat = substitute(pat, '\_s\+',  '\\_s\\+', 'g')
-  return '\\V' . escape(pat, '\"')
-endfunction
-vnoremap <silent> <F8> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
 
 " Toggle pastemode
 nnoremap <Leader>p :set invpaste paste?<CR>
@@ -162,7 +175,7 @@ vmap <C-h> [egv
 vmap <C-l> ]egv
 
 " Toggle Tlist and NERDTree
-nmap <Leader>t :TlistToggle<CR>
+nmap <F2> :TlistToggle<CR>
 nmap <Leader>n :NERDTreeToggle<CR>
 
 " Find next/previous digit
@@ -175,6 +188,7 @@ nmap <Leader>o ]<Space>
 
 " Edit .vimrc
 nmap <Leader>v :edit $MYVIMRC<CR>
+nmap <Leader>s :source $MYVIMRC<CR>
 
 " open FuzzyFinder
 nmap <Leader>f :FufFile<CR>
