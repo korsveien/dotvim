@@ -30,6 +30,7 @@ colorscheme wombat256
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
+
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
@@ -61,9 +62,9 @@ highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
-" 
-" customize the staus line
-set statusline=%#Time#%{strftime(\"\%a\ \%d\ \%b\ \%H:\%M\ \ \",localtime())}\ %#Filepath#[\%F]%#Filetype#\ %y%#Flags#\ %M\ \ %r\ %h\ %w\ %=%L\ lines\ \ \ %#Percentage#[%p%%]
+
+" customize the status line
+set statusline=%{fugitive#statusline()}\ %<%.25f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}\%=%P
 
 " *************************** PLUGINS *****************************************
 " *****************************************************************************
@@ -187,8 +188,8 @@ nmap <Leader>O [<Space>
 nmap <Leader>o ]<Space>
 
 " Edit .vimrc
-nmap <Leader>v :edit $MYVIMRC<CR>
-nmap <Leader>s :source $MYVIMRC<CR>
+nmap <Leader>V :edit $MYVIMRC<CR>
+nmap <Leader>v :source $MYVIMRC<CR>
 
 " open FuzzyFinder
 nmap <Leader>f :FufFile<CR>
