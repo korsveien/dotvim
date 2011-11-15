@@ -64,7 +64,7 @@ highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
 
 " customize the status line
-set statusline=%{fugitive#statusline()}\ %<%.25f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}\%=%P
+set statusline=[%n]%y\%{fugitive#statusline()}%h%w%m%r\ %<%F\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%P
 
 " *************************** PLUGINS *****************************************
 " *****************************************************************************
