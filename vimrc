@@ -56,6 +56,9 @@ set showmode                    " shows current mode in bottom right corner
 set laststatus=2                " status line is always enabled
 set nowrap                      " no line wrap
 set hlsearch                    " highlight search result
+set nobackup                    " turn backup off
+set nowb 
+set noswapfile
 
 " Specify words to be highlighted automatically
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
@@ -191,8 +194,12 @@ nmap <Leader>o ]<Space>
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
 
-" open FuzzyFinder
+" bindings for FuzzyFinder
 nmap <Leader>f :FufFile<CR>
+nmap <Leader>b :FufBuffer<CR>
+nmap <Leader>q :FufQuickFix<CR>
+" use fuzzy to look up tags
+" noremap <silent> <C-]> :FufTagWithCursorWord!<CR>
 
 " ************************** COMPILING AND RUNNING ****************************
 " *****************************************************************************
