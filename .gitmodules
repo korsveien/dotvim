@@ -42,10 +42,6 @@
     path = bundle/ctags_highlighting
     url = git://github.com/vim-scripts/CTAGS-Highlighting.git
     ignore = dirty
-[submodule "bundle/fuzzyfinder"]
-    path = bundle/fuzzyfinder
-    url = git://github.com/vim-scripts/FuzzyFinder.git
-    ignore = dirty
 [submodule "bundle/vimclojure"]
     path = bundle/vimclojure
     url = git://github.com/vim-scripts/VimClojure.git

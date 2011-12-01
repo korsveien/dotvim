@@ -14,7 +14,7 @@ if has("autocmd")
     " au InsertEnter * set cursorcolumn
     " au InsertLeave * set nocursorcolumn
     autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=red ctermfg=black
-    " autocmd BufEnter * match OverLenght /\%80v.*/
+    autocmd BufEnter * match OverLenght /\%80v.*/
 endif
 
 " ************************** SETTINGS ***************************************** 
@@ -59,6 +59,7 @@ set hlsearch                    " highlight search result
 set nobackup                    " turn backup off
 set nowb 
 set noswapfile
+set mouse=a
 
 " Specify words to be highlighted automatically
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
@@ -96,6 +97,10 @@ let Tlist_Process_Files_Always = 1
 
 " LaTeX specifics
 let g:tex_flavor='latex'
+
+" change cursor shape when in insert mode (iTerm2 specific)
+let &t_SI = "\<Esc>]50;CursorShape=1\x7" 
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ************************** FUNCTIONS *****************************************
 " *****************************************************************************
@@ -135,12 +140,14 @@ vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 
+" \t is already taken by command-t plugin
+map <Leader>y <Plug>TaskList
 
 " Toggle pastemode
 nnoremap <Leader>p :set invpaste paste?<CR>
 set pastetoggle=<Leader>p
 set showmode
-
+  
 " Substitute on this line
 nmap <Leader>s :s///g<Left><Left><Left>
 
@@ -180,7 +187,7 @@ vmap <C-l> ]egv
 
 " Toggle Tlist and NERDTree
 nmap <F2> :TlistToggle<CR>
-nmap <Leader>n :NERDTreeToggle<CR>
+nmap <F3> :NERDTreeToggle<CR>
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
@@ -193,13 +200,6 @@ nmap <Leader>o ]<Space>
 " Edit .vimrc
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
-
-" bindings for FuzzyFinder
-nmap <Leader>f :FufFile<CR>
-nmap <Leader>b :FufBuffer<CR>
-nmap <Leader>q :FufQuickFix<CR>
-" use fuzzy to look up tags
-" noremap <silent> <C-]> :FufTagWithCursorWord!<CR>
 
 " ************************** COMPILING AND RUNNING ****************************
 " *****************************************************************************
