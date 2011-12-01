@@ -30,6 +30,7 @@ colorscheme wombat256
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
+" colorscheme peaksea
 
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
