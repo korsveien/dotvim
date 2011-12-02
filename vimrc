@@ -1,12 +1,15 @@
-" ************************** ABOUT ***************************************** 
-" ***************************************************************************** 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ABOUT
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Author: Nils Peder Korsveien
 "Sources: - http://amix.dk/vim/vimrc.html
 "         - http://folk.uio.no/larsstor/.vimrc
 "         - http://www.8t8.us/vim/vim.html
 
-" ************************** PREAMBLE ***************************************** 
-" ***************************************************************************** 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => PREAMBLE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
@@ -25,9 +28,10 @@ if has("autocmd")
     autocmd BufEnter * match OverLenght /\%80v.*/
 endif
 
-" ************************** GENERAL SETTINGS ********************************* 
-" ***************************************************************************** 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => GENERAL SETTINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set bg=dark                     " used with color scheme
 
 " colorscheme zenburn             " 256-colored color schemes
@@ -68,31 +72,65 @@ set nowrap                      " no line wrap
 set hlsearch                    " highlight search result
 set nobackup                    " turn backup off
 set nowb 
-set noswapfile
-set mouse=a
+set noswapfile                  
+set mouse=a                     " enable mouse
+set tags=tags;/                 " search recursively upwards for tagfile
 
-" Specify words to be highlighted automatically
+"""""""""""""""""""""""""""""""
+" => Higlighting
+""""""""""""""""""""""""""""""
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
 
-" customize the status line
+
+"""""""""""""""""""""""""""""""
+" => Statusline
+""""""""""""""""""""""""""""""
 set statusline=[%n]%y\%{fugitive#statusline()}%h%w%m%r\ %<%F\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%P
 
-" *************************** PLUGINS *****************************************
-" *****************************************************************************
+
+"""""""""""""""""""""""""""""""
+" => Command-T
+""""""""""""""""""""""""""""""
+let g:CommandTMaxHeight = 15
+set wildignore+=*.o,*.obj,.git,*.pyc
+noremap <leader>j :CommandT<cr>
+noremap <leader>y :CommandTFlush<cr>
 
 
+"""""""""""""""""""""""""""""""
+" => Gist
+""""""""""""""""""""""""""""""
+"FIXME: fix visual selection posting
+let g:gist_detect_filetype=1
+let g:gist_open_browser_after_post=1
+vmap <leader>g :'<,'>Gist<CR>
+map <leader>g :Gist<CR>
+map <leader>gp :Gist -p<CR>
+map <leader>gl :Gist -l<CR>
+map <leader>gd :Gist -d<CR>
 
+
+"""""""""""""""""""""""""""""""
+" => Pathogen
+""""""""""""""""""""""""""""""
 " Must be called before filetype detection
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+
+"""""""""""""""""""""""""""""""
+" => Supertab
+""""""""""""""""""""""""""""""
 " set supertab to use the context (ie programming language) we are in
 let g:SuperTabDefaultCompletionType = "context"
 
-" Options for taglist
+
+"""""""""""""""""""""""""""""""
+" => Taglist
+""""""""""""""""""""""""""""""
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
@@ -106,47 +144,26 @@ let Tlist_Close_On_Select = 1 " Close the taglist window when a file or tag is s
 let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
+map <F2> :TlistToggle<CR>
 
+
+"""""""""""""""""""""""""""""""
+" => LateX
+""""""""""""""""""""""""""""""
 " LaTeX specifics
 let g:tex_flavor='latex'
 
-"BufExplorer
+
+"""""""""""""""""""""""""""""""
+" => BufExplorer
+""""""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
-map <F3> :BufExplorerVerticalSplit<CR>
 
-" ************************** FUNCTIONS ***************************************
-" ****************************************************************************
 
-" goes to definition under cursor
-function! GotoDefinition()
-  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
-endfunction
-map <F9> :call GotoDefinition()<CR>
-imap <F9> <c-o>:call GotoDefinition()<CR>
-            
-" highlights all occurences of word without moving cursor
-let g:highlighting = 0
-function! Highlighting()
-  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
-    let g:highlighting = 0
-    return ":silent nohlsearch\<CR>"
-  endif
-  let @/ = '\<'.expand('<cword>').'\>'
-  let g:highlighting = 1
-  return ":silent set hlsearch\<CR>"
-endfunction
-nnoremap <silent> <expr> <F8> Highlighting()
-
-" ************************** MAPPINGS *****************************************
-" *****************************************************************************
-
-" Mappings for cope (quickfix list)
-map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-" Mappings for Tabularize plugin 
+"""""""""""""""""""""""""""""""
+" => Tabularize
+""""""""""""""""""""""""""""""
 nmap <Leader>: :Tabularize /:<Enter>
 vmap <Leader>: :Tabularize /:<Enter>
 nmap <Leader>; :Tabularize /;<Enter>
@@ -158,12 +175,37 @@ vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 
-map <F2> :TlistToggle<CR>
+"""""""""""""""""""""""""""""""
+" => Tasklist
+""""""""""""""""""""""""""""""
+map <Leader>y <Plug>TaskList
+
+"""""""""""""""""""""""""""""""
+" => Unimpaierd
+""""""""""""""""""""""""""""""
+" Bubble single lines
+nmap <C-h> [e
+nmap <C-l> ]e
+
+" Bubble multiple lines
+vmap <C-h> [egv
+vmap <C-l> ]egv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => GENERAL MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Mappings for cope (quickfix list)
+map <leader>cc :botright cope<cr>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+
 map <F4> :NERDTreeToggle<CR>
+
+" update window
 map <F5> :e %<CR>
 
-" \t is already taken by command-t plugin
-map <Leader>y <Plug>TaskList
 
 " Toggle pastemode if in terminal
 if !has("gui_running")
@@ -201,14 +243,6 @@ nmap <Backspace> 10k
 vmap <Space> 10j
 vmap <Backspace> 10k
 
-" Bubble single lines by using unimpaired plugin
-nmap <C-h> [e
-nmap <C-l> ]e
-
-" Bubble multiple lines using unimpaired plugin
-vmap <C-h> [egv
-vmap <C-l> ]egv
-
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
@@ -222,8 +256,10 @@ nmap <Leader>o ]<Space>
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
 
-" ************************** SYSTEM SPECIFICS ****************************
-" *********************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SYSTEM SPECIFICS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO: turn this into proper function
 if has("win32")
     "Windows options here
 else
@@ -231,6 +267,8 @@ else
         let s:uname = system("uname")
         if s:uname == "Darwin\n" 
             "Mac options here
+            let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
+
             if has("gui_running")  "settings for macvim
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
@@ -240,8 +278,33 @@ else
     endif
 endif
 
-" ************************** COMPILING AND RUNNING ****************************
-" *****************************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FUNCTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" goes to definition under cursor
+function! GotoDefinition()
+  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
+endfunction
+map <F9> :call GotoDefinition()<CR>
+imap <F9> <c-o>:call GotoDefinition()<CR>
+            
+" highlights all occurences of word without moving cursor
+let g:highlighting = 0
+function! Highlighting()
+  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
+    let g:highlighting = 0
+    return ":silent nohlsearch\<CR>"
+  endif
+  let @/ = '\<'.expand('<cword>').'\>'
+  let g:highlighting = 1
+  return ":silent set hlsearch\<CR>"
+endfunction
+nnoremap <silent> <expr> <F8> Highlighting()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => COMPILING AND EXECUTING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype on
 if has("autocmd")
