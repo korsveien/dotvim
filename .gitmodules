@@ -66,3 +66,7 @@
     path = bundle/bufexplorer
     url = git://github.com/vim-scripts/bufexplorer.zip.git
     ignore = dirty
+[submodule "bundle/gist"]
+    path = bundle/gist
+    url = git://github.com/vim-scripts/Gist.vim.git
+    ignore = dirty

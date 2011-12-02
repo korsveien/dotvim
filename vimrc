@@ -1,4 +1,12 @@
-" *****************************************************************************
+" ************************** ABOUT ***************************************** 
+" ***************************************************************************** 
+"Author: Nils Peder Korsveien
+"Sources: - http://amix.dk/vim/vimrc.html
+"         - http://folk.uio.no/larsstor/.vimrc
+"         - http://www.8t8.us/vim/vim.html
+
+" ************************** PREAMBLE ***************************************** 
+" ***************************************************************************** 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
@@ -17,8 +25,9 @@ if has("autocmd")
     autocmd BufEnter * match OverLenght /\%80v.*/
 endif
 
-" ************************** SETTINGS ***************************************** 
+" ************************** GENERAL SETTINGS ********************************* 
 " ***************************************************************************** 
+
 set bg=dark                     " used with color scheme
 
 " colorscheme zenburn             " 256-colored color schemes
@@ -74,6 +83,8 @@ set statusline=[%n]%y\%{fugitive#statusline()}%h%w%m%r\ %<%F\ %{exists('*CapsLoc
 " *************************** PLUGINS *****************************************
 " *****************************************************************************
 
+
+
 " Must be called before filetype detection
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -86,7 +97,7 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
 let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Sort_Type = "order" " sort by order or name
+let Tlist_Sort_Type = "name" " sort by order or name
 let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
 let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
 let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
@@ -99,12 +110,13 @@ let Tlist_Process_Files_Always = 1
 " LaTeX specifics
 let g:tex_flavor='latex'
 
-" change cursor shape when in insert mode (iTerm2 specific)
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" 
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"BufExplorer
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerShowRelativePath=1
+map <F3> :BufExplorerVerticalSplit<CR>
 
-" ************************** FUNCTIONS *****************************************
-" *****************************************************************************
+" ************************** FUNCTIONS ***************************************
+" ****************************************************************************
 
 " goes to definition under cursor
 function! GotoDefinition()
@@ -129,6 +141,11 @@ nnoremap <silent> <expr> <F8> Highlighting()
 " ************************** MAPPINGS *****************************************
 " *****************************************************************************
 
+" Mappings for cope (quickfix list)
+map <leader>cc :botright cope<cr>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+
 " Mappings for Tabularize plugin 
 nmap <Leader>: :Tabularize /:<Enter>
 vmap <Leader>: :Tabularize /:<Enter>
@@ -141,13 +158,19 @@ vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 
+map <F2> :TlistToggle<CR>
+map <F4> :NERDTreeToggle<CR>
+map <F5> :e %<CR>
+
 " \t is already taken by command-t plugin
 map <Leader>y <Plug>TaskList
 
-" Toggle pastemode
-nnoremap <Leader>p :set invpaste paste?<CR>
-set pastetoggle=<Leader>p
-set showmode
+" Toggle pastemode if in terminal
+if !has("gui_running")
+    nnoremap <Leader>p :set invpaste paste?<CR>
+    set pastetoggle=<Leader>p
+    set showmode
+endif
   
 " Substitute on this line
 nmap <Leader>s :s///g<Left><Left><Left>
@@ -186,9 +209,6 @@ nmap <C-l> ]e
 vmap <C-h> [egv
 vmap <C-l> ]egv
 
-" Toggle Tlist and NERDTree
-nmap <F2> :TlistToggle<CR>
-nmap <F3> :NERDTreeToggle<CR>
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
@@ -201,6 +221,24 @@ nmap <Leader>o ]<Space>
 " Edit .vimrc
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
+
+" ************************** SYSTEM SPECIFICS ****************************
+" *********************************************************************
+if has("win32")
+    "Windows options here
+else
+    if has("unix")
+        let s:uname = system("uname")
+        if s:uname == "Darwin\n" 
+            "Mac options here
+            if has("gui_running")  "settings for macvim
+                set vb             "remove annoying sound in macvim
+                set guioptions=-m  "remove menu bar
+                set gfn=Monaco:h11 "change default font
+            endif
+        endif
+    endif
+endif
 
 " ************************** COMPILING AND RUNNING ****************************
 " *****************************************************************************
