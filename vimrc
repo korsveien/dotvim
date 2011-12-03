@@ -14,11 +14,10 @@
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
 set nocompatible
-set t_Co=256                         
 
 if has("autocmd")
     " Source the vimrc file after saving it
-    " autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd bufwritepost .vimrc source $MYVIMRC
 
     " Set syntax highligthing for arduino
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
@@ -30,20 +29,49 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FUNCTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set color scheme according to current time of day.
+" Source: http://vim.wikia.com/wiki/Switch_color_schemes
+function! HourColor()
+  let hr = str2nr(strftime('%H'))
+  if hr <= 11
+    let i = 0
+  elseif hr <= 17 
+    let i = 1
+  else
+    let i = 2
+  endif
+  let nowcolors = 'zenburn peaksea wombat256'
+  execute 'colorscheme '.split(nowcolors)[i]
+  redraw
+  echo g:colors_name
+endfunction
+
+" goes to definition under cursor
+function! GotoDefinition()
+  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
+endfunction
+map <F9> :call GotoDefinition()<CR>
+imap <F9> <c-o>:call GotoDefinition()<CR>
+            
+" highlights all occurences of word without moving cursor
+let g:highlighting = 0
+function! Highlighting()
+  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
+    let g:highlighting = 0
+    return ":silent nohlsearch\<CR>"
+  endif
+  let @/ = '\<'.expand('<cword>').'\>'
+  let g:highlighting = 1
+  return ":silent set hlsearch\<CR>"
+endfunction
+nnoremap <silent> <expr> <F8> Highlighting()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set bg=dark                     " used with color scheme
-
-" colorscheme zenburn             " 256-colored color schemes
-" let g:zenburn_high_contrast = 1
-" let g:zenburn_alternate_Visual = 1
-" let g:zenburn_unfified_CursorColumn = 1
-
-colorscheme wombat256           
-" colorscheme molokai
-" colorscheme solarized
-" colorscheme tango2
-" colorscheme peaksea
 
 syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
@@ -75,6 +103,25 @@ set nowb
 set noswapfile                  
 set mouse=a                     " enable mouse
 set tags=tags;/                 " search recursively upwards for tagfile
+
+
+"""""""""""""""""""""""""""""""
+" => Colors
+""""""""""""""""""""""""""""""
+set t_Co=256                         
+call HourColor()              "Set color according to time of day
+
+" colorscheme zenburn
+" let g:zenburn_high_contrast = 1
+" let g:zenburn_alternate_Visual = 1
+" let g:zenburn_unfified_CursorColumn = 1
+
+" colorscheme wombat256           
+" colorscheme molokai
+" colorscheme solarized
+" colorscheme tango2
+" colorscheme peaksea
+
 
 """""""""""""""""""""""""""""""
 " => Higlighting
@@ -253,7 +300,7 @@ nmap <Leader>O [<Space>
 nmap <Leader>o ]<Space>
 
 " Edit .vimrc
-nmap <Leader>V :edit $MYVIMRC<CR>
+nmap <Leader>V :edit $MYVIMRC<CR> 
 nmap <Leader>v :source $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -270,6 +317,7 @@ else
             let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
 
             if has("gui_running")  "settings for macvim
+                set lines=35 columns=110
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
                 set gfn=Monaco:h11 "change default font
@@ -278,29 +326,6 @@ else
     endif
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => FUNCTIONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" goes to definition under cursor
-function! GotoDefinition()
-  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
-endfunction
-map <F9> :call GotoDefinition()<CR>
-imap <F9> <c-o>:call GotoDefinition()<CR>
-            
-" highlights all occurences of word without moving cursor
-let g:highlighting = 0
-function! Highlighting()
-  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
-    let g:highlighting = 0
-    return ":silent nohlsearch\<CR>"
-  endif
-  let @/ = '\<'.expand('<cword>').'\>'
-  let g:highlighting = 1
-  return ":silent set hlsearch\<CR>"
-endfunction
-nnoremap <silent> <expr> <F8> Highlighting()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COMPILING AND EXECUTING
