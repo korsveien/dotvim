@@ -70,3 +70,11 @@
     path = bundle/gist
     url = git://github.com/vim-scripts/Gist.vim.git
     ignore = dirty
+[submodule "bundle/conqueterm"]
+    path = bundle/conqueterm
+    url = git://github.com/rosenfeld/conque-term.git
+    ignore = dirty
+[submodule "bundle/easytags"]
+    path = bundle/easytags
+    url = git://github.com/xolox/vim-easytags.git
+    ignore = dirty

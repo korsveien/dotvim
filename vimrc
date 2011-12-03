@@ -17,7 +17,7 @@ set nocompatible
 
 if has("autocmd")
     " Source the vimrc file after saving it
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    " autocmd bufwritepost .vimrc source $MYVIMRC
 
     " Set syntax highligthing for arduino
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
@@ -31,6 +31,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" re-implements the functionality of the normal-mode K command using ConqueTerm
+" Source: http://superuser.com/a/290113
+:function! ConqueMan()
+    let cmd = &keywordprg . ' '
+    if cmd ==# 'man ' || cmd ==# 'man -s '
+        if v:count > 0
+            let cmd .= v:count . ' '
+        else
+            let cmd = 'man '
+        endif
+    endif
+    let cmd .= expand('<cword>')
+    execute 'ConqueTermSplit' cmd
+:endfunction
+
+
 " Set color scheme according to current time of day.
 " Source: http://vim.wikia.com/wiki/Switch_color_schemes
 function! HourColor()
@@ -45,15 +62,14 @@ function! HourColor()
   let nowcolors = 'zenburn peaksea wombat256'
   execute 'colorscheme '.split(nowcolors)[i]
   redraw
-  echo g:colors_name
 endfunction
 
 " goes to definition under cursor
 function! GotoDefinition()
   let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
 endfunction
-map <F9> :call GotoDefinition()<CR>
-imap <F9> <c-o>:call GotoDefinition()<CR>
+map <F7> :call GotoDefinition()<CR>
+imap <F7> <c-o>:call GotoDefinition()<CR>
             
 " highlights all occurences of word without moving cursor
 let g:highlighting = 0
@@ -103,6 +119,7 @@ set nowb
 set noswapfile                  
 set mouse=a                     " enable mouse
 set tags=tags;/                 " search recursively upwards for tagfile
+set shell=/bin/zsh              " set default shell to zsh
 
 
 """""""""""""""""""""""""""""""
@@ -193,7 +210,6 @@ let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
 map <F2> :TlistToggle<CR>
 
-
 """""""""""""""""""""""""""""""
 " => LateX
 """"""""""""""""""""""""""""""
@@ -225,10 +241,10 @@ vmap <Leader>= :Tabularize /=<Enter>
 """""""""""""""""""""""""""""""
 " => Tasklist
 """"""""""""""""""""""""""""""
-map <Leader>y <Plug>TaskList
+map <Leader>t <Plug>TaskList
 
 """""""""""""""""""""""""""""""
-" => Unimpaierd
+" => Unimpaired
 """"""""""""""""""""""""""""""
 " Bubble single lines
 nmap <C-h> [e
@@ -242,6 +258,8 @@ vmap <C-l> ]egv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mappings for ctags
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> "open definition in vertical split
 
 " Mappings for cope (quickfix list)
 map <leader>cc :botright cope<cr>
@@ -306,7 +324,6 @@ nmap <Leader>v :source $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => SYSTEM SPECIFICS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TODO: turn this into proper function
 if has("win32")
     "Windows options here
 else
@@ -321,6 +338,8 @@ else
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
                 set gfn=Monaco:h11 "change default font
+                :map K :<C-U>call ConqueMan()<CR> "remap K to use conqueterm
+                :ounmap K
             endif
         endif
     endif
