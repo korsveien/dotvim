@@ -82,3 +82,7 @@
     path = bundle/searchcomplete
     url = git://github.com/vim-scripts/SearchComplete.git
     ignore = dirty
+[submodule "bundle/sqlcomplete"]
+    path = bundle/sqlcomplete
+    url = git://github.com/vim-scripts/SQLComplete.vim.git
+    ignore = dirty
