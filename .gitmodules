@@ -74,3 +74,7 @@
     path = bundle/easytags
     url = git://github.com/xolox/vim-easytags.git
     ignore = dirty
+[submodule "bundle/showmarks"]
+    path = bundle/showmarks
+    url = git://github.com/vim-scripts/ShowMarks.git
+    ignore = dirty
