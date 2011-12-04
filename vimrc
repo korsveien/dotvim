@@ -333,7 +333,7 @@ else
             "Mac options here
             let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
 
-            if has("gui_running")  "settings for macvim
+            if has("gui_macvim")  "settings for macvim
                 set lines=35 columns=110
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
@@ -378,7 +378,7 @@ if has("autocmd")
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
     autocmd FileType    tex             map <Leader>r :!open %<.pdf<CR>
 
-    " Running scheme (there is no compile)
+    " Running scheme
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
 
   augroup end
