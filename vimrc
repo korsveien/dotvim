@@ -355,9 +355,9 @@ nmap <C-k> 5k
 vmap <C-j> 5j
 vmap <C-k> 5k
 nmap <Space> 10j
-nmap <S-Space> 10k
+nmap <Backspace> 10k
 vmap <Space> 10j
-vmap <S-Space> 10k
+vmap <Backspace> 10k
 
 
 " Find next/previous digit
