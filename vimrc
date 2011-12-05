@@ -382,7 +382,8 @@ else
                 set lines=35 columns=110
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
-                set gfn=Monaco:h11 "change default font
+                set gfn=Monaco:h10 "change default font
+                " set gfn=Inconsolata:h12 "change default font
                 :map K :<C-U>call ConqueMan()<CR> "remap K to use conqueterm
                 :ounmap K
             endif
