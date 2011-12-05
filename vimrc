@@ -197,7 +197,8 @@ match TODOS /TODO\|FIXME\|XXX/
 """""""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
-set statusline=[%n]%y\%{fugitive#statusline()}%h%w%m%r\ %<%F\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%P
+set statusline=%<%F\ %y\ %{fugitive#statusline()}%h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
+
 
 
 """""""""""""""""""""""""""""""
