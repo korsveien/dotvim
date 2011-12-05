@@ -66,10 +66,6 @@
     path = bundle/conqueterm
     url = git://github.com/rosenfeld/conque-term.git
     ignore = dirty
-[submodule "bundle/easytags"]
-    path = bundle/easytags
-    url = git://github.com/xolox/vim-easytags.git
-    ignore = dirty
 [submodule "bundle/showmarks"]
     path = bundle/showmarks
     url = git://github.com/vim-scripts/ShowMarks.git
