@@ -171,7 +171,12 @@ set shell=/bin/zsh              " set default shell to zsh
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256                         
-call HourColor()              "Set color according to time of day
+if has("gui_running")
+    call HourColor()              "Set color according to time of day
+else
+    colorscheme wombat256         " use wombat for terminals
+endif
+
 
 " colorscheme zenburn
 " let g:zenburn_high_contrast = 1
