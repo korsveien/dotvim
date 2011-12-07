@@ -309,6 +309,11 @@ vmap <C-l> ]egv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Fold/unfold JavaDoc
+nmap \j :g/\/\*\*/ foldo<CR>:nohls<CR>
+nmap \J :g/\/\*\*/ foldc<CR>:nohls<CR>
+
 " mappings for ctags
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> "open definition in vertical split
 
