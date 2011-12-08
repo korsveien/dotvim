@@ -374,8 +374,8 @@ nmap <Leader>O [<Space>
 nmap <Leader>o ]<Space>
 
 " Edit .vimrc
-nmap <Leader>V :edit $MYVIMRC<CR> 
-nmap <Leader>v :source $MYVIMRC<CR>
+nmap <Leader>V :edit! $MYVIMRC<CR> 
+nmap <Leader>v :source! $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => SYSTEM SPECIFICS
