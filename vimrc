@@ -165,6 +165,7 @@ set noswapfile
 set mouse=a                     " enable mouse
 set tags=tags;/                 " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
+set bs=indent,eol,start         " fix misbehaving backspace
 
 
 """""""""""""""""""""""""""""""
@@ -211,7 +212,7 @@ set statusline=%<%F\ %y\ %{fugitive#statusline()}%h%w%m%r\ %=%{\"[\".(&fenc==\"\
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-noremap <leader>j :CommandT<cr>
+noremap <leader>t :CommandT<cr>
 noremap <leader>y :CommandTFlush<cr>
 
 
@@ -310,12 +311,19 @@ vmap <C-l> ]egv
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Fold/unfold JavaDoc
-nmap \j :g/\/\*\*/ foldo<CR>:nohls<CR>
-nmap \J :g/\/\*\*/ foldc<CR>:nohls<CR>
+" For easier making comment boxes
+abbr #b /************************************************************
+abbr #e ************************************************************/
 
-" mappings for ctags
-map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> "open definition in vertical split
+
+" Fold/unfold JavaDoc
+" FIXME: current mapping conflicts with command-t
+nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
+nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
+
+"open definition in vertical split using ctags
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
+
 
 " Mappings for cope (quickfix list)
 map <leader>cc :botright cope<cr>
@@ -374,8 +382,8 @@ nmap <Leader>O [<Space>
 nmap <Leader>o ]<Space>
 
 " Edit .vimrc
-nmap <Leader>V :edit! $MYVIMRC<CR> 
-nmap <Leader>v :source! $MYVIMRC<CR>
+nmap <Leader>V :edit $MYVIMRC<CR> 
+nmap <Leader>v :source $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => SYSTEM SPECIFICS
