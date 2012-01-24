@@ -78,3 +78,7 @@
     path = bundle/easytags
     url = git://github.com/vim-scripts/easytags.vim.git
     ignore = dirty
+[submodule "bundle/clang"]
+    path = bundle/clang
+    url = git://github.com/Rip-Rip/clang_complete.git
+    ignore = dirty
