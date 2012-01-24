@@ -33,10 +33,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
-
 nnoremap <leader>x :Hexmode<CR>
 inoremap <leader>x <Esc>:Hexmode<CR>
 vnoremap <leader>x :<C-U>Hexmode<CR>
+
 
 " helper function to toggle hex mode
 function ToggleHex()
@@ -163,7 +163,7 @@ set nobackup                    " turn backup off
 set nowb 
 set noswapfile                  
 set mouse=a                     " enable mouse
-set tags=tags;/                 " search recursively upwards for tagfile
+set tags+=tags;/;/usr/include/  " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 
@@ -212,7 +212,7 @@ set statusline=%<%F\ %y\ %{fugitive#statusline()}%h%w%m%r\ %=%{\"[\".(&fenc==\"\
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-noremap <leader>t :CommandT<cr>
+noremap <leader>j :CommandT<cr>
 noremap <leader>y :CommandTFlush<cr>
 
 
@@ -260,7 +260,6 @@ let Tlist_Close_On_Select = 1 " Close the taglist window when a file or tag is s
 let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
-map <F2> :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""
 " => LateX
@@ -310,14 +309,22 @@ vmap <C-l> ]egv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Function keys
+map <F2> :TlistToggle<CR>
+map <F3> :NERDTreeToggle<CR>
+map <F5> :e %<CR>
+
+" FIXME: boxes bad adress
+vmap <F4> !boxes -d c-cmt<CR>
+nmap <F4> !!boxes -d c-cmt<CR>
+vmap <F6> !boxes -d c-cmt -r<CR>
+nmap <F6> !!boxes -d c-cmt -r<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************
 abbr #e ************************************************************/
 
-
 " Fold/unfold JavaDoc
-" FIXME: current mapping conflicts with command-t
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
 
@@ -329,11 +336,6 @@ map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
-
-map <F4> :NERDTreeToggle<CR>
-
-" update window
-map <F5> :e %<CR>
 
 
 " Toggle pastemode if in terminal
