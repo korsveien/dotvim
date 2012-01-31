@@ -86,3 +86,11 @@
     path = bundle/winmanager
     url = git://github.com/vim-scripts/winmanager.git
     ignore = dirty
+[submodule "bundle/filetree"]
+    path = bundle/filetree
+    url = git://github.com/vim-scripts/FileTree.git
+    ignore = dirty
+[submodule "bundle/tree"]
+    path = bundle/tree
+    url = git://github.com/vim-scripts/tree.git
+    ignore = dirty

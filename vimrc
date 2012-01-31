@@ -339,7 +339,8 @@ vmap <C-l> ]egv
 
 " Function keys
 map <F2> :TlistToggle<CR>
-map <F3> :NERDTreeToggle<CR>
+" map <F3> :NERDTreeToggle<CR>
+map <F3> :WMToggle<CR>
 map <F4> :QFix<CR>
 map <F5> :e %<CR>
 
