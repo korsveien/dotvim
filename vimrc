@@ -298,7 +298,12 @@ let g:tex_flavor='latex'
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerHorzSize=10
+let g:bufExplorerSplitBelow=1
 
+"""""""""""""""""""""""""""""""
+" => MiniBufExplorer
+""""""""""""""""""""""""""""""
+let g:miniBufExplSplitBelow =1
 
 """""""""""""""""""""""""""""""
 " => Tabularize
@@ -338,11 +343,12 @@ vmap <C-l> ]egv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Function keys
-map <F2> :TlistToggle<CR>
-" map <F3> :NERDTreeToggle<CR>
-map <F3> :WMToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+map <F3> :TlistToggle<CR>
 map <F4> :QFix<CR>
 map <F5> :e %<CR>
+
+map <leader>f :FirstExplorerWindow<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************

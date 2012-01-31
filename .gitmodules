@@ -74,23 +74,11 @@
     path = bundle/sqlcomplete
     url = git://github.com/vim-scripts/SQLComplete.vim.git
     ignore = dirty
-[submodule "bundle/easytags"]
-    path = bundle/easytags
-    url = git://github.com/vim-scripts/easytags.vim.git
-    ignore = dirty
 [submodule "bundle/clang"]
     path = bundle/clang
     url = git://github.com/Rip-Rip/clang_complete.git
     ignore = dirty
-[submodule "bundle/winmanager"]
-    path = bundle/winmanager
-    url = git://github.com/vim-scripts/winmanager.git
-    ignore = dirty
-[submodule "bundle/filetree"]
-    path = bundle/filetree
-    url = git://github.com/vim-scripts/FileTree.git
-    ignore = dirty
-[submodule "bundle/tree"]
-    path = bundle/tree
-    url = git://github.com/vim-scripts/tree.git
+[submodule "bundle/minibufexpl"]
+    path = bundle/minibufexpl
+    url = git://github.com/fholgado/minibufexpl.vim.git
     ignore = dirty
