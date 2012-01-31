@@ -25,12 +25,34 @@ if has("autocmd")
     " au InsertLeave * set nocursorcolumn
     autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=red ctermfg=black
     autocmd BufEnter * match OverLenght /\%80v.*/
+
+    " open quickfix window after make
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" toggles the quickfix window.
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+  else
+    execute "copen " . g:jah_Quickfix_Win_Height
+  endif
+endfunction
+
+" used to track the quickfix window
+augroup QFixToggle
+ autocmd!
+ autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+ autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+augroup END
+
+
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
 nnoremap <leader>x :Hexmode<CR>
@@ -167,6 +189,8 @@ set tags+=tags;/;/usr/include/  " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 
+let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
+
 
 """""""""""""""""""""""""""""""
 " => Colors
@@ -273,6 +297,7 @@ let g:tex_flavor='latex'
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerHorzSize=10
 
 
 """""""""""""""""""""""""""""""
@@ -306,23 +331,21 @@ vmap <C-h> [egv
 vmap <C-l> ]egv
 
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Function keys
 map <F2> :TlistToggle<CR>
 map <F3> :NERDTreeToggle<CR>
+map <F4> :QFix<CR>
 map <F5> :e %<CR>
-
-" FIXME: boxes bad adress
-vmap <F4> !boxes -d c-cmt<CR>
-nmap <F4> !!boxes -d c-cmt<CR>
-vmap <F6> !boxes -d c-cmt -r<CR>
-nmap <F6> !!boxes -d c-cmt -r<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************
-abbr #e ************************************************************/
+abbr #e <space>************************************************************/
 
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
@@ -330,12 +353,6 @@ nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
 
 "open definition in vertical split using ctags
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
-
-
-" Mappings for cope (quickfix list)
-map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
 
 
 " Toggle pastemode if in terminal

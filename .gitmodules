@@ -82,3 +82,7 @@
     path = bundle/clang
     url = git://github.com/Rip-Rip/clang_complete.git
     ignore = dirty
+[submodule "bundle/winmanager"]
+    path = bundle/winmanager
+    url = git://github.com/vim-scripts/winmanager.git
+    ignore = dirty
