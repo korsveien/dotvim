@@ -188,6 +188,7 @@ set mouse=a                     " enable mouse
 set tags+=tags;/;/usr/include/  " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
+set tildeop                     " use tilde as an operator (i.e 5~)
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
@@ -267,21 +268,32 @@ call pathogen#helptags()
 " set supertab to use the context (ie programming language) we are in
 let g:SuperTabDefaultCompletionType = "context"
 
+"""""""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""
+let g:NERDTreeShowHidden=1
+let g:NERDTreeWinSize = 40
+
+"""""""""""""""""""""""""""""""
+" => WinManager
+""""""""""""""""""""""""""""""
+map <c-w><c-t> :WMToggle<cr>
+map <c-w><c-f> :FirstExplorerWindow<cr>
+map <c-w><c-b> :BottomExplorerWindow<cr>
+
 
 """""""""""""""""""""""""""""""
 " => Taglist
 """"""""""""""""""""""""""""""
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
+let Tlist_Show_One_File = 1 " Displaying tags for only one file~let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
 let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Sort_Type = "name" " sort by order or name
+let Tlist_Sort_Type = "order" " sort by order or name
 let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
 let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
 let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
 let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 1 " Close the taglist window when a file or tag is selected.
-let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
+let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
 
@@ -303,7 +315,8 @@ let g:bufExplorerSplitBelow=1
 """""""""""""""""""""""""""""""
 " => MiniBufExplorer
 """"""""""""""""""""""""""""""
-let g:miniBufExplSplitBelow =1
+let g:miniBufExplSplitBelow =0
+let g:miniBufExplModSelTarget=1
 
 """""""""""""""""""""""""""""""
 " => Tabularize
@@ -324,18 +337,6 @@ vmap <Leader>= :Tabularize /=<Enter>
 """"""""""""""""""""""""""""""
 map <Leader>t <Plug>TaskList
 
-"""""""""""""""""""""""""""""""
-" => Unimpaired
-""""""""""""""""""""""""""""""
-" Bubble single lines
-nmap <C-h> [e
-nmap <C-l> ]e
-
-" Bubble multiple lines
-vmap <C-h> [egv
-vmap <C-l> ]egv
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -343,12 +344,9 @@ vmap <C-l> ]egv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Function keys
-map <F2> :NERDTreeToggle<CR>
-map <F3> :TlistToggle<CR>
+map <F2> :FirstExplorerWindow<CR>
+map <F3> :BottomExplorerWindow<CR>
 map <F4> :QFix<CR>
-map <F5> :e %<CR>
-
-map <leader>f :FirstExplorerWindow<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -360,14 +358,6 @@ nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
 
 "open definition in vertical split using ctags
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
-
-
-" Toggle pastemode if in terminal
-if !has("gui_running")
-    nnoremap <Leader>p :set invpaste paste?<CR>
-    set pastetoggle=<Leader>p
-    set showmode
-endif
   
 " Substitute on this line
 nmap <Leader>s :s///g<Left><Left><Left>
@@ -388,15 +378,11 @@ nnoremap <Right> :echo "Use l"<CR>
 nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
 
-" Scroll faster
-nmap <C-j> 5j
-nmap <C-k> 5k
-vmap <C-j> 5j
-vmap <C-k> 5k
-nmap <Space> 10j
-nmap <Backspace> 10k
-vmap <Space> 10j
-vmap <Backspace> 10k
+"Scroll with space 
+" nmap <Space> 10j
+" nmap <Backspace> 10k
+" vmap <Space> 10j
+" vmap <Backspace> 10k
 
 
 " Find next/previous digit
@@ -414,6 +400,13 @@ nmap <Leader>v :source $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => SYSTEM SPECIFICS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle pastemode if in terminal
+if !has("gui_running")
+    nnoremap <Leader>p :set invpaste paste?<CR>
+    set pastetoggle=<Leader>p
+    set showmode
+endif
+
 if has("win32")
     "Windows options here
 else
@@ -428,8 +421,9 @@ else
                 set vb             "remove annoying sound in macvim
                 set guioptions=-m  "remove menu bar
                 set gfn=Monaco:h10 "change default font
-                " set gfn=Inconsolata:h12 "change default font
-                :map K :<C-U>call ConqueMan()<CR> "remap K to use conqueterm
+                " set gfn=Inconsolata:h11 "change default font
+                "remap K to use conqueterm
+                :map K :<C-U>call ConqueMan()<CR> 
                 :ounmap K
             endif
         endif
