@@ -86,3 +86,7 @@
     path = bundle/filetree
     url = git://github.com/vim-scripts/FileTree.git
     ignore = dirty
+[submodule "bundle/tree"]
+    path = bundle/tree
+    url = /Users/nilspk/.vim/bundle/tree
+    ignore = dirty
