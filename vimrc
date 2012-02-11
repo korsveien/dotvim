@@ -228,7 +228,7 @@ match TODOS /TODO\|FIXME\|XXX/
 """""""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
-set statusline=%<%F\ %y\ %{fugitive#statusline()}%h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
+set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
 
 
