@@ -197,11 +197,11 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256                         
-if has("gui_running")
-    call HourColor()              "Set color according to time of day
-else
-    colorscheme wombat256         " use wombat for terminals
-endif
+" if has("gui_running")
+"     call HourColor()              "Set color according to time of day
+" else
+colorscheme wombat256         " use wombat
+" endif
 
 
 " colorscheme zenburn
@@ -344,9 +344,9 @@ map <Leader>t <Plug>TaskList
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Function keys
-map <F2> :FirstExplorerWindow<CR>
-map <F3> :BottomExplorerWindow<CR>
-map <F4> :QFix<CR>
+map <F1> :QFix<CR>
+map <F2> :BufExplorer<CR>
+map <F3> :TlistToggle<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -379,10 +379,10 @@ nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
 
 "Scroll with space 
-" nmap <Space> 10j
-" nmap <Backspace> 10k
-" vmap <Space> 10j
-" vmap <Backspace> 10k
+nmap <Space> 10j
+nmap <Backspace> 10k
+vmap <Space> 10j
+vmap <Backspace> 10k
 
 
 " Find next/previous digit
