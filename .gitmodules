@@ -78,3 +78,7 @@
     path = bundle/tree
     url = /Users/nilspk/.vim/bundle/tree
     ignore = dirty
+[submodule "bundle/cscope"]
+    path = bundle/cscope
+    url = git://github.com/vim-scripts/cscope_macros.vim
+    ignore = dirty
