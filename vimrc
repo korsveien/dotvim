@@ -156,16 +156,12 @@ nnoremap <silent> <expr> <F8> Highlighting()
 " => GENERAL SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
 set number                      " use line numbers
 set smartindent                 " indenting
-set hlsearch                    " highlight search
 set ignorecase                  " case insensitive
 set incsearch                   " search while typing
-set nocursorcolumn              " no highligted cursor column
-set cursorline                  " highlight the line we are on
 set noerrorbells                " no noise, please 
 set noexrc                      " use local version of .(g)vimrc, .exrc
 set novisualbell                " blink on error
@@ -180,7 +176,6 @@ set nofoldenable                " no folding please
 set showmode                    " shows current mode in bottom right corner
 set laststatus=2                " status line is always enabled
 set nowrap                      " no line wrap
-set hlsearch                    " highlight search result
 set nobackup                    " turn backup off
 set nowb 
 set noswapfile                  
@@ -219,6 +214,10 @@ colorscheme wombat256         " use wombat
 """""""""""""""""""""""""""""""
 " => Higlighting
 """"""""""""""""""""""""""""""
+syntax on                       " use syntax highlighting
+set hlsearch                    " highlight search
+set nocursorcolumn              " no highligted cursor column
+set cursorline                  " highlight the line we are on
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
