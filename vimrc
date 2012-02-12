@@ -398,17 +398,21 @@ vmap <Leader>s :s/\%V//g<Left><Left><Left>
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
+" Navigate windows
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
 "echo the truth 
-nnoremap <Left> :echo "Use h"<CR>
-nnoremap <Right> :echo "Use l"<CR>
-nnoremap <Up> :echo "Use k"<CR>
-nnoremap <Down> :echo "Use j"<CR>
+nnoremap <Left> :bp<CR>
+nnoremap <Right> :bn<CR>
+nnoremap <Up> :cp<CR>
+nnoremap <Down> :cn<CR>
 
 "Scroll with space 
 nmap <Space> 10j
 nmap <Backspace> 10k
-vmap <Space> 10j
-vmap <Backspace> 10k
 
 
 " Find next/previous digit
