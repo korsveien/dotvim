@@ -344,9 +344,10 @@ map <Leader>t <Plug>TaskList
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Function keys
-map <F1> :QFix<CR>
+map <F1> :Explore<CR>
 map <F2> :BufExplorer<CR>
 map <F3> :TlistToggle<CR>
+map <F4> :QFix<CR>
 
 " For easier making comment boxes
 abbr #b /************************************************************
