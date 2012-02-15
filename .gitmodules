@@ -66,18 +66,6 @@
     path = bundle/sqlcomplete
     url = git://github.com/vim-scripts/SQLComplete.vim.git
     ignore = dirty
-[submodule "bundle/winmanager"]
-    path = bundle/winmanager
-    url = git://github.com/vim-scripts/winmanager.git
-    ignore = dirty
-[submodule "bundle/filetree"]
-    path = bundle/filetree
-    url = git://github.com/vim-scripts/FileTree.git
-    ignore = dirty
-[submodule "bundle/tree"]
-    path = bundle/tree
-    url = /Users/nilspk/.vim/bundle/tree
-    ignore = dirty
 [submodule "bundle/cscope"]
     path = bundle/cscope
     url = git://github.com/vim-scripts/cscope_macros.vim
