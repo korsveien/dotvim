@@ -372,14 +372,14 @@ map <Leader>t <Plug>TaskList
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Works like gangbusters on norwegian keyboard with US as language
-let mapleader= "§"
+" let mapleader= "§"
 
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
 map <F1> :25split %<.h<CR><C-W>j
-map <F2> :BufExplorer<CR>
+map <F2> :NERDTreeToggle<CR>
 map <F3> :TlistToggle<CR>
 map <F4> :QFix<CR>
 
