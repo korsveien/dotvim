@@ -46,14 +46,6 @@
     path = bundle/tasklist
     url = git://github.com/vim-scripts/TaskList.vim.git
     ignore = dirty
-[submodule "bundle/fugitive"]
-    path = bundle/fugitive
-    url = git://github.com/tpope/vim-fugitive.git
-    ignore = dirty
-[submodule "bundle/command-t"]
-    path = bundle/command-t
-    url = git://github.com/wincent/Command-T.git
-    ignore = dirty
 [submodule "bundle/bufexplorer"]
     path = bundle/bufexplorer
     url = git://github.com/vim-scripts/bufexplorer.zip.git
@@ -74,19 +66,11 @@
     path = bundle/sqlcomplete
     url = git://github.com/vim-scripts/SQLComplete.vim.git
     ignore = dirty
-[submodule "bundle/clang_complete"]
-    path = bundle/clang_complete
-    url = git://github.com/Rip-Rip/clang_complete.git
+[submodule "bundle/cscope"]
+    path = bundle/cscope
+    url = git://github.com/vim-scripts/cscope_macros.vim
     ignore = dirty
-[submodule "bundle/winmanager"]
-    path = bundle/winmanager
-    url = git://github.com/vim-scripts/winmanager.git
-    ignore = dirty
-[submodule "bundle/filetree"]
-    path = bundle/filetree
-    url = git://github.com/vim-scripts/FileTree.git
-    ignore = dirty
-[submodule "bundle/tree"]
-    path = bundle/tree
-    url = /Users/nilspk/.vim/bundle/tree
+[submodule "bundle/minibufexpl"]
+    path = bundle/minibufexpl
+    url = git://github.com/fholgado/minibufexpl.vim.git
     ignore = dirty

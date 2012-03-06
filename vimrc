@@ -35,6 +35,19 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" aligns a character when inserted, courtesy of the Pope
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
 " toggles the quickfix window.
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -156,16 +169,12 @@ nnoremap <silent> <expr> <F8> Highlighting()
 " => GENERAL SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on                       " use syntax highlighting
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
 set number                      " use line numbers
 set smartindent                 " indenting
-set hlsearch                    " highlight search
 set ignorecase                  " case insensitive
 set incsearch                   " search while typing
-set nocursorcolumn              " no highligted cursor column
-set cursorline                  " highlight the line we are on
 set noerrorbells                " no noise, please 
 set noexrc                      " use local version of .(g)vimrc, .exrc
 set novisualbell                " blink on error
@@ -180,7 +189,6 @@ set nofoldenable                " no folding please
 set showmode                    " shows current mode in bottom right corner
 set laststatus=2                " status line is always enabled
 set nowrap                      " no line wrap
-set hlsearch                    " highlight search result
 set nobackup                    " turn backup off
 set nowb 
 set noswapfile                  
@@ -219,6 +227,10 @@ colorscheme wombat256         " use wombat
 """""""""""""""""""""""""""""""
 " => Higlighting
 """"""""""""""""""""""""""""""
+syntax on                       " use syntax highlighting
+set hlsearch                    " highlight search
+set nocursorcolumn              " no highligted cursor column
+set cursorline                  " highlight the line we are on
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
@@ -282,6 +294,7 @@ map <c-w><c-f> :FirstExplorerWindow<cr>
 map <c-w><c-b> :BottomExplorerWindow<cr>
 
 """""""""""""""""""""""""""""""
+<<<<<<< HEAD
 " => Taglist
 """"""""""""""""""""""""""""""
 if has("cscope")
@@ -328,6 +341,19 @@ endif
 " This tests to see if vim was configured with the '--enable-cscope' option
 " when it was compiled.  If it wasn't, time to recompile vim... 
 if has("cscope")
+=======
+" => Cscope
+""""""""""""""""""""""""""""""
+" This tests to see if vim was configured with the '--enable-cscope' option
+" when it was compiled.  If it wasn't, time to recompile vim... 
+if has("cscope")
+
+    """"""""""""" Standard cscope/vim boilerplate
+
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    " set cscopetag
+
+>>>>>>> ifi
     " check cscope for definition of a symbol before checking ctags: set to 1
     " if you want the reverse search order.
     set csto=0
@@ -335,13 +361,18 @@ if has("cscope")
     " add any cscope database in current directory
     if filereadable("cscope.out")
         cs add cscope.out  
+<<<<<<< HEAD
         " else add the database pointed to by environment variable 
+=======
+    " else add the database pointed to by environment variable 
+>>>>>>> ifi
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
 
     " show msg when any other cscope db added
     set cscopeverbose  
+<<<<<<< HEAD
 
 
     """"""""""""" My cscope/vim key mappings
@@ -456,19 +487,24 @@ endif
 "
 "set ttimeoutlen=100
 
+=======
+endif
+>>>>>>> ifi
 
 """""""""""""""""""""""""""""""
 " => Taglist
 """"""""""""""""""""""""""""""
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
+let Tlist_Ctags_Cmd='/local/bin/ctags'
+let Tlist_Show_One_File = 1 " Displaying tags for only one file~
+let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
 let Tlist_Use_Right_Window = 1 " split to the right side of the screen
 let Tlist_Sort_Type = "order" " sort by order or name
 let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
+let Tlist_Compact_Format = 1 " Remove extra information and blank lines from the taglist window.
 let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
 let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
+let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
+let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
 let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
 
@@ -506,6 +542,8 @@ nmap <Leader>/ :Tabularize /\/\/<Enter>
 vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
+nmap <Leader>& :Tabularize /&<Enter>
+vmap <Leader>& :Tabularize /&<Enter>
 
 """""""""""""""""""""""""""""""
 " => Tasklist
@@ -518,11 +556,26 @@ map <Leader>t <Plug>TaskList
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Works like gangbusters on norwegian keyboard with US as language
+" let mapleader= "§"
+
+imap jj <esc>
+
+" Open ctags definition i vertical split window
+map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " Function keys
+<<<<<<< HEAD
 map <F1> :Explore<CR>
 map <F2> :BufExplorer<CR>
+=======
+map <F1> :25split %<.h<CR><C-W>j
+map <F2> :NERDTreeToggle<CR>
+>>>>>>> ifi
 map <F3> :TlistToggle<CR>
 map <F4> :QFix<CR>
+
+
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -531,9 +584,6 @@ abbr #e <space>************************************************************/
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
-
-"open definition in vertical split using ctags
-map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
   
 " Substitute on this line
 nmap <Leader>s :s///g<Left><Left><Left>
@@ -548,11 +598,17 @@ vmap <Leader>s :s/\%V//g<Left><Left><Left>
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
+" Navigate windows
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
 "echo the truth 
-nnoremap <Left> :echo "Use h"<CR>
-nnoremap <Right> :echo "Use l"<CR>
-nnoremap <Up> :echo "Use k"<CR>
-nnoremap <Down> :echo "Use j"<CR>
+nnoremap <Left> :bp<CR>
+nnoremap <Right> :bn<CR>
+nnoremap <Up> :cp<CR>
+nnoremap <Down> :cn<CR>
 
 "Scroll with space 
 nmap <Space> 10j
