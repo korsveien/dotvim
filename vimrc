@@ -35,6 +35,19 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" aligns a character when inserted, courtesy of the Pope
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
 " toggles the quickfix window.
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -359,6 +372,8 @@ nmap <Leader>/ :Tabularize /\/\/<Enter>
 vmap <Leader>/ :Tabularize /\/\/<Enter>
 nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
+nmap <Leader>& :Tabularize /&<Enter>
+vmap <Leader>& :Tabularize /&<Enter>
 
 """""""""""""""""""""""""""""""
 " => Tasklist
@@ -374,6 +389,8 @@ map <Leader>t <Plug>TaskList
 " Works like gangbusters on norwegian keyboard with US as language
 " let mapleader= "§"
 
+imap jj <esc>
+
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -382,6 +399,8 @@ map <F1> :25split %<.h<CR><C-W>j
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TlistToggle<CR>
 map <F4> :QFix<CR>
+
+
 
 " For easier making comment boxes
 abbr #b /************************************************************
