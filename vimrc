@@ -182,7 +182,7 @@ set smarttab                    " <TAB> inserts indentation according to 'shiftw
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
 set softtabstop=4               " Affects what happens when <TAB> is pressed
-set textwidth=72                " generate newline at col 79
+set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
 set ruler                       " status bar
 set nofoldenable                " no folding please
@@ -205,11 +205,7 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256                         
-" if has("gui_running")
-"     call HourColor()              "Set color according to time of day
-" else
-colorscheme wombat256         " use wombat
-" endif
+colorscheme wombat256
 
 
 " colorscheme zenburn
@@ -386,21 +382,19 @@ map <Leader>t <Plug>TaskList
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Works like gangbusters on norwegian keyboard with US as language
-" let mapleader= "§"
-
-imap jj <esc>
+let mapleader=','
 
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
-map <F1> :25split %<.h<CR><C-W>j
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TlistToggle<CR>
-map <F4> :QFix<CR>
+map <F4> :25split %<.h<CR><C-W>j
+map <F5> :e %
 
-
+" For those times when caps lock hasn't been mapped
+inoremap jj <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -429,7 +423,6 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-"echo the truth 
 nnoremap <Left> :bp<CR>
 nnoremap <Right> :bn<CR>
 nnoremap <Up> :cp<CR>
