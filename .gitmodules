@@ -70,7 +70,3 @@
     path = bundle/cscope
     url = git://github.com/vim-scripts/cscope_macros.vim
     ignore = dirty
-[submodule "bundle/minibufexpl"]
-    path = bundle/minibufexpl
-    url = git://github.com/fholgado/minibufexpl.vim.git
-    ignore = dirty
