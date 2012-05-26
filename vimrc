@@ -283,13 +283,6 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize = 40
 
 """""""""""""""""""""""""""""""
-" => WinManager
-""""""""""""""""""""""""""""""
-map <c-w><c-t> :WMToggle<cr>
-map <c-w><c-f> :FirstExplorerWindow<cr>
-map <c-w><c-b> :BottomExplorerWindow<cr>
-
-"""""""""""""""""""""""""""""""
 " => Taglist
 """"""""""""""""""""""""""""""
 if has("cscope")
@@ -365,7 +358,6 @@ vmap <Leader>& :Tabularize /&<Enter>
 " => Tasklist
 """"""""""""""""""""""""""""""
 map <Leader>t <Plug>TaskList
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -453,22 +445,25 @@ if has("win32")
     "Windows options here
 else
     if has("unix")
-        let s:uname = system("uname")
-        if s:uname == "Darwin\n" 
+        "let s:uname = system("uname")
+        "if s:uname == "Darwin\n" 
             "Mac options here
-            let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
+            "let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
 
-            if has("gui_macvim")  "settings for macvim
-                set lines=35 columns=110
-                set vb             "remove annoying sound in macvim
-                set guioptions=-m  "remove menu bar
-                set gfn=Monaco:h10 "change default font
+            "if has("gui_macvim")  "settings for macvim
+            "    set lines=35 columns=110
+                "set vb             "remove annoying sound in macvim
+                "set guioptions=-m  "remove menu bar
+                "set gfn=Monaco:h10 "change default font
                 " set gfn=Inconsolata:h11 "change default font
                 "remap K to use conqueterm
-                :map K :<C-U>call ConqueMan()<CR> 
-                :ounmap K
-            endif
-        endif
+                ":map K :<C-U>call ConqueMan()<CR> 
+                ":ounmap K
+            "endif
+        "endif
+        
+        
+        set gfn=Inconsolata:h11 "change default font
     endif
 endif
 
