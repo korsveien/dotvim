@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " => ABOUT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Author: Nils Peder Korsveien
@@ -197,6 +197,7 @@ set tags+=tags;/;/usr/include/  " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
+set encoding=utf-8
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
@@ -205,8 +206,6 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256                         
-colorscheme wombat256
-
 
 " colorscheme zenburn
 " let g:zenburn_high_contrast = 1
@@ -214,6 +213,7 @@ colorscheme wombat256
 " let g:zenburn_unfified_CursorColumn = 1
 
 " colorscheme wombat256           
+colorscheme ir_black
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
@@ -300,9 +300,6 @@ if has("cscope")
     set csverb
 endif
 
-"""""""""""""""""""""""""""""""
-" => Taglist
-""""""""""""""""""""""""""""""
 let Tlist_Ctags_Cmd='/local/bin/ctags'
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
@@ -359,12 +356,19 @@ vmap <Leader>& :Tabularize /&<Enter>
 """"""""""""""""""""""""""""""
 map <Leader>t <Plug>TaskList
 
+"""""""""""""""""""""""""""""""
+" => Powerline
+""""""""""""""""""""""""""""""
+let g:Powerline_symbols = 'fancy'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap "" ""<left><left>
+imap () ()<left><left>
+imap [] []<left><left>
 
-let mapleader=','
+" let mapleader=','
 
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -379,6 +383,7 @@ map <F5> :e %
 
 " For those times when caps lock hasn't been mapped
 inoremap jj <esc>
+inoremap kk <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -401,8 +406,8 @@ vmap <Leader>s :s/\%V//g<Left><Left><Left>
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-" Navigate windows
-nmap <C-h> <C-w>h
+" Navigate windows FIXME does not work in arch
+nmap <C-w> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
