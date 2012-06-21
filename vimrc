@@ -1,4 +1,3 @@
-
 " => ABOUT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Author: Nils Peder Korsveien
@@ -213,11 +212,12 @@ set t_Co=256
 " let g:zenburn_unfified_CursorColumn = 1
 
 " colorscheme wombat256           
-colorscheme ir_black
+" colorscheme ir_black
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
 " colorscheme peaksea
+" colorscheme desert
 
 
 """""""""""""""""""""""""""""""
@@ -259,16 +259,23 @@ vmap <leader>g :'<,'>Gist<CR>
 map <leader>g :Gist<CR>
 map <leader>gp :Gist -p<CR>
 map <leader>gl :Gist -l<CR>
-map <leader>gd :Gist -d<CR>
+map <leader>gd :Gist -d<CR>                                                         
 
 
 """""""""""""""""""""""""""""""
 " => Pathogen
 """"""""""""""""""""""""""""""
 " Must be called before filetype detection
-call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+if has("win32")                                        
+    call pathogen#runtime_prepend_subdirectories(expand('c:\Users\nilspk\Dropbox\dotvim\bundles'))
+endif
+
+if has("unix")
+    call
+    pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundles'))
+endif
 
 """""""""""""""""""""""""""""""
 " => Supertab
@@ -364,26 +371,27 @@ let g:Powerline_symbols = 'fancy'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap "" ""<left><left>
-imap () ()<left><left>
-imap [] []<left><left>
+imap "" ""<left>
+imap () ()<left>
+imap [] []<left>
 
-" let mapleader=','
+let mapleader=','
 
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
 map <F1> :Explore<CR>
-map <F2> :BufExplorer<CR>
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TlistToggle<CR>
 map <F4> :25split %<.h<CR><C-W>j
 map <F5> :e %
 
-" For those times when caps lock hasn't been mapped
+" For those pesky times when caps lock hasn't been mapped
 inoremap jj <esc>
 inoremap kk <esc>
+inoremap jk <esc>
+inoremap kj <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -446,8 +454,16 @@ if !has("gui_running")
     set showmode
 endif
 
+" Remove annoying gui elements in graphical vim
+if has("gui_running")
+    set guioptions =-m
+    set guioptions =-T
+    set guioptions =-r
+endif
+
 if has("win32")
     "Windows options here
+    set gfn=Consolas:h10 "change default font
 else
     if has("unix")
         "let s:uname = system("uname")
