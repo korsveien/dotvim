@@ -211,7 +211,7 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-" colorscheme wombat256           
+colorscheme wombat256           
 " colorscheme ir_black
 " colorscheme molokai
 " colorscheme solarized
@@ -269,12 +269,12 @@ map <leader>gd :Gist -d<CR>
 call pathogen#helptags()
 
 if has("win32")                                        
-    call pathogen#runtime_prepend_subdirectories(expand('c:\Users\nilspk\Dropbox\dotvim\bundles'))
+    call pathogen#runtime_prepend_subdirectories(expand('c:\Users\nilspk\Dropbox\dotvim\bundle'))
 endif
 
 if has("unix")
     call
-    pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundles'))
+    pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundle'))
 endif
 
 """""""""""""""""""""""""""""""
@@ -366,7 +366,14 @@ map <Leader>t <Plug>TaskList
 """""""""""""""""""""""""""""""
 " => Powerline
 """"""""""""""""""""""""""""""
-let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'unicode'
+
+if has("win32")
+    let g:Powerline_symbols = 'compatible'
+endif
+if has("unix")
+    let g:Powerline_symbols = 'fancy'
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS

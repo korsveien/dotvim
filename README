@@ -24,3 +24,9 @@ To upgrade all submodules
 
 To ignore changes in submodules, add the line "ignore=dirty" to all
 submodule entries in .gitmodules.
+
+Windows specific configurations:
+    create a folder called vimfiles in home directory
+    copy autoload folder into vimfiles
+    copy _vimrc into home folder
+    overwrite color folder in the windows installation path for (g)vim
