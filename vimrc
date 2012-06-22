@@ -261,7 +261,6 @@ map <leader>gp :Gist -p<CR>
 map <leader>gl :Gist -l<CR>
 map <leader>gd :Gist -d<CR>                                                         
 
-
 """""""""""""""""""""""""""""""
 " => Pathogen
 """"""""""""""""""""""""""""""
@@ -273,8 +272,7 @@ if has("win32")
 endif
 
 if has("unix")
-    call
-    pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundle'))
+    call pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundle'))
 endif
 
 """""""""""""""""""""""""""""""
@@ -417,11 +415,14 @@ nmap <Leader>S :%s///gc<Left><Left><Left><Left>
 " Substitue visual selection
 vmap <Leader>s :s/\%V//g<Left><Left><Left>
 
+" Remove ^M from dos files
+nmap <Leader>m :%s/\r\(\n\)/\1/g
+
 " Toggle highlighting
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-" Navigate windows FIXME does not work in arch
+" Navigate windows (FIXME: does not work in arch)
 nmap <C-w> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
@@ -444,12 +445,20 @@ nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 
 " Insert <count> line over/under current line
-nmap <Leader>O [<Space>
+nmap <Leader>O [<Space>                                                                                     
 nmap <Leader>o ]<Space>
 
 " Edit .vimrc
-nmap <Leader>V :edit $MYVIMRC<CR> 
-nmap <Leader>v :source $MYVIMRC<CR>
+if has("win32")
+    " Remember to set $HOME as it is not set by default
+    nmap <Leader>V :edit $HOME\Dropbox\dotvim\vimrc<CR>
+    nmap <Leader>v :source $MYVIMRC<CR>
+endif
+
+if has("unix")
+    nmap <Leader>V :edit ~/Dropbox/dotvim/vimrc<CR> 
+    nmap <Leader>v :source $MYVIMRC<CR>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => SYSTEM SPECIFICS
@@ -506,7 +515,6 @@ if has("autocmd")
     autocmd!
     autocmd FileType    python          map <Leader>r :!echo -- Running %; python %<CR>
     autocmd FileType    ruby            map <Leader>r :!echo -- Running %; ruby %<CR>
-    autocmd FileType    c,cpp,objc,java map <Leader>m :make<CR>
 
     " For simple compiling when a makefile isn't feasible
     autocmd FileType    c               map <Leader>c :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
