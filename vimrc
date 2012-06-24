@@ -272,7 +272,7 @@ if has("win32")
 endif
 
 if has("unix")
-    call pathogen#runtime_prepend_subdirectories(expand('~/Dropbox/dotvim/bundle'))
+    call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
 endif
 
 """""""""""""""""""""""""""""""
