@@ -66,3 +66,7 @@
     path = bundle/powerline
     url = https://github.com/Lokaltog/vim-powerline.git
     ignore = dirty
+[submodule "bundle/vimclojure"]
+    path = bundle/vimclojure
+    url = git://github.com/vim-scripts/VimClojure.git
+    ignore = dirty

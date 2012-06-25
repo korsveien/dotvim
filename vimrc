@@ -28,6 +28,7 @@ if has("autocmd")
     " open quickfix window after make
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
+    autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
 endif
 
 
@@ -402,6 +403,7 @@ inoremap jj <esc>
 inoremap kk <esc>
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap kl <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
