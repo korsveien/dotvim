@@ -212,7 +212,7 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-if has("win32k")
+if has("win32")
     colorscheme wombat256           
 endif
 if has("unix")
@@ -379,12 +379,18 @@ if has("unix")
     let g:Powerline_symbols = 'fancy'
 endif
 
+"""""""""""""""""""""""""""""""
+" => Vimclojure
+""""""""""""""""""""""""""""""
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclojure#ParenRainbow = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap "" ""<left>
-imap () ()<left>
-imap [] []<left>
+imap " ""<left>
+imap ( ()<left>
+imap [ []<left>
 
 let mapleader=','
 
