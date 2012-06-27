@@ -18,10 +18,6 @@
     path = bundle/supertab
     url = git://github.com/ervandew/supertab.git
     ignore = dirty
-[submodule "bundle/taglist"]
-    path = bundle/taglist
-    url = git://github.com/vim-scripts/taglist.vim.git
-    ignore = dirty
 [submodule "bundle/matchit"]
     path = bundle/matchit
     url = git://github.com/vim-scripts/matchit.zip.git
