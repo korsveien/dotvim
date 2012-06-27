@@ -38,10 +38,6 @@
     path = bundle/tasklist
     url = git://github.com/vim-scripts/TaskList.vim.git
     ignore = dirty
-[submodule "bundle/gist"]
-    path = bundle/gist
-    url = git://github.com/vim-scripts/Gist.vim.git
-    ignore = dirty
 [submodule "bundle/conqueterm"]
     path = bundle/conqueterm
     url = git://github.com/rosenfeld/conque-term.git
