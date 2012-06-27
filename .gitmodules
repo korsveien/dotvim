@@ -66,3 +66,7 @@
     path = bundle/vimclojure
     url = git://github.com/vim-scripts/VimClojure.git
     ignore = dirty
+[submodule "bundle/tagbar"]
+    path = bundle/tagbar
+    url = git://github.com/majutsushi/tagbar.git
+    ignore = dirty
