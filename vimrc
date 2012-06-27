@@ -259,6 +259,7 @@ noremap <leader>y :CommandTFlush<cr>
 " => Gist
 """"""""""""""""""""""""""""""
 "FIXME: fix visual selection posting
+let g:gist_clip_command = 'putclip' "others (cygwin?)
 let g:gist_detect_filetype=1
 let g:gist_open_browser_after_post=1
 vmap <leader>g :'<,'>Gist<CR>
@@ -326,6 +327,11 @@ let Tlist_WinWidth = 40
 let Tlist_Process_Files_Always = 1
 
 """""""""""""""""""""""""""""""
+" => Tagbar
+""""""""""""""""""""""""""""""
+" let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
+
+"""""""""""""""""""""""""""""""
 " => LateX
 """"""""""""""""""""""""""""""
 " LaTeX specifics
@@ -388,9 +394,9 @@ let g:vimclojure#ParenRainbow = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap " ""<left>
-imap ( ()<left>
-imap [ []<left>
+imap "" ""<left>
+imap () ()<left> 
+imap [] []<left>
 
 let mapleader=','
 
@@ -400,7 +406,8 @@ map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Function keys
 map <F1> :Explore<CR>
 map <F2> :NERDTreeToggle<CR>
-map <F3> :TlistToggle<CR>
+" map <F3> :TlistToggle<CR>
+map <F3> :TagbarToggle<CR>
 map <F4> :25split %<.h<CR><C-W>j
 map <F5> :e %
 
