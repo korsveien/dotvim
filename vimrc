@@ -394,8 +394,8 @@ let g:vimclojure#ParenRainbow = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap () ()<left>
 imap "" ""<left>
-imap () ()<left> 
 imap [] []<left>
 
 let mapleader=','
@@ -404,11 +404,8 @@ let mapleader=','
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
-map <F1> :Explore<CR>
-map <F2> :NERDTreeToggle<CR>
 " map <F3> :TlistToggle<CR>
-map <F3> :TagbarToggle<CR>
-map <F4> :25split %<.h<CR><C-W>j
+map <F2> :TagbarToggle<CR>
 map <F5> :e %
 
 " For those pesky times when caps lock hasn't been mapped
