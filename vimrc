@@ -212,12 +212,7 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-if has("win32")
-    colorscheme wombat256           
-endif
-if has("unix")
-    colorscheme ir_black
-endif
+colorscheme wombat256           
 
 " colorscheme molokai
 " colorscheme solarized
