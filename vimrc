@@ -351,6 +351,7 @@ let g:bufExplorerSplitBelow=1
 """"""""""""""""""""""""""""""
 let g:miniBufExplSplitBelow =0
 let g:miniBufExplModSelTarget=1
+let g:miniBufExplMapWindowNavVim=0
 
 """""""""""""""""""""""""""""""
 " => Tabularize
