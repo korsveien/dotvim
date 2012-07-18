@@ -35,6 +35,16 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle the line number counting method
+" Source: http://news.ycombinator.com/item?id=4172386
+function! g:ToggleNuMode()
+    if(&rnu == 1)
+        set nu
+    else
+        set rnu
+    endif
+endfunc
+nnoremap <leader>l :call g:ToggleNuMode()<cr>
 
 " aligns a character when inserted, courtesy of the Pope
 function! s:align()
@@ -390,23 +400,27 @@ endif
 " => Vimclojure
 """"""""""""""""""""""""""""""
 let g:vimclojure#HighlightBuiltins = 1
-let g:vimclojure#ParenRainbow = 1
+let g:vimclojure#ParenRainbow = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap () ()<left>
-imap "" ""<left>
-imap [] []<left>
+" imap () ()<left>
+" imap "" ""<left>
+" imap [] []<left>
 
 let mapleader=','
+
+" Paste from system clipboard in gvim (windows)
+if has("win32") && has("gui_running")
+    nmap <leader>p "*p
+endif
 
 " Open ctags definition i vertical split window
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
-" map <F3> :TlistToggle<CR>
-map <F2> :TagbarToggle<CR>
+map <F3> :TagbarToggle<CR>
 map <F5> :e %
 
 " For those pesky times when caps lock hasn't been mapped
@@ -440,16 +454,25 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-" Navigate windows (FIXME: does not work in arch)
+" Navigate windows (FIXME: does not work in arch (or everywhere else))
 nmap <C-w> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-nnoremap <Left> :bp<CR>
-nnoremap <Right> :bn<CR>
-nnoremap <Up> :cp<CR>
-nnoremap <Down> :cn<CR>
+" Echo the truth
+nnoremap <Left> :echo "Home row is where my heart is!"<CR>
+nnoremap <Right> :echo "Nope"<CR>
+nnoremap <Up> :echo "Vimming, you're doing it wrong."<CR>
+nnoremap <Down> :echo "ERROR: there has been an ERROR. Press Reset button to continue"<CR>
+
+" Because im too quick for my own good sometimes!
+map :W :w
+map :X :x
+
+map :. :Ex .
+
+nmap <leader>1 :b1
 
 "Scroll with space 
 nmap <Space> 10j
