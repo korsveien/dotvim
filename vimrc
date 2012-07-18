@@ -384,8 +384,6 @@ endif
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """"""""""""""""""""""""""""""
-:x
-:x
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
