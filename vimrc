@@ -387,7 +387,7 @@ endif
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
-let vimclojure#WantNailgun = 1
+let vimclojure#WantNailgun = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
