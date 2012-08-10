@@ -307,20 +307,6 @@ if has("cscope")
     set csverb
 endif
 
-let Tlist_Ctags_Cmd='/local/bin/ctags'
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
-let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Sort_Type = "order" " sort by order or name
-let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-let Tlist_Compact_Format = 1 " Remove extra information and blank lines from the taglist window.
-let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
-let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
-let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
-let Tlist_WinWidth = 40
-let Tlist_Process_Files_Always = 1
-
 """""""""""""""""""""""""""""""
 " => Tagbar
 """"""""""""""""""""""""""""""
@@ -332,14 +318,6 @@ let Tlist_Process_Files_Always = 1
 " LaTeX specifics
 let g:tex_flavor='latex'
 
-
-"""""""""""""""""""""""""""""""
-" => BufExplorer
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerHorzSize=10
-let g:bufExplorerSplitBelow=1
 
 """""""""""""""""""""""""""""""
 " => MiniBufExplorer
@@ -364,10 +342,6 @@ vmap <Leader>= :Tabularize /=<Enter>
 nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
 
-"""""""""""""""""""""""""""""""
-" => Tasklist
-""""""""""""""""""""""""""""""
-map <Leader>t <Plug>TaskList
 
 """""""""""""""""""""""""""""""
 " => Powerline
@@ -402,7 +376,6 @@ let mapleader=','
 map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
-" map <F3> :TlistToggle<CR>
 map <F2> :TagbarToggle<CR>
 map <F5> :e %
 
@@ -437,12 +410,6 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-" Navigate windows (FIXME: does not work in arch)
-nmap <C-w> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
 nnoremap <Left> :bp<CR>
 nnoremap <Right> :bn<CR>
 nnoremap <Up> :cp<CR>
@@ -453,7 +420,6 @@ nmap <Space> 10j
 nmap <Backspace> 10k
 vmap <Space> 10j
 vmap <Backspace> 10k
-
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
