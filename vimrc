@@ -481,7 +481,7 @@ else
         "endif
         
         
-        set gfn=Inconsolata:h11 "change default font
+        set gfn=Monaco\ for\ Powerline:h12 "change default font
     endif
 endif
 
