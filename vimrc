@@ -8,7 +8,6 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => PREAMBLE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 " Also, make sure vim starts in 256-color mode for screen and etc.
@@ -290,24 +289,6 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize = 40
 
 """""""""""""""""""""""""""""""
-" => Taglist
-""""""""""""""""""""""""""""""
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=0
-    set cst
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set csverb
-endif
-
-"""""""""""""""""""""""""""""""
 " => Tagbar
 """"""""""""""""""""""""""""""
 " let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
@@ -352,7 +333,7 @@ if has("win32")
     let g:Powerline_symbols = 'compatible'
 endif
 if has("unix")
-    let g:Powerline_symbols = 'fancy'
+    let g:Powerline_symbols = 'compatible'
 endif
 
 """""""""""""""""""""""""""""""
@@ -366,25 +347,22 @@ let vimclojure#WantNailgun = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap () ()<left>
-imap "" ""<left>
-imap [] []<left>
-
 let mapleader=','
 
-" Open ctags definition i vertical split window
-map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
-
 " Function keys
-map <F2> :TagbarToggle<CR>
+map <F3> :TagbarToggle<CR>
 map <F5> :e %
 
+" For easier window navigation
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+
+" For easier buffer navigation
+nmap <C-j> :bnext<cr>
+nmap <C-k> :bprev<cr>
+
 " For those pesky times when caps lock hasn't been mapped
-inoremap jj <esc>
-inoremap kk <esc>
 inoremap jk <esc>
-inoremap kj <esc>
-inoremap kl <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -437,7 +415,7 @@ if has("win32")
 endif
 
 if has("unix")
-    nmap <Leader>V :edit ~/Dropbox/dotvim/vimrc<CR> 
+    nmap <Leader>V :edit $MYVIMRC<CR> 
     nmap <Leader>v :source $MYVIMRC<CR>
 endif
 
@@ -515,7 +493,7 @@ if has("autocmd")
 
     " Compiling LaTeX
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
-    autocmd FileType    tex             map <Leader>r :!open %<.pdf<CR>
+    autocmd FileType    tex             map <Leader>r :!evince %<.pdf&<CR>
 
     " Running scheme
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
