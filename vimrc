@@ -35,6 +35,24 @@ endif
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
+" mark the start and end of folds.
+" All other lines simply take the fold level that is going so far.
+function! MyFoldLevel( lineNumber )
+  let thisLine = getline( a:lineNumber )
+  " Don't create fold if entire Javadoc comment or {} pair is on one line.
+  if ( thisLine =~ '\%(\%(/\*\*\).*\%(\*/\)\)\|\%({.*}\)' )
+    return '='
+  elseif ( thisLine =~ '\%(^\s*/\*\*\s*$\)\|{' )
+    return "a1"
+  elseif ( thisLine =~ '\%(^\s*\*/\s*$\)\|}' )
+    return "s1"
+  endif
+  return '='
+endfunction
+setlocal foldexpr=MyFoldLevel(v:lnum)
+setlocal foldmethod=expr
+
 " aligns a character when inserted, courtesy of the Pope
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -65,11 +83,6 @@ augroup QFixToggle
 augroup END
 
 
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-nnoremap <leader>x :Hexmode<CR>
-inoremap <leader>x <Esc>:Hexmode<CR>
-vnoremap <leader>x :<C-U>Hexmode<CR>
 
 
 " helper function to toggle hex mode
@@ -110,6 +123,11 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+nnoremap <leader>x :Hexmode<CR>
+inoremap <leader>x <Esc>:Hexmode<CR>
+vnoremap <leader>x :<C-U>Hexmode<CR>
 
 " re-implements the functionality of the normal-mode K command using ConqueTerm
 " Source: http://superuser.com/a/290113
@@ -286,17 +304,24 @@ let g:SuperTabDefaultCompletionType = "context"
 " => NERDTree
 """"""""""""""""""""""""""""""
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize = 40
+let g:NERDTreeWinSize = 50
+let g:NERDChristmasTree = 1
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinPos = "right"
 
 """""""""""""""""""""""""""""""
 " => Tagbar
 """"""""""""""""""""""""""""""
-" let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
+let g:tagbar_autoclose=1
+let g:tagbar_width = 50
+let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1
+
 
 """""""""""""""""""""""""""""""
 " => LateX
 """"""""""""""""""""""""""""""
-" LaTeX specifics
 let g:tex_flavor='latex'
 
 
@@ -351,6 +376,7 @@ let mapleader=','
 
 " Function keys
 map <F3> :TagbarToggle<CR>
+map <F4> :NERDTreeToggle<CR>
 map <F5> :e %
 
 " For easier window navigation
@@ -363,10 +389,6 @@ nmap <C-k> :bprev<cr>
 
 " For those pesky times when caps lock hasn't been mapped
 inoremap jk <esc>
-
-" For easier making comment boxes
-abbr #b /************************************************************
-abbr #e <space>************************************************************/
 
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
@@ -387,11 +409,6 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 " Toggle highlighting
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
-
-nnoremap <Left> :bp<CR>
-nnoremap <Right> :bn<CR>
-nnoremap <Up> :cp<CR>
-nnoremap <Down> :cn<CR>
 
 "Scroll with space 
 nmap <Space> 10j
