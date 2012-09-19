@@ -222,13 +222,7 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-if has("win32")
-    colorscheme wombat256           
-endif
-if has("unix")
-    colorscheme ir_black
-endif
-
+colorscheme wombat256           
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
@@ -304,37 +298,6 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize = 40
 
-"""""""""""""""""""""""""""""""
-" => Taglist
-""""""""""""""""""""""""""""""
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=0
-    set cst
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set csverb
-endif
-
-let Tlist_Ctags_Cmd='/local/bin/ctags'
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
-let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Sort_Type = "order" " sort by order or name
-let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-let Tlist_Compact_Format = 1 " Remove extra information and blank lines from the taglist window.
-let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
-let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
-let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
-let Tlist_WinWidth = 40
-let Tlist_Process_Files_Always = 1
 
 """""""""""""""""""""""""""""""
 " => Tagbar
@@ -346,15 +309,6 @@ let Tlist_Process_Files_Always = 1
 """"""""""""""""""""""""""""""
 " LaTeX specifics
 let g:tex_flavor='latex'
-
-
-"""""""""""""""""""""""""""""""
-" => BufExplorer
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerHorzSize=10
-let g:bufExplorerSplitBelow=1
 
 """""""""""""""""""""""""""""""
 " => MiniBufExplorer
@@ -389,12 +343,12 @@ map <Leader>t <Plug>TaskList
 """"""""""""""""""""""""""""""
 " let g:Powerline_symbols = 'unicode'
 
-if has("win32")
-    let g:Powerline_symbols = 'compatible'
-endif
-if has("unix")
+" if has("win32")
+"     let g:Powerline_symbols = 'compatible'
+" endif
+" if has("unix")
     let g:Powerline_symbols = 'fancy'
-endif
+" endif
 
 """""""""""""""""""""""""""""""
 " => Vimclojure
@@ -405,19 +359,8 @@ let g:vimclojure#ParenRainbow = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" imap () ()<left>
-" imap "" ""<left>
-" imap [] []<left>
 
 let mapleader=','
-
-" Paste from system clipboard in gvim (windows)
-if has("win32") && has("gui_running")
-    nmap <leader>p "*p
-endif
-
-" Open ctags definition i vertical split window
-map <C-\> :30sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Function keys
 map <F3> :TagbarToggle<CR>
@@ -425,10 +368,7 @@ map <F5> :e %
 
 " For those pesky times when caps lock hasn't been mapped
 inoremap jj <esc>
-inoremap kk <esc>
 inoremap jk <esc>
-inoremap kj <esc>
-inoremap kl <esc>
 
 " For easier making comment boxes
 abbr #b /************************************************************
@@ -447,32 +387,21 @@ nmap <Leader>S :%s///gc<Left><Left><Left><Left>
 " Substitue visual selection
 vmap <Leader>s :s/\%V//g<Left><Left><Left>
 
-" Remove ^M from dos files
-nmap <Leader>m :%s/\r\(\n\)/\1/g
-
 " Toggle highlighting
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
 
-" Navigate windows (FIXME: does not work in arch (or everywhere else))
-nmap <C-w> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+" Navigate buffers
+" nmap <C-w> 
+nmap <C-j> :bn<cr>
+nmap <C-k> :bp<cr>
+" nmap <C-l>
 
 " Echo the truth
 nnoremap <Left> :echo "Home row is where my heart is!"<CR>
 nnoremap <Right> :echo "Nope"<CR>
 nnoremap <Up> :echo "Vimming, you're doing it wrong."<CR>
 nnoremap <Down> :echo "ERROR: there has been an ERROR. Press Reset button to continue"<CR>
-
-" Because im too quick for my own good sometimes!
-map :W :w
-map :X :x
-
-map :. :Ex .
-
-nmap <leader>1 :b1
 
 "Scroll with space 
 nmap <Space> 10j
@@ -519,10 +448,10 @@ if has("gui_running")
 endif
 
 if has("win32")
-    "Windows options here
+"     "Windows options here
     set gfn=Consolas:h10 "change default font
 else
-    if has("unix")
+"     if has("unix")
         "let s:uname = system("uname")
         "if s:uname == "Darwin\n" 
             "Mac options here
@@ -541,8 +470,10 @@ else
         "endif
         
         
-        set gfn=Inconsolata:h11 "change default font
-    endif
+        " set gfn=Inconsolata:h11 "change default font
+        " set gfn=Monaco\ For\ Powerline:h10
+        set gfn=Inconsolata\ For\ Powerline:h10
+"     endif
 endif
 
 
@@ -575,7 +506,7 @@ if has("autocmd")
 
     " Compiling LaTeX
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
-    autocmd FileType    tex             map <Leader>r :!open %<.pdf<CR>
+    autocmd FileType    tex             map <Leader>r :!evince %<.pdf<CR>
 
     " Running scheme
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
