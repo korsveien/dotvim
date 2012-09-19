@@ -1,3 +1,4 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ABOUT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Author: Nils Peder Korsveien
@@ -35,16 +36,24 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle the line number counting method
-" Source: http://news.ycombinator.com/item?id=4172386
-function! g:ToggleNuMode()
-    if(&rnu == 1)
-        set nu
-    else
-        set rnu
-    endif
-endfunc
-nnoremap <leader>l :call g:ToggleNuMode()<cr>
+
+" Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
+" mark the start and end of folds.
+" All other lines simply take the fold level that is going so far.
+function! MyFoldLevel( lineNumber )
+  let thisLine = getline( a:lineNumber )
+  " Don't create fold if entire Javadoc comment or {} pair is on one line.
+  if ( thisLine =~ '\%(\%(/\*\*\).*\%(\*/\)\)\|\%({.*}\)' )
+    return '='
+  elseif ( thisLine =~ '\%(^\s*/\*\*\s*$\)\|{' )
+    return "a1"
+  elseif ( thisLine =~ '\%(^\s*\*/\s*$\)\|}' )
+    return "s1"
+  endif
+  return '='
+endfunction
+setlocal foldexpr=MyFoldLevel(v:lnum)
+setlocal foldmethod=expr
 
 " aligns a character when inserted, courtesy of the Pope
 function! s:align()
@@ -76,11 +85,6 @@ augroup QFixToggle
 augroup END
 
 
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-nnoremap <leader>x :Hexmode<CR>
-inoremap <leader>x <Esc>:Hexmode<CR>
-vnoremap <leader>x :<C-U>Hexmode<CR>
 
 
 " helper function to toggle hex mode
@@ -121,6 +125,11 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+nnoremap <leader>x :Hexmode<CR>
+inoremap <leader>x <Esc>:Hexmode<CR>
+vnoremap <leader>x :<C-U>Hexmode<CR>
 
 " re-implements the functionality of the normal-mode K command using ConqueTerm
 " Source: http://superuser.com/a/290113
@@ -223,6 +232,7 @@ set t_Co=256
 " let g:zenburn_unfified_CursorColumn = 1
 
 colorscheme wombat256           
+
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
@@ -296,19 +306,26 @@ let g:SuperTabDefaultCompletionType = "context"
 " => NERDTree
 """"""""""""""""""""""""""""""
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize = 40
-
+let g:NERDTreeWinSize = 50
+let g:NERDChristmasTree = 1
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinPos = "right"
 
 """""""""""""""""""""""""""""""
 " => Tagbar
 """"""""""""""""""""""""""""""
-" let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
+let g:tagbar_autoclose=1
+let g:tagbar_width = 50
+let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1
+
 
 """""""""""""""""""""""""""""""
 " => LateX
 """"""""""""""""""""""""""""""
-" LaTeX specifics
 let g:tex_flavor='latex'
+
 
 """""""""""""""""""""""""""""""
 " => MiniBufExplorer
@@ -333,46 +350,47 @@ vmap <Leader>= :Tabularize /=<Enter>
 nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
 
-"""""""""""""""""""""""""""""""
-" => Tasklist
-""""""""""""""""""""""""""""""
-map <Leader>t <Plug>TaskList
 
 """""""""""""""""""""""""""""""
 " => Powerline
 """"""""""""""""""""""""""""""
 " let g:Powerline_symbols = 'unicode'
 
-" if has("win32")
-"     let g:Powerline_symbols = 'compatible'
-" endif
-" if has("unix")
-    let g:Powerline_symbols = 'fancy'
-" endif
+if has("win32")
+    let g:Powerline_symbols = 'compatible'
+endif
+if has("unix")
+    let g:Powerline_symbols = 'compatible'
+endif
 
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """"""""""""""""""""""""""""""
-let g:vimclojure#HighlightBuiltins = 1
-let g:vimclojure#ParenRainbow = 0
+let g:vimclojure#ParenRainbow = 1
+let vimclojure#NailgunServer = "127.0.0.1"
+let vimclojure#NailgunPort = "2113"
+let vimclojure#WantNailgun = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let mapleader=','
 
 " Function keys
 map <F3> :TagbarToggle<CR>
+map <F4> :NERDTreeToggle<CR>
 map <F5> :e %
 
-" For those pesky times when caps lock hasn't been mapped
-inoremap jj <esc>
-inoremap jk <esc>
+" For easier window navigation
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
 
-" For easier making comment boxes
-abbr #b /************************************************************
-abbr #e <space>************************************************************/
+" For easier buffer navigation
+nmap <C-j> :bnext<cr>
+nmap <C-k> :bprev<cr>
+
+" For those pesky times when caps lock hasn't been mapped
+inoremap jk <esc>
 
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
@@ -387,28 +405,18 @@ nmap <Leader>S :%s///gc<Left><Left><Left><Left>
 " Substitue visual selection
 vmap <Leader>s :s/\%V//g<Left><Left><Left>
 
+" Remove ^M from dos files
+nmap <Leader>m :%s/\r\(\n\)/\1/g
+
 " Toggle highlighting
 nmap <Leader>w :nohls<Enter>
 nmap <Leader>W :set hls<Enter>
-
-" Navigate buffers
-" nmap <C-w> 
-nmap <C-j> :bn<cr>
-nmap <C-k> :bp<cr>
-" nmap <C-l>
-
-" Echo the truth
-nnoremap <Left> :echo "Home row is where my heart is!"<CR>
-nnoremap <Right> :echo "Nope"<CR>
-nnoremap <Up> :echo "Vimming, you're doing it wrong."<CR>
-nnoremap <Down> :echo "ERROR: there has been an ERROR. Press Reset button to continue"<CR>
 
 "Scroll with space 
 nmap <Space> 10j
 nmap <Backspace> 10k
 vmap <Space> 10j
 vmap <Backspace> 10k
-
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
@@ -426,7 +434,7 @@ if has("win32")
 endif
 
 if has("unix")
-    nmap <Leader>V :edit ~/Dropbox/dotvim/vimrc<CR> 
+    nmap <Leader>V :edit $MYVIMRC<CR> 
     nmap <Leader>v :source $MYVIMRC<CR>
 endif
 
@@ -448,10 +456,10 @@ if has("gui_running")
 endif
 
 if has("win32")
-"     "Windows options here
+    "Windows options here
     set gfn=Consolas:h10 "change default font
 else
-"     if has("unix")
+    if has("unix")
         "let s:uname = system("uname")
         "if s:uname == "Darwin\n" 
             "Mac options here
@@ -470,10 +478,8 @@ else
         "endif
         
         
-        " set gfn=Inconsolata:h11 "change default font
-        " set gfn=Monaco\ For\ Powerline:h10
-        set gfn=Inconsolata\ For\ Powerline:h10
-"     endif
+        set gfn=Monaco\ for\ Powerline:h12 "change default font
+    endif
 endif
 
 
@@ -506,7 +512,7 @@ if has("autocmd")
 
     " Compiling LaTeX
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
-    autocmd FileType    tex             map <Leader>r :!evince %<.pdf<CR>
+    autocmd FileType    tex             map <Leader>r :!evince %<.pdf&<CR>
 
     " Running scheme
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
