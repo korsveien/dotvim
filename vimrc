@@ -82,8 +82,7 @@ augroup QFixToggle
  autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
 
-
-
+map <F12> :QFix<CR>
 
 " helper function to toggle hex mode
 function ToggleHex()
@@ -180,7 +179,6 @@ function! Highlighting()
   return ":silent set hlsearch\<CR>"
 endfunction
 nnoremap <silent> <expr> <F8> Highlighting()
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL SETTINGS
@@ -304,9 +302,9 @@ let g:SuperTabDefaultCompletionType = "context"
 " => NERDTree
 """"""""""""""""""""""""""""""
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 40
 let g:NERDChristmasTree = 1
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinPos = "right"
 
@@ -314,7 +312,7 @@ let g:NERDTreeWinPos = "right"
 " => Tagbar
 """"""""""""""""""""""""""""""
 let g:tagbar_autoclose=1
-let g:tagbar_width = 50
+let g:tagbar_width = 60
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 
@@ -375,9 +373,11 @@ let vimclojure#WantNailgun = 0
 let mapleader=','
 
 " Function keys
+map <F2> :Ex .<CR>
 map <F3> :TagbarToggle<CR>
 map <F4> :NERDTreeToggle<CR>
-map <F5> :e %
+map <F5> :e %<CR>
+map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 " For easier window navigation
 nmap <C-h> <C-w>h
