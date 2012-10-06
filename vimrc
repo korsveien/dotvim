@@ -476,7 +476,7 @@ else
         "endif
         
         
-        set gfn=Monaco\ for\ Powerline:h12 "change default font
+        "set gfn=Monaco\ for\ Powerline:h12 "change default font
     endif
 endif
 

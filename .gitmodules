@@ -78,3 +78,7 @@
     path = bundle/cocoa.vim
     url = git://github.com/msanders/cocoa.vim.git
     ignore = dirty
+[submodule "bundle/javacomplete"]
+    path = bundle/javacomplete
+    url = git://github.com/vim-scripts/javacomplete.git
+    ignore = dirty
