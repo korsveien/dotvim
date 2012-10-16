@@ -367,6 +367,11 @@ let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
 let vimclojure#WantNailgun = 0
 
+"""""""""""""""""""""""""""""""
+" => vim-golang
+""""""""""""""""""""""""""""""
+set rtp+=$GOROOT/misc/vim
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GENERAL MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

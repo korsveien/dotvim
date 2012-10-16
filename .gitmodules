@@ -82,3 +82,7 @@
     path = bundle/javacomplete
     url = git://github.com/vim-scripts/javacomplete.git
     ignore = dirty
+[submodule "bundle/golang"]
+    path = bundle/golang
+    url = git://github.com/jnwhiteh/vim-golang.git
+    ignore = dirty
