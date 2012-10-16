@@ -356,7 +356,7 @@ if has("win32")
     let g:Powerline_symbols = 'compatible'
 endif
 if has("unix")
-    let g:Powerline_symbols = 'compatible'
+    let g:Powerline_symbols = 'fancy'
 endif
 
 """""""""""""""""""""""""""""""
