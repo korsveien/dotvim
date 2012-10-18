@@ -482,6 +482,7 @@ else
         
         
         "set gfn=Monaco\ for\ Powerline:h12 "change default font
+        set gfn=CONSOLA-Powerline:h11
     endif
 endif
 
@@ -516,6 +517,9 @@ if has("autocmd")
     " Compiling LaTeX
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
     autocmd FileType    tex             map <Leader>r :!evince %<.pdf&<CR>
+
+    " Running Go
+    autocmd FileType    go              map <Leader>r :!go run %<CR>
 
     " Running scheme
     autocmd filetype scheme map <leader>r call Send_To_Screen(@r)

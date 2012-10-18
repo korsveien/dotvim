@@ -86,3 +86,7 @@
     path = bundle/golang
     url = git://github.com/jnwhiteh/vim-golang.git
     ignore = dirty
+[submodule "/home/nilspk/.vim/bundle/vim-ruby"]
+    path = /home/nilspk/.vim/bundle/vim-ruby
+    url = git://github.com/vim-ruby/vim-ruby.git
+    ignore = dirty
