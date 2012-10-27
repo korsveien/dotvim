@@ -106,3 +106,7 @@
     path = bundle/rails
     url = git://github.com/tpope/vim-rails.git
     ignore = dirty
+[submodule "bundle/bufexplorer"]
+    path = bundle/bufexplorer
+    url = git://github.com/vim-scripts/bufexplorer.zip.git
+    ignore = dirty
