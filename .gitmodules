@@ -66,10 +66,6 @@
     path = bundle/tagbar
     url = git://github.com/majutsushi/tagbar.git
     ignore = dirty
-[submodule "bundle/minibufexplorer"]
-    path = bundle/minibufexplorer
-    url = git://github.com/fholgado/minibufexpl.vim.git
-    ignore = dirty
 [submodule "bundle/xmledit"]
     path = bundle/xmledit
     url = git://github.com/sukima/xmledit.git
