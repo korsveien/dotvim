@@ -311,7 +311,7 @@ let g:NERDTreeWinPos = "right"
 """""""""""""""""""""""""""""""
 " => Tagbar
 """"""""""""""""""""""""""""""
-let g:tagbar_autoclose=1
+let g:tagbar_autoclose=0
 let g:tagbar_width = 60
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
@@ -321,14 +321,6 @@ let g:tagbar_compact = 1
 " => LateX
 """"""""""""""""""""""""""""""
 let g:tex_flavor='latex'
-
-
-"""""""""""""""""""""""""""""""
-" => MiniBufExplorer
-""""""""""""""""""""""""""""""
-let g:miniBufExplSplitBelow =0
-let g:miniBufExplModSelTarget=1
-let g:miniBufExplMapWindowNavVim=0
 
 """""""""""""""""""""""""""""""
 " => Tabularize
@@ -390,6 +382,7 @@ nmap <C-l> <C-w>l
 
 " For easier buffer navigation
 nmap <C-j> :bnext<cr>
+
 nmap <C-k> :bprev<cr>
 
 " For those pesky times when caps lock hasn't been mapped
@@ -424,10 +417,6 @@ vmap <Backspace> 10k
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
-
-" Insert <count> line over/under current line
-nmap <Leader>O [<Space>                                                                                     
-nmap <Leader>o ]<Space>
 
 " Edit .vimrc
 if has("win32")
@@ -482,7 +471,7 @@ else
         
         
         "set gfn=Monaco\ for\ Powerline:h12 "change default font
-        set gfn=CONSOLA-Powerline:h11
+       " set gfn=CONSOLA-Powerline:h11
     endif
 endif
 
