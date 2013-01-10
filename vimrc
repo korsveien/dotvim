@@ -250,6 +250,17 @@ match TODOS /TODO\|FIXME\|XXX/
 
 
 """""""""""""""""""""""""""""""
+" => Spellchecking
+""""""""""""""""""""""""""""""
+" if v:version >= 700
+"     "Sets in-line spell checking
+"     set nospell
+"     
+"     "Set local language
+"     setlocal spell spelllang=en_gb
+" endif
+
+"""""""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
@@ -321,6 +332,7 @@ let g:tagbar_compact = 1
 " => LateX
 """"""""""""""""""""""""""""""
 let g:tex_flavor='latex'
+let g:Tex_BibtexFlavor = 'biber'
 
 """""""""""""""""""""""""""""""
 " => Tabularize
@@ -504,8 +516,8 @@ if has("autocmd")
     autocmd FileType    cpp             set syntax=cpp.doxygen
 
     " Compiling LaTeX
-    autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR>
-    autocmd FileType    tex             map <Leader>r :!evince %<.pdf&<CR>
+    autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR> :!biber %<CR> :!pdflatex %<CR>
+    autocmd FileType    tex             map <Leader>r :!open %<.pdf&<CR>
 
     " Running Go
     autocmd FileType    go              map <Leader>r :!go run %<CR>
