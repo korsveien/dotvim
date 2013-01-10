@@ -301,6 +301,7 @@ endif
 
 if has("unix")
     call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
+    call pathogen#infect()
 endif
 
 """""""""""""""""""""""""""""""

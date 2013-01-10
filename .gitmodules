@@ -106,3 +106,7 @@
     path = bundle/bufexplorer
     url = git://github.com/vim-scripts/bufexplorer.zip.git
     ignore = dirty
+[submodule "bundle/syntastic"]
+    path = bundle/syntastic
+    url = https://github.com/scrooloose/syntastic.git
+    ignore = dirty
