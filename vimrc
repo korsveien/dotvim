@@ -82,7 +82,7 @@ augroup QFixToggle
  autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
 
-map <F12> :QFix<CR>
+map <leader>q :QFix<CR>
 
 " helper function to toggle hex mode
 function ToggleHex()
@@ -301,7 +301,6 @@ endif
 
 if has("unix")
     call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
-    call pathogen#infect()
 endif
 
 """""""""""""""""""""""""""""""
@@ -367,10 +366,16 @@ endif
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """"""""""""""""""""""""""""""
+let vimclojure#WantNailgun = 1
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
 let g:vimclojure#ParenRainbow = 1
 let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
-let vimclojure#WantNailgun = 0
+
+let g:paredit_mode = 1
+
 
 """""""""""""""""""""""""""""""
 " => vim-golang
