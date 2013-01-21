@@ -227,9 +227,9 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-colorscheme wombat256           
+" colorscheme wombat256           
 
-" colorscheme molokai
+colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
 " colorscheme peaksea
@@ -260,8 +260,6 @@ match TODOS /TODO\|FIXME\|XXX/
 "     setlocal spell spelllang=en_gb
 " endif
 
-"""""""""""""""""""""""""""""""
-" => Statusline
 """"""""""""""""""""""""""""""
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
@@ -272,7 +270,8 @@ set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-noremap <leader>j :CommandT<cr>
+nnoremap <silent> <Leader>j :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 noremap <leader>y :CommandTFlush<cr>
 
 
