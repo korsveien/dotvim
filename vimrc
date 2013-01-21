@@ -366,7 +366,7 @@ endif
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """"""""""""""""""""""""""""""
-let vimclojure#WantNailgun = 1
+let vimclojure#WantNailgun = 0
 let vimclojure#HighlightBuiltins=1
 let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
