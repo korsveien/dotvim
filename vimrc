@@ -263,7 +263,11 @@ match TODOS /TODO\|FIXME\|XXX/
 """"""""""""""""""""""""""""""
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
-
+"""""""""""""""""""""""""""""""
+" => MiniBufExplorer
+""""""""""""""""""""""""""""""
+let g:miniBufExplModSelTarget = 1 "Avoid conflicting with NERDtree
+let g:miniBufExplForceSyntaxEnable = 1
 
 """""""""""""""""""""""""""""""
 " => Command-T
