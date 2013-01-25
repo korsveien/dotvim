@@ -270,10 +270,9 @@ set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-nnoremap <silent> <Leader>j :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
+nnoremap <silent> <F11> :CommandT<CR>
+nnoremap <silent> <F12> :CommandTBuffer<CR>
 noremap <leader>y :CommandTFlush<cr>
-
 
 """""""""""""""""""""""""""""""
 " => Gist
@@ -365,11 +364,12 @@ endif
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """"""""""""""""""""""""""""""
-let vimclojure#WantNailgun = 0
+let vimclojure#WantNailgun = 1
 let vimclojure#HighlightBuiltins=1
 let vimclojure#HighlightContrib=1
 let vimclojure#DynamicHighlighting=1
 let g:vimclojure#ParenRainbow = 1
+let vimclojure#SplitPos = "right"
 let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
 
