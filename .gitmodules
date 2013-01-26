@@ -118,7 +118,3 @@
     path = bundle/command-t
     url = git://github.com/wincent/Command-T.git
     ignore = dirty
-[submodule "bundle/vitality"]
-    path = bundle/vitality
-    url = git://github.com/sjl/vitality.vim.git
-    ignore = dirty
