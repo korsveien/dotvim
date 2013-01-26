@@ -216,7 +216,6 @@ set encoding=utf-8
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
-
 """""""""""""""""""""""""""""""
 " => Colors
 """"""""""""""""""""""""""""""
