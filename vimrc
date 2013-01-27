@@ -269,6 +269,17 @@ match TODOS /TODO\|FIXME\|XXX/
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
 """""""""""""""""""""""""""""""
+" => Buffergator
+""""""""""""""""""""""""""""""
+let g:buffergator_display_regime = "bufname"
+let g:buffergator_suppress_keymaps = 1
+
+"""""""""""""""""""""""""""""""
+" => TaskList
+""""""""""""""""""""""""""""""
+map <leader>T <Plug>TaskList
+
+"""""""""""""""""""""""""""""""
 " => Command-T
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
@@ -390,10 +401,9 @@ set rtp+=$GOROOT/misc/vim
 let mapleader=','
 
 " Function keys
-map <F1> :BufExplorer<CR>
-map <F2> :Ex .<CR>
+map <F1> :BuffergatorToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarToggle<CR>
-map <F4> :NERDTreeToggle<CR>
 map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 

@@ -126,3 +126,6 @@
     path = bundle/vim-easymotion
     url = git://github.com/Lokaltog/vim-easymotion.git
     ignore = dirty
+[submodule "bundle/buffergator"]
+	path = bundle/buffergator
+	url = git://github.com/jeetsukumaran/vim-buffergator.git
