@@ -217,6 +217,12 @@ set encoding=utf-8
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
 """""""""""""""""""""""""""""""
+" => Cursor
+""""""""""""""""""""""""""""""
+let &t_SI = "\033]50;CursorShape=1\007"
+let &t_EI = "\033]50;CursorShape=0\007"  
+
+"""""""""""""""""""""""""""""""
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256                         
@@ -261,12 +267,6 @@ match TODOS /TODO\|FIXME\|XXX/
 
 """"""""""""""""""""""""""""""
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
-
-"""""""""""""""""""""""""""""""
-" => MiniBufExplorer
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1 "Avoid conflicting with NERDtree
-let g:miniBufExplForceSyntaxEnable = 1
 
 """""""""""""""""""""""""""""""
 " => Command-T
@@ -318,7 +318,7 @@ let g:NERDTreeWinSize = 40
 let g:NERDChristmasTree = 1
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 
 """""""""""""""""""""""""""""""
 " => Tagbar
@@ -390,6 +390,7 @@ set rtp+=$GOROOT/misc/vim
 let mapleader=','
 
 " Function keys
+map <F1> :BufExplorer<CR>
 map <F2> :Ex .<CR>
 map <F3> :TagbarToggle<CR>
 map <F4> :NERDTreeToggle<CR>
@@ -402,7 +403,6 @@ nmap <C-l> <C-w>l
 
 " For easier buffer navigation
 nmap <C-j> :bnext<cr>
-
 nmap <C-k> :bprev<cr>
 
 " For those pesky times when caps lock hasn't been mapped
@@ -413,13 +413,13 @@ nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
   
 " Substitute on this line
-nmap <Leader>s :s///g<Left><Left><Left>
+nmap <Leader>s :s//g<Left><Left><Left>
 
 " Substitute all
-nmap <Leader>S :%s///gc<Left><Left><Left><Left>
+nmap <Leader>S :%s//gc<Left><Left><Left><Left>
 
 " Substitue visual selection
-vmap <Leader>s :s/\%V//g<Left><Left><Left>
+vmap <Leader>s :s/\%V/g<Left><Left><Left>
 
 " Remove ^M from dos files
 nmap <Leader>m :%s/\r\(\n\)/\1/g
