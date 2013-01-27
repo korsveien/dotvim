@@ -119,5 +119,10 @@
     url = git://github.com/wincent/Command-T.git
     ignore = dirty
 [submodule "bundle/vim-seek"]
-	path = bundle/vim-seek
-	url = git://github.com/goldfeld/vim-seek.git
+    path = bundle/vim-seek
+    url = git://github.com/goldfeld/vim-seek.git
+    ignore = dirty
+[submodule "bundle/vim-easymotion"]
+    path = bundle/vim-easymotion
+    url = git://github.com/Lokaltog/vim-easymotion.git
+    ignore = dirty
