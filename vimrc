@@ -278,6 +278,10 @@ let g:EasyMotion_leader_key = '<Leader>'
 """"""""""""""""""""""""""""""
 let g:buffergator_display_regime = "bufname"
 let g:buffergator_suppress_keymaps = 1
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_sort_regime = "mru"
+let g:buffergator_suppress_keymaps = "true"
+let g:buffergator_split_size = 10
 
 """""""""""""""""""""""""""""""
 " => TaskList
