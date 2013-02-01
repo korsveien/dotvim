@@ -269,6 +269,11 @@ match TODOS /TODO\|FIXME\|XXX/
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
 """""""""""""""""""""""""""""""
+" => EasyMotion
+""""""""""""""""""""""""""""""
+let g:EasyMotion_leader_key = '<Leader>'
+
+"""""""""""""""""""""""""""""""
 " => Buffergator
 """"""""""""""""""""""""""""""
 let g:buffergator_display_regime = "bufname"
@@ -435,8 +440,8 @@ vmap <Leader>s :s/\%V/g<Left><Left><Left>
 nmap <Leader>m :%s/\r\(\n\)/\1/g
 
 " Toggle highlighting
-nmap <Leader>w :nohls<Enter>
-nmap <Leader>W :set hls<Enter>
+nmap <Leader>hi :nohls<Enter>
+nmap <Leader>Hi :set hls<Enter>
 
 "Scroll with space 
 nmap <Space> 10j
