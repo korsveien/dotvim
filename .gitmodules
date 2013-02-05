@@ -126,3 +126,7 @@
     path = bundle/buffergator
     url = git://github.com/jeetsukumaran/vim-buffergator.git
     ignore = dirty
+[submodule "bundle/ycm"]
+    path = bundle/ycm
+    url = git://github.com/Valloric/YouCompleteMe.git
+    ignore = dirty

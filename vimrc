@@ -269,6 +269,13 @@ match TODOS /TODO\|FIXME\|XXX/
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
 """""""""""""""""""""""""""""""
+" => YouCompleteMe
+""""""""""""""""""""""""""""""
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_detailed_diagnostics = '<leader>di'
+
+"""""""""""""""""""""""""""""""
 " => EasyMotion
 """"""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '<Leader>'
