@@ -438,7 +438,7 @@ nmap <Leader>s :s//g<Left><Left><Left>
 nmap <Leader>S :%s//gc<Left><Left><Left><Left>
 
 " Substitue visual selection
-vmap <Leader>s :s/\%V/g<Left><Left><Left>
+vmap <Leader>s :s/\%V/g<Left><Left>
 
 " Remove ^M from dos files
 nmap <Leader>m :%s/\r\(\n\)/\1/g
