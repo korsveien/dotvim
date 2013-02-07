@@ -203,7 +203,6 @@ map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 """""""""""""""""""""""""""""""
 " => Vim-Ruby
 """""""""""""""""""""""""""""""
-" FIXME: does not work with describe "foo" do
 " balance ruby blocks with 'end'
 if !exists( "*RubyEndToken" )
 
@@ -211,14 +210,11 @@ if !exists( "*RubyEndToken" )
         let current_line = getline( '.' )
         let braces_at_end = '{\s*|\(,\|\s\|\w*|\s*\)\?$'
         let stuff_without_do = '^\s*class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def'
-        let with_do = '^\.*do\(\s*|\(,\|\s\|\w*|\s*\)\?$\)*'
-        let with_describe_do = 'describe\s*\w*\s* do'
+        let with_do = '\.*do\(\s*|\(,\|\s\|\w*|\s*\)\?$\)*'
 
         if match(current_line, braces_at_end) >= 0
             return "\<CR>}\<C-O>O"
         elseif match(current_line, stuff_without_do) >= 0
-            return "\<CR>end\<C-O>O"
-        elseif match(current_line, with_describe_do)
             return "\<CR>end\<C-O>O"
         elseif match(current_line, with_do) >= 0
             return "\<CR>end\<C-O>O"
