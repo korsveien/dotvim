@@ -203,7 +203,8 @@ map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 """""""""""""""""""""""""""""""
 " => Vim-Ruby
 """""""""""""""""""""""""""""""
-" balance blocks with 'end'
+" FIXME: does not work with describe "foo" do
+" balance ruby blocks with 'end'
 if !exists( "*RubyEndToken" )
 
     function RubyEndToken()
@@ -238,6 +239,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
+
 """""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""
@@ -245,10 +247,12 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_key_detailed_diagnostics = '<leader>di'
 
+
 """""""""""""""""""""""""""""""
 " => EasyMotion
 """"""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '<Leader>'
+
 
 """""""""""""""""""""""""""""""
 " => Buffergator
@@ -260,10 +264,12 @@ let g:buffergator_sort_regime = "mru"
 let g:buffergator_suppress_keymaps = "true"
 let g:buffergator_split_size = 10
 
+
 """""""""""""""""""""""""""""""
 " => TaskList
 """""""""""""""""""""""""""""""
 map <leader>T <Plug>TaskList
+
 
 """""""""""""""""""""""""""""""
 " => Command-T
@@ -273,6 +279,7 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 nnoremap <silent> <F11> :CommandT<CR>
 nnoremap <silent> <F12> :CommandTBuffer<CR>
 noremap <leader>y :CommandTFlush<cr>
+
 
 """""""""""""""""""""""""""""""
 " => Gist
@@ -286,6 +293,7 @@ map <leader>g :Gist<CR>
 map <leader>gp :Gist -p<CR>
 map <leader>gl :Gist -l<CR>
 map <leader>gd :Gist -d<CR>                                                         
+
 
 """""""""""""""""""""""""""""""
 " => Pathogen
@@ -301,11 +309,13 @@ if has("unix")
     call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
 endif
 
+
 """""""""""""""""""""""""""""""
 " => Supertab
 """""""""""""""""""""""""""""""
 " set supertab to use the context (ie programming language) we are in
 let g:SuperTabDefaultCompletionType = "context"
+
 
 """""""""""""""""""""""""""""""
 " => NERDTree
@@ -316,6 +326,7 @@ let g:NERDChristmasTree = 1
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinPos = "left"
+
 
 """""""""""""""""""""""""""""""
 " => Tagbar
@@ -331,6 +342,7 @@ let g:tagbar_compact = 1
 """""""""""""""""""""""""""""""
 let g:tex_flavor='latex'
 let g:Tex_BibtexFlavor = 'biber'
+
 
 """""""""""""""""""""""""""""""
 " => Tabularize
@@ -361,6 +373,7 @@ if has("unix")
     let g:Powerline_symbols = 'fancy'
 endif
 
+
 """""""""""""""""""""""""""""""
 " => Vimclojure
 """""""""""""""""""""""""""""""
@@ -372,7 +385,6 @@ let g:vimclojure#ParenRainbow = 1
 let vimclojure#SplitPos = "right"
 let vimclojure#NailgunServer = "127.0.0.1"
 let vimclojure#NailgunPort = "2113"
-
 let g:paredit_mode = 1
 
 
