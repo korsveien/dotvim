@@ -75,6 +75,7 @@ set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
+set rnu                         " use relative line numbering
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
@@ -95,7 +96,8 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-colorscheme ir_black           
+colorscheme railscasts
+" colorscheme ir_black           
 " colorscheme wombat256           
 " colorscheme molokai
 " colorscheme solarized
