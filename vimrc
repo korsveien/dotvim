@@ -95,9 +95,9 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
+colorscheme ir_black           
 " colorscheme wombat256           
-
-colorscheme molokai
+" colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
 " colorscheme peaksea
@@ -136,10 +136,10 @@ nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
   
 " Substitute on this line
-nmap <Leader>s :s//g<Left><Left><Left>
+nmap <Leader>s :s//g<Left><Left>
 
 " Substitute all
-nmap <Leader>S :%s//gc<Left><Left><Left><Left>
+nmap <Leader>S :%s//gc<Left><Left><Left>
 
 " Substitue visual selection
 vmap <Leader>s :s/\%V/g<Left><Left>
@@ -204,28 +204,26 @@ map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
 " => Vim-Ruby
 """""""""""""""""""""""""""""""
 " balance ruby blocks with 'end'
-if !exists( "*RubyEndToken" )
-
-    function RubyEndToken()
-        let current_line = getline( '.' )
-        let braces_at_end = '{\s*|\(,\|\s\|\w*|\s*\)\?$'
-        let stuff_without_do = '^\s*class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def'
-        let with_do = '\.*do\(\s*|\(,\|\s\|\w*|\s*\)\?$\)*'
-
-        if match(current_line, braces_at_end) >= 0
-            return "\<CR>}\<C-O>O"
-        elseif match(current_line, stuff_without_do) >= 0
-            return "\<CR>end\<C-O>O"
-        elseif match(current_line, with_do) >= 0
-            return "\<CR>end\<C-O>O"
-        else
-            return "\<CR>"
-        endif
-    endfunction
-
-endif
-
-imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+" if !exists( "*RubyEndToken" )
+" 
+"     function RubyEndToken()
+"         let current_line = getline( '.' )
+"         let braces_at_end = '{\s*|\(,\|\s\|\w*|\s*\)\?$'
+"         let stuff_without_do = '^\s*class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def'
+"         let with_do = '^\.*do\(\s*|\(,\|\s\|\w*|\s*\)\?$\)*'
+" 
+"         if match(current_line, braces_at_end) >= 0
+"             return "\<CR>}\<C-O>O"
+"         elseif match(current_line, stuff_without_do) >= 0
+"             return "\<CR>end\<C-O>O"
+"         elseif match(current_line, with_do) >= 0
+"             return "\<CR>end\<C-O>O"
+"         else
+"             return "\<CR>"
+"         endif
+"     endfunction
+" endif
+" imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
 
 
 """""""""""""""""""""""""""""""
