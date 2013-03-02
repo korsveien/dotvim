@@ -29,8 +29,10 @@ if has("autocmd")
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
     " au InsertEnter * set cursorcolumn
     " au InsertLeave * set nocursorcolumn
-    autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=red ctermfg=black
-    autocmd BufEnter * match OverLenght /\%80v.*/
+    " autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=darkgrey ctermfg=black guibg=#592929
+    " autocmd BufEnter * match OverLenght /\%80v.*/
+    " autocmd FileType c,cpp,objc,java,ruby,python,clojure,javascript set cc=+9 
+    " highlight ColorColumn ctermbg=darkgrey
 
     " open quickfix window after make
     autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -467,7 +469,7 @@ if has("autocmd")
 
     " Syntax-indenting for programming...
     autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
-    autocmd FileType    objc,c,cpp,java,php  inoremap {<CR>  <CR>{<CR>}<Esc>O
+    autocmd FileType    objc,c,cpp,java,php  inoremap <CR>  <CR>{<CR>}<Esc>O
     autocmd FileType    c               set syntax=c.doxygen
     autocmd FileType    cpp             set syntax=cpp.doxygen
 
@@ -479,7 +481,7 @@ if has("autocmd")
     autocmd FileType    go              map <Leader>r :!go run %<CR>
 
     " Running scheme
-    autocmd filetype scheme map <leader>r call Send_To_Screen(@r)
+    autocmd FileType scheme map <leader>r call Send_To_Screen(@r)
 
   augroup end
 endif
