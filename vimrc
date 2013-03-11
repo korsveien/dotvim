@@ -118,9 +118,9 @@ colorscheme railscasts
 let mapleader=','
 
 " Function keys
-map <F1> :BuffergatorToggle<CR>
-map <F2> :NERDTreeToggle<CR>
-map <F3> :TagbarToggle<CR>
+map <down> :BuffergatorToggle<CR>
+map <left> :NERDTreeToggle<CR>
+map <right> :TagbarToggle<CR>
 map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
@@ -274,8 +274,7 @@ map <leader>T <Plug>TaskList
 """""""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-nnoremap <silent> <F11> :CommandT<CR>
-nnoremap <silent> <F12> :CommandTBuffer<CR>
+nnoremap <silent> <C-l> :CommandT<CR>
 noremap <leader>y :CommandTFlush<cr>
 
 
@@ -412,6 +411,7 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
+    colorscheme ir_black
 endif
 
 if has("win32")
@@ -419,26 +419,7 @@ if has("win32")
     set gfn=Consolas:h10 "change default font
 else
     if has("unix")
-        "let s:uname = system("uname")
-        "if s:uname == "Darwin\n" 
-            "Mac options here
-            "let g:gist_clip_command = 'pbcopy' "Mac specific for gist plugin
-
-            "if has("gui_macvim")  "settings for macvim
-            "    set lines=35 columns=110
-                "set vb             "remove annoying sound in macvim
-                "set guioptions=-m  "remove menu bar
-                "set gfn=Monaco:h10 "change default font
-                " set gfn=Inconsolata:h11 "change default font
-                "remap K to use conqueterm
-                ":map K :<C-U>call ConqueMan()<CR> 
-                ":ounmap K
-            "endif
-        "endif
-        
-        
-        "set gfn=Monaco\ for\ Powerline:h12 "change default font
-       " set gfn=CONSOLA-Powerline:h11
+        "Unix options here
     endif
 endif
 
