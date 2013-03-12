@@ -125,12 +125,12 @@ map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 " For easier window navigation
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
+nmap <C-h> :NERDTreeToggle<CR>
+nmap <C-l> :TagbarToggle<CR>
 
 " For easier buffer navigation
-nmap <C-j> :bnext<cr>
-nmap <C-k> :bprev<cr>
+" nmap <C-j> :bnext<cr>
+nmap <C-k> :BuffergatorToggle<CR>
 
 " For those pesky times when caps lock hasn't been mapped
 inoremap jk <esc>
@@ -257,7 +257,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 """""""""""""""""""""""""""""""
 let g:buffergator_display_regime = "bufname"
 let g:buffergator_suppress_keymaps = 1
-let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_viewport_split_policy = "T"
 let g:buffergator_sort_regime = "mru"
 let g:buffergator_suppress_keymaps = "true"
 let g:buffergator_split_size = 10
@@ -274,7 +274,7 @@ map <leader>T <Plug>TaskList
 """""""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-nnoremap <silent> <C-l> :CommandT<CR>
+nnoremap <silent> <C-j> :CommandT<CR>
 noremap <leader>y :CommandTFlush<cr>
 
 
@@ -411,7 +411,8 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
-    colorscheme ir_black
+    colorscheme jellybeans
+    set vb "disable bell
 endif
 
 if has("win32")
