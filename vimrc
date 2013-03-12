@@ -124,16 +124,18 @@ map <right> :TagbarToggle<CR>
 map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
-" For easier window navigation
+" Essential plugin windows
 nmap <C-h> :NERDTreeToggle<CR>
 nmap <C-l> :TagbarToggle<CR>
+nmap <C-k> :BuffergatorToggle<CR>
+nnoremap <silent> <C-j> :CommandT<CR>
 
 " For easier buffer navigation
-" nmap <C-j> :bnext<cr>
-nmap <C-k> :BuffergatorToggle<CR>
+nmap <right> :bnext<cr>
+nmap <left> :bprev<cr>
+nmap <up> :bnext<cr>
+nmap <down> :bprev<cr>
 
-" For those pesky times when caps lock hasn't been mapped
-inoremap jk <esc>
 
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
@@ -199,38 +201,6 @@ match TODOS /TODO\|FIXME\|XXX/
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
-" => SimpleFold
-"""""""""""""""""""""""""""""""
-map <unique> <silent> <Leader>z <Plug>SimpleFold_Foldsearch
-
-
-"""""""""""""""""""""""""""""""
-" => Vim-Ruby
-"""""""""""""""""""""""""""""""
-" balance ruby blocks with 'end'
-" if !exists( "*RubyEndToken" )
-" 
-"     function RubyEndToken()
-"         let current_line = getline( '.' )
-"         let braces_at_end = '{\s*|\(,\|\s\|\w*|\s*\)\?$'
-"         let stuff_without_do = '^\s*class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def'
-"         let with_do = '^\.*do\(\s*|\(,\|\s\|\w*|\s*\)\?$\)*'
-" 
-"         if match(current_line, braces_at_end) >= 0
-"             return "\<CR>}\<C-O>O"
-"         elseif match(current_line, stuff_without_do) >= 0
-"             return "\<CR>end\<C-O>O"
-"         elseif match(current_line, with_do) >= 0
-"             return "\<CR>end\<C-O>O"
-"         else
-"             return "\<CR>"
-"         endif
-"     endfunction
-" endif
-" imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
-
-
-"""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
 let g:syntastic_enable_signs=1
@@ -274,7 +244,6 @@ map <leader>T <Plug>TaskList
 """""""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
-nnoremap <silent> <C-j> :CommandT<CR>
 noremap <leader>y :CommandTFlush<cr>
 
 
@@ -329,7 +298,7 @@ let g:NERDTreeWinPos = "left"
 " => Tagbar
 """""""""""""""""""""""""""""""
 let g:tagbar_autoclose=0
-let g:tagbar_width = 60
+let g:tagbar_width = 40
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 
