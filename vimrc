@@ -21,6 +21,9 @@
 " Also, make sure vim starts in 256-color mode for screen and etc.
 set nocompatible
 
+" Must be called before filetype detection
+call pathogen#helptags()
+
 if has("autocmd")
     " Source the vimrc file after saving it
     " autocmd bufwritepost .vimrc source $MYVIMRC
@@ -80,13 +83,13 @@ set encoding=utf-8
 set rnu                         " use relative line numbering
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
-set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
+" set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
 
 """""""""""""""""""""""""""""""
 " => Cursor
 """"""""""""""""""""""""""""""
-let &t_SI = "\033]50;CursorShape=1\007"
-let &t_EI = "\033]50;CursorShape=0\007"  
+" let &t_SI = "\033]50;CursorShape=1\007"
+" let &t_EI = "\033]50;CursorShape=0\007"  
 
 """""""""""""""""""""""""""""""
 " => Colors
@@ -118,9 +121,6 @@ colorscheme railscasts
 let mapleader=','
 
 " Function keys
-map <down> :BuffergatorToggle<CR>
-map <left> :NERDTreeToggle<CR>
-map <right> :TagbarToggle<CR>
 map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
@@ -128,7 +128,7 @@ map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 nmap <C-h> :NERDTreeToggle<CR>
 nmap <C-l> :TagbarToggle<CR>
 nmap <C-k> :BuffergatorToggle<CR>
-nnoremap <silent> <C-j> :CommandT<CR>
+nmap <C-j> :CommandT<CR>
 
 " For easier buffer navigation
 nmap <right> :bnext<cr>
@@ -206,6 +206,7 @@ match TODOS /TODO\|FIXME\|XXX/
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+let g:syntastic_mode_map = { 'mode': 'passive'}
 
 
 """""""""""""""""""""""""""""""
@@ -246,7 +247,6 @@ let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
 noremap <leader>y :CommandTFlush<cr>
 
-
 """""""""""""""""""""""""""""""
 " => Gist
 """""""""""""""""""""""""""""""
@@ -264,8 +264,6 @@ map <leader>gd :Gist -d<CR>
 """""""""""""""""""""""""""""""
 " => Pathogen
 """""""""""""""""""""""""""""""
-" Must be called before filetype detection
-call pathogen#helptags()
 
 if has("win32")                                        
     call pathogen#runtime_prepend_subdirectories(expand('c:\Users\nilspk\Dropbox\dotvim\bundle'))
@@ -274,13 +272,6 @@ endif
 if has("unix")
     call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
 endif
-
-
-"""""""""""""""""""""""""""""""
-" => Supertab
-"""""""""""""""""""""""""""""""
-" set supertab to use the context (ie programming language) we are in
-let g:SuperTabDefaultCompletionType = "context"
 
 
 """""""""""""""""""""""""""""""
@@ -420,7 +411,7 @@ if has("autocmd")
 
     " Syntax-indenting for programming...
     autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
-    autocmd FileType    objc,c,cpp,java,php  inoremap <CR>  <CR>{<CR>}<Esc>O
+    autocmd FileType    objc,c,cpp,java,php  inoremap {<CR>  <CR>{<CR>}<Esc>O
     autocmd FileType    c               set syntax=c.doxygen
     autocmd FileType    cpp             set syntax=cpp.doxygen
 
