@@ -126,3 +126,7 @@
     path = bundle/ycm
     url = git://github.com/Valloric/YouCompleteMe.git
     ignore = dirty
+[submodule "bundle/multiedit"]
+    path = bundle/multiedit
+    url = git://github.com/hlissner/vim-multiedit.git
+    ignore = dirty
