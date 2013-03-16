@@ -167,17 +167,9 @@ vmap <Backspace> 10k
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 
-" Edit .vimrc
-if has("win32")
-    " Remember to set $HOME as it is not set by default
-    nmap <Leader>V :edit $HOME\Dropbox\dotvim\vimrc<CR>
-    nmap <Leader>v :source $MYVIMRC<CR>
-endif
-
-if has("unix")
-    nmap <Leader>V :edit $MYVIMRC<CR> 
-    nmap <Leader>v :source $MYVIMRC<CR>
-endif
+" Edit vimrc
+nmap <Leader>V :edit $MYVIMRC<CR> 
+nmap <Leader>v :source $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""
 " => Higlighting
@@ -254,13 +246,7 @@ noremap <leader>y :CommandTFlush<cr>
 " => Pathogen
 """""""""""""""""""""""""""""""
 
-if has("win32")                                        
-    call pathogen#runtime_prepend_subdirectories(expand('c:\Users\nilspk\Dropbox\dotvim\bundle'))
-endif
-
-if has("unix")
-    call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
-endif
+call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
 
 
 """""""""""""""""""""""""""""""
@@ -310,14 +296,7 @@ vmap <Leader>& :Tabularize /&<Enter>
 """""""""""""""""""""""""""""""
 " => Powerline
 """""""""""""""""""""""""""""""
-" let g:Powerline_symbols = 'unicode'
-
-if has("win32")
-    let g:Powerline_symbols = 'compatible'
-endif
-if has("unix")
-    let g:Powerline_symbols = 'fancy'
-endif
+let g:Powerline_symbols = 'fancy'
 
 
 """""""""""""""""""""""""""""""
