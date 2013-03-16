@@ -6,9 +6,9 @@
 "Author: Nils Peder Korsveien 
 "Url:    https://www.github.com/nilspk/dotvim
 
-"Sources: - http://amix.dk/vim/vimrc.html
-"         - http://folk.uio.no/larsstor/.vimrc
-"         - http://www.8t8.us/vim/vim.html
+"References: - http://amix.dk/vim/vimrc.html
+"            - http://folk.uio.no/larsstor/.vimrc
+"            - http://www.8t8.us/vim/vim.html
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -54,6 +54,7 @@ endif
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
 set number                      " use line numbers
+set rnu                         " use relative line numbering
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
 set incsearch                   " search while typing
@@ -80,16 +81,9 @@ set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
-set rnu                         " use relative line numbering
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 " set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
-
-"""""""""""""""""""""""""""""""
-" => Cursor
-""""""""""""""""""""""""""""""
-" let &t_SI = "\033]50;CursorShape=1\007"
-" let &t_EI = "\033]50;CursorShape=0\007"  
 
 """""""""""""""""""""""""""""""
 " => Colors
@@ -101,7 +95,7 @@ set t_Co=256
 " let g:zenburn_alternate_Visual = 1
 " let g:zenburn_unfified_CursorColumn = 1
 
-colorscheme railscasts
+" colorscheme railscasts
 " colorscheme ir_black           
 " colorscheme wombat256           
 " colorscheme molokai
@@ -109,6 +103,7 @@ colorscheme railscasts
 " colorscheme tango2
 " colorscheme peaksea
 " colorscheme desert
+colorscheme jellybeans
 
 
 
@@ -245,7 +240,6 @@ noremap <leader>y :CommandTFlush<cr>
 """""""""""""""""""""""""""""""
 " => Pathogen
 """""""""""""""""""""""""""""""
-
 call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
 
 
@@ -339,16 +333,26 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
-    colorscheme jellybeans
     set vb "disable bell
 endif
 
 if has("win32")
     "Windows options here
-    set gfn=Consolas:h10 "change default font
 else
     if has("unix")
         "Unix options here
+
+        let s:uname = system("uname")
+        "FIXME
+        " echom(s:uname)
+        if s:uname == "Darwin"
+            "Mac options here
+
+            colorscheme railscasts       
+            "Change cursor to bar in insert mode in iTerm2
+            let &t_SI = "\033]50;CursorShape=1\007"
+            let &t_EI = "\033]50;CursorShape=0\007"  
+        endif
     endif
 endif
 
@@ -435,85 +439,6 @@ function! s:align()
   endif
 endfunction
 
-" toggles the quickfix window.
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-  else
-    execute "copen " . g:jah_Quickfix_Win_Height
-  endif
-endfunction
-
-" used to track the quickfix window
-augroup QFixToggle
- autocmd!
- autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
- autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
-augroup END
-
-map <leader>q :QFix<CR>
-
-" helper function to toggle hex mode
-function ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-nnoremap <leader>x :Hexmode<CR>
-inoremap <leader>x <Esc>:Hexmode<CR>
-vnoremap <leader>x :<C-U>Hexmode<CR>
-
-" re-implements the functionality of the normal-mode K command using ConqueTerm
-" Source: http://superuser.com/a/290113
-:function! ConqueMan()
-    let cmd = &keywordprg . ' '
-    if cmd ==# 'man ' || cmd ==# 'man -s '
-        if v:count > 0
-            let cmd .= v:count . ' '
-        else
-            let cmd = 'man '
-        endif
-    endif
-    let cmd .= expand('<cword>')
-    execute 'ConqueTermSplit' cmd
-:endfunction
-
-
 " Set color scheme according to current time of day.
 " Source: http://vim.wikia.com/wiki/Switch_color_schemes
 function! HourColor()
@@ -530,13 +455,6 @@ function! HourColor()
   redraw
 endfunction
 
-" goes to definition under cursor
-function! GotoDefinition()
-  let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
-endfunction
-map <F7> :call GotoDefinition()<CR>
-imap <F7> <c-o>:call GotoDefinition()<CR>
-            
 " highlights all occurences of word without moving cursor
 let g:highlighting = 0
 function! Highlighting()
