@@ -203,10 +203,13 @@ match TODOS /TODO\|FIXME\|XXX/
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
+let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_mode_map = { 'mode': 'passive'}
+let g:syntastic_mode_map = { 'mode': 'passive',
+                            \'active_filetypes': ['c', 'cpp'],
+                            \'passive_filetypes': [] }
 
 
 """""""""""""""""""""""""""""""
@@ -246,20 +249,6 @@ map <leader>T <Plug>TaskList
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
 noremap <leader>y :CommandTFlush<cr>
-
-"""""""""""""""""""""""""""""""
-" => Gist
-"""""""""""""""""""""""""""""""
-"FIXME: fix visual selection posting
-let g:gist_clip_command = 'putclip' "others (cygwin?)
-let g:gist_detect_filetype=1
-let g:gist_open_browser_after_post=1
-vmap <leader>g :'<,'>Gist<CR>
-map <leader>g :Gist<CR>
-map <leader>gp :Gist -p<CR>
-map <leader>gl :Gist -l<CR>
-map <leader>gd :Gist -d<CR>                                                         
-
 
 """""""""""""""""""""""""""""""
 " => Pathogen
@@ -411,7 +400,7 @@ if has("autocmd")
 
     " Syntax-indenting for programming...
     autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
-    autocmd FileType    objc,c,cpp,java,php  inoremap {<CR>  <CR>{<CR>}<Esc>O
+    " autocmd FileType    objc,c,cpp,java,php  inoremap {<CR>  <CR>{<CR>}<Esc>O
     autocmd FileType    c               set syntax=c.doxygen
     autocmd FileType    cpp             set syntax=cpp.doxygen
 

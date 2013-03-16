@@ -126,3 +126,6 @@
     path = bundle/multiedit
     url = git://github.com/hlissner/vim-multiedit.git
     ignore = dirty
+[submodule "bundle/vim-android"]
+	path = bundle/vim-android
+	url = git://github.com/bpowell/vim-android.git
