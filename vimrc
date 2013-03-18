@@ -10,6 +10,12 @@
 "            - http://folk.uio.no/larsstor/.vimrc
 "            - http://www.8t8.us/vim/vim.html
 
+
+"FIXME Command-T split open does not work
+"FIXME Make snipmate work nice with ycm
+
+
+
 """""""""""""""""""""""""""""""
 "                             "
 "           PREAMBLE          "
