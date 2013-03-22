@@ -12,7 +12,6 @@
 
 
 "FIXME Command-T split open does not work
-"FIXME Make snipmate work nice with ycm
 
 
 
@@ -192,6 +191,7 @@ match TODOS /TODO\|FIXME\|XXX/
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""
 " => Syntastic
