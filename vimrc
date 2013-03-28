@@ -72,12 +72,8 @@ set shiftwidth=4                " Affects automatic indenting and pressing <<,>>
 set softtabstop=4               " Affects what happens when <TAB> is pressed
 set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
-set ruler                       " status bar
 set nofoldenable                " no automatic folding please
 set showmode                    " shows current mode in bottom right corner
-set showcmd                     " display keystrokes in statusbar
-set laststatus=2                " status line is always enabled
-set nowrap                      " no line wrap
 set nobackup                    " turn backup off
 set nowb 
 set noswapfile                  
@@ -87,9 +83,34 @@ set shell=/bin/zsh              " set default shell to zsh
 set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
+set nowrap                      " no line wrap
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
-" set statusline=%<%F\ %y\ %h%w%m%r\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %P
+
+"""""""""""""""""""""""""""""""
+" => Statusline options
+""""""""""""""""""""""""""""""
+set ruler                       " status bar
+set laststatus=2                " status line is always enabled
+set showcmd                     " display keystrokes in statusline
+
+
+set statusline=
+
+"left side
+set statusline+=[%n] "buffer number
+set statusline+=(%{fugitive#statusline()})
+set statusline+=%<%F%m%r%w "full path, modified? read only?
+
+set statusline+=%=
+
+"right side
+set statusline+=\ %l\/%L\ 
+set statusline+=%y "filetype
+set statusline+=[%{&ff}] "file format
+set statusline+=[%{strlen(&fenc)?&fenc:&enc}] "encoding
+
+
 
 """""""""""""""""""""""""""""""
 " => Colors
