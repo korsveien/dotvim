@@ -75,6 +75,7 @@ set virtualedit=all             " let the cursor stray beyond defined text
 set ruler                       " status bar
 set nofoldenable                " no automatic folding please
 set showmode                    " shows current mode in bottom right corner
+set showcmd                     " display keystrokes in statusbar
 set laststatus=2                " status line is always enabled
 set nowrap                      " no line wrap
 set nobackup                    " turn backup off
@@ -158,8 +159,9 @@ vmap <Leader>s :s/\%V/g<Left><Left>
 nmap <Leader>m :%s/\r\(\n\)/\1/g
 
 " Toggle highlighting
-nmap <Leader>hi :nohls<Enter>
-nmap <Leader>Hi :set hls<Enter>
+nnoremap <silent><leader>n :nohls<cr>
+
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
@@ -419,6 +421,14 @@ endif
 "           FUNCTIONS         "
 "                             "
 """""""""""""""""""""""""""""""
+
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set number
+    else
+        set relativenumber
+    endif
+endfunc
 
 " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " mark the start and end of folds.
