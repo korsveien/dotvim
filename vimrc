@@ -120,6 +120,10 @@ colorscheme jellybeans
 """""""""""""""""""""""""""""""
 let mapleader=','
 
+" Why haven't I thought about this before?
+nnoremap :W :w
+nnoremap :Q :q
+
 " Function keys
 map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
@@ -157,12 +161,6 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 nmap <Leader>hi :nohls<Enter>
 nmap <Leader>Hi :set hls<Enter>
 
-"Scroll with space 
-nmap <Space> 10j
-nmap <Backspace> 10k
-vmap <Space> 10j
-vmap <Backspace> 10k
-
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
@@ -192,6 +190,13 @@ match TODOS /TODO\|FIXME\|XXX/
 "                             "
 """""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""
+" => UltiSnip
+"""""""""""""""""""""""""""""""
+set runtimepath+=~/.vim/bundle/ultisnip
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
 " => Syntastic

@@ -123,5 +123,10 @@
     url = git://github.com/hlissner/vim-multiedit.git
     ignore = dirty
 [submodule "bundle/vim-android"]
-	path = bundle/vim-android
-	url = git://github.com/bpowell/vim-android.git
+    path = bundle/vim-android
+    url = git://github.com/bpowell/vim-android.git
+    ignore = dirty
+[submodule "bundle/ultisnips"]
+    path = bundle/ultisnips
+    url = https://github.com/SirVer/ultisnips.git
+    ignore = dirty
