@@ -26,10 +26,6 @@
     path = bundle/ctags_highlighting
     url = git://github.com/vim-scripts/CTAGS-Highlighting.git
     ignore = dirty
-[submodule "bundle/tasklist"]
-    path = bundle/tasklist
-    url = git://github.com/vim-scripts/TaskList.vim.git
-    ignore = dirty
 [submodule "bundle/conqueterm"]
     path = bundle/conqueterm
     url = git://github.com/rosenfeld/conque-term.git
@@ -66,10 +62,6 @@
     path = bundle/golang
     url = git://github.com/jnwhiteh/vim-golang.git
     ignore = dirty
-[submodule "/home/nilspk/.vim/bundle/vim-ruby"]
-    path = /home/nilspk/.vim/bundle/vim-ruby
-    url = git://github.com/vim-ruby/vim-ruby.git
-    ignore = dirty
 [submodule "bundle/fugitive"]
     path = bundle/fugitive
     url = git://github.com/tpope/vim-fugitive.git
@@ -98,10 +90,6 @@
     path = bundle/command-t
     url = git://github.com/wincent/Command-T.git
     ignore = dirty
-[submodule "bundle/vim-seek"]
-    path = bundle/vim-seek
-    url = git://github.com/goldfeld/vim-seek.git
-    ignore = dirty
 [submodule "bundle/buffergator"]
     path = bundle/buffergator
     url = git://github.com/jeetsukumaran/vim-buffergator.git
@@ -109,10 +97,6 @@
 [submodule "bundle/ycm"]
     path = bundle/ycm
     url = git://github.com/Valloric/YouCompleteMe.git
-    ignore = dirty
-[submodule "bundle/multiedit"]
-    path = bundle/multiedit
-    url = git://github.com/hlissner/vim-multiedit.git
     ignore = dirty
 [submodule "bundle/vim-android"]
     path = bundle/vim-android
