@@ -1,11 +1,3 @@
-"""""""""""""""""""""""""""""""
-"                             "
-"           ABOUT             "
-"                             "
-"""""""""""""""""""""""""""""""
-"Author: Nils Peder Korsveien 
-"Url:    https://www.github.com/nilspk/dotvim
-
 "References: - http://amix.dk/vim/vimrc.html
 "            - http://folk.uio.no/larsstor/.vimrc
 "            - http://www.8t8.us/vim/vim.html
@@ -99,7 +91,7 @@ set statusline=
 
 "left side
 set statusline+=[%n] "buffer number
-set statusline+=(%{fugitive#statusline()})
+set statusline+=%{fugitive#statusline()}
 set statusline+=%<%F%m%r%w "full path, modified? read only?
 
 set statusline+=%=
@@ -156,31 +148,22 @@ nmap <C-l> :TagbarToggle<CR>
 nmap <C-k> :BuffergatorToggle<CR>
 nmap <C-j> :CommandT<CR>
 
-" For easier buffer navigation
-nmap <right> :bnext<cr>
-nmap <left> :bprev<cr>
-nmap <up> :bnext<cr>
-nmap <down> :bprev<cr>
+"speak the truth
+nmap <right> :echo "do you even hjkl??"<cr>
+nmap <left>  :echo "do you even hjkl??"<cr>
+nmap <up>    :echo "do you even hjkl??"<cr>
+nmap <down>  :echo "do you even hjkl??"<cr>
 
 
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
   
-" Substitute on this line
-nmap <Leader>s :s//g<Left><Left>
-
-" Substitute all
-nmap <Leader>S :%s//gc<Left><Left><Left>
-
-" Substitue visual selection
-vmap <Leader>s :s/\%V/g<Left><Left>
-
 " Remove ^M from dos files
 nmap <Leader>m :%s/\r\(\n\)/\1/g
 
 " Toggle highlighting
-nnoremap <silent><leader>n :nohls<cr>
+nnoremap <silent><leader>w :nohls<cr>
 
 nnoremap <C-n> :call NumberToggle()<cr>
 
@@ -242,12 +225,6 @@ let g:ycm_key_detailed_diagnostics = '<leader>di'
 
 
 """""""""""""""""""""""""""""""
-" => EasyMotion
-""""""""""""""""""""""""""""""
-let g:EasyMotion_leader_key = '<Leader>'
-
-
-"""""""""""""""""""""""""""""""
 " => Buffergator
 """""""""""""""""""""""""""""""
 let g:buffergator_display_regime = "bufname"
@@ -256,12 +233,6 @@ let g:buffergator_viewport_split_policy = "T"
 let g:buffergator_sort_regime = "mru"
 let g:buffergator_suppress_keymaps = "true"
 let g:buffergator_split_size = 10
-
-
-"""""""""""""""""""""""""""""""
-" => TaskList
-"""""""""""""""""""""""""""""""
-map <leader>T <Plug>TaskList
 
 
 """""""""""""""""""""""""""""""
@@ -319,12 +290,6 @@ nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
-
-
-"""""""""""""""""""""""""""""""
-" => Powerline
-"""""""""""""""""""""""""""""""
-let g:Powerline_symbols = 'fancy'
 
 
 """""""""""""""""""""""""""""""
