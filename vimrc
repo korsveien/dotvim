@@ -1,4 +1,3 @@
-"References: - http://amix.dk/vim/vimrc.html
 "            - http://folk.uio.no/larsstor/.vimrc
 "            - http://www.8t8.us/vim/vim.html
 
@@ -22,17 +21,16 @@ set nocompatible
 call pathogen#helptags()
 
 if has("autocmd")
-    " Source the vimrc file after saving it
-    " autocmd bufwritepost .vimrc source $MYVIMRC
-
     " Set syntax highligthing for arduino
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-    " au InsertEnter * set cursorcolumn
-    " au InsertLeave * set nocursorcolumn
-    " autocmd BufEnter * highlight OverLenght cterm=bold term=bold ctermbg=darkgrey ctermfg=black guibg=#592929
-    " autocmd BufEnter * match OverLenght /\%80v.*/
-    " autocmd FileType c,cpp,objc,java,ruby,python,clojure,javascript set cc=+9 
-    " highlight ColorColumn ctermbg=darkgrey
+
+    " "highlight the 80-column boundary
+    " if exists('+colorcolumn')
+    "     set cc=+9
+    " else
+    "     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    " endif
+    " highlight ColorColumn ctermbg=8
 
     " open quickfix window after make
     autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -82,25 +80,24 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 """""""""""""""""""""""""""""""
 " => Statusline options
 """"""""""""""""""""""""""""""
-set ruler                       " status bar
-set laststatus=2                " status line is always enabled
-set showcmd                     " display keystrokes in statusline
-
+set ruler        " status bar
+set laststatus=2 " status line is always enabled
+set showcmd      " display keystrokes in statusline
 
 set statusline=
 
 "left side
-set statusline+=[%n] "buffer number
-set statusline+=%{fugitive#statusline()}
-set statusline+=%<%F%m%r%w "full path, modified? read only?
+set statusline+=[%n]                     " buffer number
+set statusline+=%{fugitive#statusline()} " git branch
+set statusline+=%<%F%m%r%w               " full path, modified? read only?
 
 set statusline+=%=
 
 "right side
-set statusline+=\ %l\/%L\ 
-set statusline+=%y "filetype
-set statusline+=[%{&ff}] "file format
-set statusline+=[%{strlen(&fenc)?&fenc:&enc}] "encoding
+set statusline+=\ %l\/%L\
+set statusline+=%y                            " filetype
+set statusline+=[%{&ff}]                      " file format
+set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 
 
 
@@ -110,10 +107,6 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] "encoding
 set t_Co=256                         
 
 " colorscheme zenburn
-" let g:zenburn_high_contrast = 1
-" let g:zenburn_alternate_Visual = 1
-" let g:zenburn_unfified_CursorColumn = 1
-
 " colorscheme railscasts
 " colorscheme ir_black           
 " colorscheme wombat256           
@@ -135,11 +128,9 @@ colorscheme jellybeans
 let mapleader=','
 
 " Why haven't I thought about this before?
-nnoremap :W :w
 nnoremap :Q :q
+nnoremap :W :q
 
-" Function keys
-map <F5> :e %<CR>
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 " Essential plugin windows
@@ -290,6 +281,8 @@ nmap <Leader>= :Tabularize /=<Enter>
 vmap <Leader>= :Tabularize /=<Enter>
 nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
+nmap <Leader>" :Tabularize /"<Enter>
+vmap <Leader>" :Tabularize /"<Enter>
 
 
 """""""""""""""""""""""""""""""
@@ -342,9 +335,7 @@ else
         "Unix options here
 
         let s:uname = system("uname")
-        "FIXME
-        " echom(s:uname)
-        if s:uname == "Darwin"
+        if s:uname =~ "Darwin"
             "Mac options here
 
             colorscheme railscasts       
@@ -367,18 +358,18 @@ filetype on
 if has("autocmd")
   augroup vimrc_filetype
     autocmd!
-    autocmd FileType    python          map <Leader>r :!echo -- Running %; python %<CR>
-    autocmd FileType    ruby            map <Leader>r :!echo -- Running %; ruby %<CR>
+    autocmd FileType    python          map <leader>ru :!echo -- Running %; python %<CR>
+    autocmd FileType    ruby            map <leader>ru :!echo -- Running %; ruby %<CR>
 
     " For simple compiling when a makefile isn't feasible
     autocmd FileType    c               map <Leader>c :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
     autocmd FileType    c               map <Leader>C :w<CR>:!echo -- Compiling %; gcc -g %<CR>
     autocmd FileType    cpp             map <Leader>c :w<CR>:!echo -- Compiling %; g++ -o %< %<CR>
-    autocmd FileType    c,cpp           map <Leader>r :!echo -- Running %<; ./%< <CR>
+    autocmd FileType    c,cpp           map <leader>ru :!echo -- Running %<; ./%< <CR>
 
     " Compiling Java
     autocmd FileType    java            map <Leader>c :w<CR>:!echo -- Compiling %; javac %<CR>
-    autocmd FileType    java            map <Leader>r :!echo -- Running %<; java %<
+    autocmd FileType    java            map <leader>ru :!echo -- Running %<; java %<
 
     " Syntax-indenting for programming...
     autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
@@ -388,13 +379,13 @@ if has("autocmd")
 
     " Compiling LaTeX
     autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR> :!biber %<CR> :!pdflatex %<CR>
-    autocmd FileType    tex             map <Leader>r :!open %<.pdf&<CR>
+    autocmd FileType    tex             map <leader>ru :!open %<.pdf&<CR>
 
     " Running Go
-    autocmd FileType    go              map <Leader>r :!go run %<CR>
+    autocmd FileType    go              map <leader>ru :!go run %<CR>
 
     " Running scheme
-    autocmd FileType scheme map <leader>r call Send_To_Screen(@r)
+    autocmd FileType scheme map <leader>ru call Send_To_Screen(@r)
 
   augroup end
 endif
@@ -408,6 +399,16 @@ endif
 "                             "
 """""""""""""""""""""""""""""""
 
+" Inline a variable
+function! GRB()
+    normal ^*``
+    normal 2w
+    normal "zDdd``
+    normal cw^Rz^[
+endfunc
+nnoremap ,z :call GRB()<cr>
+
+"Toggle relative number display
 function! NumberToggle()
     if(&relativenumber == 1)
         set number
