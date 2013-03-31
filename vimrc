@@ -48,7 +48,6 @@ endif
 """""""""""""""""""""""""""""""
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
-set number                      " use line numbers
 set rnu                         " use relative line numbering
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
@@ -86,20 +85,17 @@ set showcmd      " display keystrokes in statusline
 
 set statusline=
 
-"left side
-set statusline+=[%n]                     " buffer number
+" left side
+set statusline+=%<%F                     " full path,
+set statusline+=%m%r%w                   " modified? read only?
 set statusline+=%{fugitive#statusline()} " git branch
-set statusline+=%<%F%m%r%w               " full path, modified? read only?
 
 set statusline+=%=
 
 "right side
-set statusline+=\ %l\/%L\
-set statusline+=%y                            " filetype
+set statusline+=\ %l/%L\ 
 set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
-
-
 
 """""""""""""""""""""""""""""""
 " => Colors
