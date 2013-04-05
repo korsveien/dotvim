@@ -162,6 +162,8 @@ nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 nmap <Leader>V :edit $MYVIMRC<CR> 
 nmap <Leader>v :source $MYVIMRC<CR>
 
+nnoremap <leader>d "=strftime("%c")<cr>p
+
 """""""""""""""""""""""""""""""
 " => Higlighting
 """"""""""""""""""""""""""""""
@@ -256,7 +258,7 @@ let g:tagbar_compact = 1
 
 
 """""""""""""""""""""""""""""""
-" => LateX
+" => ateX
 """""""""""""""""""""""""""""""
 let g:tex_flavor='latex'
 let g:Tex_BibtexFlavor = 'biber'
@@ -334,7 +336,6 @@ else
         if s:uname =~ "Darwin"
             "Mac options here
 
-            colorscheme railscasts       
             "Change cursor to bar in insert mode in iTerm2
             let &t_SI = "\033]50;CursorShape=1\007"
             let &t_EI = "\033]50;CursorShape=0\007"  
@@ -347,35 +348,54 @@ endif
 
 """""""""""""""""""""""""""""""
 "                             "
-"     COMPILING AND EXEC      "
+"     FILETYPE SPECIFIC       "
 "                             "
 """""""""""""""""""""""""""""""
 filetype on
 if has("autocmd")
   augroup vimrc_filetype
     autocmd!
-    autocmd FileType    python          map <leader>ru :!echo -- Running %; python %<CR>
-    autocmd FileType    ruby            map <leader>ru :!echo -- Running %; ruby %<CR>
 
-    " For simple compiling when a makefile isn't feasible
-    autocmd FileType    c               map <Leader>c :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
-    autocmd FileType    c               map <Leader>C :w<CR>:!echo -- Compiling %; gcc -g %<CR>
-    autocmd FileType    cpp             map <Leader>c :w<CR>:!echo -- Compiling %; g++ -o %< %<CR>
-    autocmd FileType    c,cpp           map <leader>ru :!echo -- Running %<; ./%< <CR>
+    augroup FileType ruby
+       color ir_black
+       set nospell
+       set shiftwidth=2
+       set softtabstop=2
+       map <leader>ru :!echo -- Running %; ruby %<CR>
+    augroup end   
+
+    autocmd FileType    python          map <leader>ru :!echo -- Running %; python %<CR>
+
+    augroup FileType c
+      color ir_black
+      autocmd FileType    c               map <Leader>co :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
+    augroup end
+
+    augroup FileType cpp
+      color ir_black
+      map <Leader>co :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
+      map <Leader>co :w<CR>:!echo -- Compiling %; g++ -o %< %<CR>
+    augroup end
+
+    autocmd Filetype c,cpp map <leader>ru :!echo -- Running %<; ./%< <CR>
 
     " Compiling Java
-    autocmd FileType    java            map <Leader>c :w<CR>:!echo -- Compiling %; javac %<CR>
-    autocmd FileType    java            map <leader>ru :!echo -- Running %<; java %<
+    autocmd FileType    java            map <Leader>co :w<CR>:!echo -- Compiling %; javac %<CR>
+    autocmd FileType    java            map <leader>ru :!echo -- Running %<; java %<cr>
 
     " Syntax-indenting for programming...
     autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
-    " autocmd FileType    objc,c,cpp,java,php  inoremap {<CR>  <CR>{<CR>}<Esc>O
     autocmd FileType    c               set syntax=c.doxygen
     autocmd FileType    cpp             set syntax=cpp.doxygen
 
-    " Compiling LaTeX
-    autocmd FileType    tex             map <Leader>c :w<CR>:!pdflatex %<CR> :!biber %<CR> :!pdflatex %<CR>
-    autocmd FileType    tex             map <leader>ru :!open %<.pdf&<CR>
+    " Settings for LaTeX
+    augroup FileType tex
+        color jellybeans
+        set spell
+        map <Leader>co :w<CR>:!pdflatex %<CR> :!biber %<CR> :!pdflatex %<CR>
+        map <leader>ru :!open %<.pdf&<CR>
+    augroup end
+
 
     " Running Go
     autocmd FileType    go              map <leader>ru :!go run %<CR>
@@ -403,6 +423,7 @@ function! GRB()
     normal cw^Rz^[
 endfunc
 nnoremap ,z :call GRB()<cr>
+    
 
 "Toggle relative number display
 function! NumberToggle()
