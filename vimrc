@@ -19,6 +19,7 @@ set nocompatible
 
 " Must be called before filetype detection
 call pathogen#helptags()
+filetype on
 
 if has("autocmd")
     " Set syntax highligthing for arduino
@@ -343,68 +344,6 @@ else
     endif
 endif
 
-
-
-
-"""""""""""""""""""""""""""""""
-"                             "
-"     FILETYPE SPECIFIC       "
-"                             "
-"""""""""""""""""""""""""""""""
-filetype on
-if has("autocmd")
-  augroup vimrc_filetype
-    autocmd!
-
-    augroup FileType ruby
-       color ir_black
-       set nospell
-       set shiftwidth=2
-       set softtabstop=2
-       map <leader>ru :!echo -- Running %; ruby %<CR>
-    augroup end   
-
-    autocmd FileType    python          map <leader>ru :!echo -- Running %; python %<CR>
-
-    augroup FileType c
-      color ir_black
-      autocmd FileType    c               map <Leader>co :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
-    augroup end
-
-    augroup FileType cpp
-      color ir_black
-      map <Leader>co :w<CR>:!echo -- Compiling %; gcc -o %< %<CR>
-      map <Leader>co :w<CR>:!echo -- Compiling %; g++ -o %< %<CR>
-    augroup end
-
-    autocmd Filetype c,cpp map <leader>ru :!echo -- Running %<; ./%< <CR>
-
-    " Compiling Java
-    autocmd FileType    java            map <Leader>co :w<CR>:!echo -- Compiling %; javac %<CR>
-    autocmd FileType    java            map <leader>ru :!echo -- Running %<; java %<cr>
-
-    " Syntax-indenting for programming...
-    autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
-    autocmd FileType    c               set syntax=c.doxygen
-    autocmd FileType    cpp             set syntax=cpp.doxygen
-
-    " Settings for LaTeX
-    augroup FileType tex
-        color jellybeans
-        set spell
-        map <Leader>co :w<CR>:!pdflatex %<CR> :!biber %<CR> :!pdflatex %<CR>
-        map <leader>ru :!open %<.pdf&<CR>
-    augroup end
-
-
-    " Running Go
-    autocmd FileType    go              map <leader>ru :!go run %<CR>
-
-    " Running scheme
-    autocmd FileType scheme map <leader>ru call Send_To_Screen(@r)
-
-  augroup end
-endif
 
 
 
