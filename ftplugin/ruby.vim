@@ -1,6 +1,6 @@
 " This file enables setting that are specifically for ruby files
 
-color ir_black
+color railscasts
 set nospell
 set shiftwidth=2
 set softtabstop=2
