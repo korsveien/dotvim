@@ -89,12 +89,12 @@ set statusline=
 " left side
 set statusline+=%<%F                     " full path,
 set statusline+=%m%r%w                   " modified? read only?
-set statusline+=%{fugitive#statusline()} " git branch
 
 set statusline+=%=
 
 "right side
-set statusline+=\ %l/%L\ 
+" set statusline+=\ %l/%L\ 
+set statusline+=%{fugitive#statusline()} " git branch
 set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 
@@ -126,7 +126,7 @@ let mapleader=','
 
 " Why haven't I thought about this before?
 nnoremap :Q :q
-nnoremap :W :q
+nnoremap :W :w
 
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
