@@ -106,3 +106,7 @@
     path = bundle/ultisnips
     url = https://github.com/SirVer/ultisnips.git
     ignore = dirty
+[submodule "bundle/a"]
+    path = bundle/a
+    url = https://github.com/vim-scripts/a.vim.git
+    ignore = dirty
