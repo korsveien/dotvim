@@ -74,6 +74,7 @@ set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
 set nu
+set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 

@@ -1,4 +1,4 @@
-color ir_black
+color jellybeans
 set foldmethod=syntax
 set syntax=c.doxygen
 autocmd FileType    objc,c,cpp,java,php  set foldmethod=syntax
