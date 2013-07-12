@@ -49,7 +49,6 @@ endif
 """""""""""""""""""""""""""""""
 filetype plugin indent on       " use file specific plugins and indents
 set autoindent                  " indenting
-set rnu                         " use relative line numbering
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
 set incsearch                   " search while typing
@@ -74,6 +73,7 @@ set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
+set nu
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 

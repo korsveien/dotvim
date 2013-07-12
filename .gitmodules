@@ -42,9 +42,6 @@
     path = bundle/cscope
     url = git://github.com/vim-scripts/cscope_macros.vim
     ignore = dirty
-[submodule "bundle/vimclojure"]
-    path = bundle/vimclojure
-    url = git://github.com/vim-scripts/VimClojure.git
     ignore = dirty
 [submodule "bundle/tagbar"]
     path = bundle/tagbar
@@ -110,3 +107,12 @@
     path = bundle/a
     url = https://github.com/vim-scripts/a.vim.git
     ignore = dirty
+[submodule "bundle/fireplace"]
+	path = bundle/fireplace
+	url = git://github.com/tpope/vim-fireplace.git
+[submodule "bundle/classpath"]
+	path = bundle/classpath
+	url = git://github.com/tpope/vim-classpath.git
+[submodule "bundle/clojure-static"]
+	path = bundle/clojure-static
+	url = git://github.com/guns/vim-clojure-static.git
