@@ -90,12 +90,12 @@ set statusline=
 " left side
 set statusline+=%<%F                     " full path,
 set statusline+=%m%r%w                   " modified? read only?
+set statusline+=%{fugitive#statusline()} " git branch
 
 set statusline+=%=
 
 "right side
-" set statusline+=\ %l/%L\ 
-set statusline+=%{fugitive#statusline()} " git branch
+set statusline+=\ %l\:%c\                      " line:column
 set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 
@@ -253,7 +253,7 @@ let g:NERDTreeWinPos = "left"
 """""""""""""""""""""""""""""""
 " => Tagbar
 """""""""""""""""""""""""""""""
-let g:tagbar_autoclose=0
+let g:tagbar_autoclose=1
 let g:tagbar_width = 40
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
