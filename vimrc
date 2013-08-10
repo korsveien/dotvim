@@ -1,4 +1,4 @@
-"            - http://folk.uio.no/larsstor/.vimrc
+"            - http://github.com/lstor/vimfiles-lstor
 "            - http://www.8t8.us/vim/vim.html
 
 
