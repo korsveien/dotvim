@@ -148,9 +148,6 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 " Toggle highlighting
 nnoremap <silent><leader>w :nohls<cr>
 
-" Toggle between normal and relative line numbers
-nnoremap <C-n> :call NumberToggle()<cr>
-
 " Find next/previous digit
 nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
@@ -185,11 +182,16 @@ match TODOS /TODO\|FIXME\|XXX/
 
 """""""""""""""""""""""""""""""
 " => UltiSnip
+"
 """""""""""""""""""""""""""""""
+
+" FIXME: this plugins currently conflicts with ycm when using tab
+" see the following github issue for further details:
+" https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-15722669
 set runtimepath+=~/.vim/bundle/ultisnip
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
 " => Syntastic
@@ -363,6 +365,7 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
+nnoremap <silent> <expr> <F7> NumberToggle()
 
 " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " mark the start and end of folds.

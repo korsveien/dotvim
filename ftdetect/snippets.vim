@@ -1,1 +1,1 @@
-bundle/ultisnips/ftdetect/snippets.vim
+/home/nils/.vim/bundle/ultisnips/ftdetect/snippets.vim
