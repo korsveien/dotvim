@@ -107,11 +107,14 @@
     url = https://github.com/vim-scripts/a.vim.git
     ignore = dirty
 [submodule "bundle/fireplace"]
-	path = bundle/fireplace
-	url = git://github.com/tpope/vim-fireplace.git
+    path = bundle/fireplace
+    url = git://github.com/tpope/vim-fireplace.git
+    ignore = dirty
 [submodule "bundle/classpath"]
-	path = bundle/classpath
-	url = git://github.com/tpope/vim-classpath.git
+    path = bundle/classpath
+    url = git://github.com/tpope/vim-classpath.git
+    ignore = dirty
 [submodule "bundle/clojure-static"]
-	path = bundle/clojure-static
-	url = https://github.com/guns/vim-clojure-static.git
+    path = bundle/clojure-static
+    url = https://github.com/guns/vim-clojure-static.git
+    ignore = dirty
