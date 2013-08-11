@@ -181,11 +181,19 @@ match TODOS /TODO\|FIXME\|XXX/
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
+" => Alternate
+"
+"""""""""""""""""""""""""""""""
+let g:alternateSearchPath='sfr:../Src,sfr:../Inc,sfr:Src,srf:Inc,sfr:src,srf:inc'
+let g:alternateNodefaultAlternate=1
+
+
+"""""""""""""""""""""""""""""""
 " => UltiSnip
 "
 """""""""""""""""""""""""""""""
 
-" FIXME: this plugins currently conflicts with ycm when using tab
+" This plugins currently conflicts with ycm when using tab
 " see the following github issue for further details:
 " https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-15722669
 set runtimepath+=~/.vim/bundle/ultisnip
