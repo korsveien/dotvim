@@ -138,7 +138,6 @@ nmap <left>  :echo "do you even hjkl??"<cr>
 nmap <up>    :echo "do you even hjkl??"<cr>
 nmap <down>  :echo "do you even hjkl??"<cr>
 
-
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
@@ -149,6 +148,7 @@ nmap <Leader>m :%s/\r\(\n\)/\1/g
 " Toggle highlighting
 nnoremap <silent><leader>w :nohls<cr>
 
+" Toggle between normal and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
 
 " Find next/previous digit
@@ -159,6 +159,7 @@ nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 nmap <Leader>V :edit $MYVIMRC<CR> 
 nmap <Leader>v :source $MYVIMRC<CR>
 
+" Enter timestamp
 nnoremap <leader>d "=strftime("%c")<cr>p
 
 """""""""""""""""""""""""""""""
@@ -255,7 +256,7 @@ let g:tagbar_compact = 1
 
 
 """""""""""""""""""""""""""""""
-" => ateX
+" => LateX
 """""""""""""""""""""""""""""""
 let g:tex_flavor='latex'
 let g:Tex_BibtexFlavor = 'biber'
@@ -325,19 +326,15 @@ endif
 
 if has("win32")
     "Windows options here
-else
-    if has("unix")
-        "Unix options here
-
-        let s:uname = system("uname")
-        if s:uname =~ "Darwin"
-            "Mac options here
-
-            "Change cursor to bar in insert mode in iTerm2
-            let &t_SI = "\033]50;CursorShape=1\007"
-            let &t_EI = "\033]50;CursorShape=0\007"  
-        endif
-    endif
+elseif has("mac")
+    "Change cursor to bar in insert mode in iTerm2
+    let &t_SI = "\033]50;CursorShape=1\007"
+    let &t_EI = "\033]50;CursorShape=0\007"  
+endif
+"Further mac options here
+elseif has("unix")
+    "Unix options here
+endif
 endif
 
 
