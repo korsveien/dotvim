@@ -12,9 +12,6 @@
 " Also, make sure vim starts in 256-color mode for screen and etc.
 set nocompatible
 
-" Must be called before filetype detection
-call pathogen#helptags()
-filetype on
 
 if has("autocmd")
     " Set syntax highligthing for arduino
@@ -36,13 +33,48 @@ endif
 
 
 
+"""""""""""""""""""""""""""""""
+"                             "
+"           VUNDLE            "
+"                             "
+"""""""""""""""""""""""""""""""
+
+" Required stuff first!
+filetype off 
+set rtp+=~/.vim/bundle/vundle/ 
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" Github repos
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'godlygeek/tabular'
+Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'majutsushi/tagbar'
+
+" vim-scripts repos
+Bundle 'a.vim'
+
+" other git repos
+Bundle 'git://git.wincent.com/command-t.git'
+
+
+
 
 """""""""""""""""""""""""""""""
 "                             "
 "      GENERAL SETTINGS       "
 "                             "
 """""""""""""""""""""""""""""""
-filetype plugin indent on       " use file specific plugins and indents
+filetype plugin indent on       " use file specific plugins and indents (required for vundle)
 set autoindent                  " indenting
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
@@ -76,8 +108,8 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 """""""""""""""""""""""""""""""
 " => Statusline options
 """"""""""""""""""""""""""""""
-set ruler        " status bar
-set laststatus=2 " status line is always enabled
+set ruler        " statusline
+set laststatus=2 " statusline is always enabled
 set showcmd      " display keystrokes in statusline
 
 set statusline=
@@ -90,6 +122,9 @@ set statusline+=%{fugitive#statusline()} " git branch
 set statusline+=%=
 
 "right side
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 set statusline+=\ %l\:%c\                      " line:column
 set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
@@ -193,10 +228,7 @@ let g:alternateNodefaultAlternate=1
 "
 """""""""""""""""""""""""""""""
 
-" This plugins currently conflicts with ycm when using tab
-" see the following github issue for further details:
-" https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-15722669
-set runtimepath+=~/.vim/bundle/ultisnip
+" This plugins conflicts with ycm when using tab
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
@@ -204,12 +236,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
+let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_mode_map = { 'mode': 'passive',
-                            \'active_filetypes': ['c', 'cpp'],
+                            \'active_filetypes': ['c', 'cpp', 'ruby', 'python', 'java'],
                             \'passive_filetypes': [] }
 
 
@@ -238,12 +271,6 @@ let g:buffergator_split_size = 10
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc
 noremap <leader>y :CommandTFlush<cr>
-
-"""""""""""""""""""""""""""""""
-" => Pathogen
-"""""""""""""""""""""""""""""""
-call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
-
 
 """""""""""""""""""""""""""""""
 " => NERDTree
@@ -289,29 +316,6 @@ nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
 nmap <Leader>" :Tabularize /"<Enter>
 vmap <Leader>" :Tabularize /"<Enter>
-
-
-"""""""""""""""""""""""""""""""
-" => Vimclojure
-"""""""""""""""""""""""""""""""
-let vimclojure#WantNailgun = 1
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let g:vimclojure#ParenRainbow = 1
-let vimclojure#SplitPos = "right"
-let vimclojure#NailgunServer = "127.0.0.1"
-let vimclojure#NailgunPort = "2113"
-let g:paredit_mode = 1
-
-
-"""""""""""""""""""""""""""""""
-" => vim-golang
-"""""""""""""""""""""""""""""""
-set rtp+=$GOROOT/misc/vim
-
-
-
 
 
 """""""""""""""""""""""""""""""
