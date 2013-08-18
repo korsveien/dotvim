@@ -22,17 +22,6 @@ set nocompatible
 
 
 if has("autocmd")
-    " Set syntax highligthing for arduino
-    autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-
-    " "highlight the 80-column boundary
-    if exists('+colorcolumn')
-        set cc=+9
-    else
-        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    endif
-    highlight ColorColumn ctermbg=8
-
     " open quickfix window after make
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
@@ -163,14 +152,38 @@ set t_Co=256
 colorscheme jellybeans
 
 
+"""""""""""""""""""""""""""""""
+" => Higlighting
+""""""""""""""""""""""""""""""
+syntax on                       " use syntax highlighting
+set hlsearch                    " highlight search
+set nocursorcolumn              " no highligted cursor column
+set cursorline                  " highlight the line we are on
+highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
+highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
+highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
+match TODOS /TODO\|FIXME\|XXX/
 
+if has("autocmd")
+    " "highlight the 80-column boundary
+    if exists('+colorcolumn')
+        set cc=+9
+    else
+        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    endif
+    highlight ColorColumn ctermbg=8
+endif
 
 """""""""""""""""""""""""""""""
 "                             "
-"      GENERAL MAPPINGS       "
+"          MAPPINGS           "
 "                             "
 """""""""""""""""""""""""""""""
 let mapleader=','
+
+"""""""""""""""""""""""""""""""
+" => Normal mode mappings
+""""""""""""""""""""""""""""""
 
 " Why haven't I thought about this before?
 nnoremap :Q :q
@@ -195,7 +208,7 @@ nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
 
 " Remove ^M from dos files
-nmap <Leader>m :%s/\r\(\n\)/\1/g
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle highlighting
 nnoremap <silent><leader>w :nohls<cr>
@@ -208,8 +221,6 @@ nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
 
-" Enter timestamp
-nnoremap <leader>d "=strftime("%c")<cr>p
 
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -217,17 +228,17 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " open vimgrep and put cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
+" quickly open a buffer for taking notes
+map <leader>q :e ~/buffer<cr>
+
+
 """""""""""""""""""""""""""""""
-" => Higlighting
+" => Insert mode mappings
 """"""""""""""""""""""""""""""
-syntax on                       " use syntax highlighting
-set hlsearch                    " highlight search
-set nocursorcolumn              " no highligted cursor column
-set cursorline                  " highlight the line we are on
-highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
-highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
-highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
-match TODOS /TODO\|FIXME\|XXX/
+
+" insert current date and time
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
 
 
 
