@@ -18,17 +18,20 @@ if has("autocmd")
     autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
     " "highlight the 80-column boundary
-    " if exists('+colorcolumn')
-    "     set cc=+9
-    " else
-    "     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    " endif
-    " highlight ColorColumn ctermbg=8
+    if exists('+colorcolumn')
+        set cc=+9
+    else
+        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    endif
+    highlight ColorColumn ctermbg=8
 
     " open quickfix window after make
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
     autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
+
+    " strip trailing whitespace when writing to buffer
+    autocmd BufWritePre  *.{cpp,h,c,etc}  call StripTrailingWhite()
 endif
 
 
@@ -40,8 +43,8 @@ endif
 """""""""""""""""""""""""""""""
 
 " Required stuff first!
-filetype off 
-set rtp+=~/.vim/bundle/vundle/ 
+filetype off
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -59,9 +62,12 @@ Bundle 'godlygeek/tabular'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
+Bundle 'bling/vim-airline'
+Bundle 'kien/ctrlp.vim'
 
 " vim-scripts repos
 Bundle 'a.vim'
+Bundle 'Gundo'
 
 " other git repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -79,7 +85,7 @@ set autoindent                  " indenting
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
 set incsearch                   " search while typing
-set noerrorbells                " no noise, please 
+set noerrorbells                " no noise, please
 set noexrc                      " use local version of .(g)vimrc, .exrc
 set novisualbell                " blink on error
 set smarttab                    " <TAB> inserts indentation according to 'shiftwidth'
@@ -91,8 +97,8 @@ set virtualedit=all             " let the cursor stray beyond defined text
 set nofoldenable                " no automatic folding please
 set showmode                    " shows current mode in bottom right corner
 set nobackup                    " turn backup off
-set nowb 
-set noswapfile                  
+set nowb
+set noswapfile
 set mouse=a                     " enable mouse
 set tags+=tags;/;/usr/include/  " search recursively upwards for tagfile
 set shell=/bin/zsh              " set default shell to zsh
@@ -102,6 +108,7 @@ set encoding=utf-8
 set nowrap                      " no line wrap
 set nu
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
+set list listchars=tab:»·,trail:·
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
@@ -126,18 +133,19 @@ set statusline+=%=
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 set statusline+=\ %l\:%c\                      " line:column
+set statusline+=
 set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 
 """""""""""""""""""""""""""""""
 " => Colors
 """"""""""""""""""""""""""""""
-set t_Co=256                         
+set t_Co=256
 
 " colorscheme zenburn
 " colorscheme railscasts
-" colorscheme ir_black           
-" colorscheme wombat256           
+" colorscheme ir_black
+" colorscheme wombat256
 " colorscheme molokai
 " colorscheme solarized
 " colorscheme tango2
@@ -176,7 +184,7 @@ nmap <down>  :echo "do you even hjkl??"<cr>
 " Fold/unfold JavaDoc
 nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
 nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
-  
+
 " Remove ^M from dos files
 nmap <Leader>m :%s/\r\(\n\)/\1/g
 
@@ -188,7 +196,7 @@ nmap <silent> <Leader>d :call search("[0-9]", "",  line("."))<CR>
 nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 
 " Edit vimrc
-nmap <Leader>V :edit $MYVIMRC<CR> 
+nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
 
 " Enter timestamp
@@ -214,6 +222,24 @@ match TODOS /TODO\|FIXME\|XXX/
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+" => Gundo
+"
+"""""""""""""""""""""""""""""""
+nnoremap <F5> :GundoToggle<CR>
+
+
+"""""""""""""""""""""""""""""""
+" => Airline
+"
+"""""""""""""""""""""""""""""""
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_linecolumn_prefix = ''
+let g:airline_branch_prefix = '⎇  '
+let g:airline_paste_symbol = 'ρ'
+let g:airline_theme = 'jellybeans'
 
 """""""""""""""""""""""""""""""
 " => Alternate
@@ -244,6 +270,8 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_mode_map = { 'mode': 'passive',
                             \'active_filetypes': ['c', 'cpp', 'ruby', 'python', 'java'],
                             \'passive_filetypes': [] }
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_cpp_checkers = ['oclint']
 
 
 """""""""""""""""""""""""""""""
@@ -343,7 +371,7 @@ if has("win32")
 elseif has("mac")
     "Change cursor to bar in insert mode in iTerm2
     let &t_SI = "\033]50;CursorShape=1\007"
-    let &t_EI = "\033]50;CursorShape=0\007"  
+    let &t_EI = "\033]50;CursorShape=0\007"
 "Further mac options here
 elseif has("unix")
     "Unix options here
@@ -359,6 +387,12 @@ endif
 "                             "
 """""""""""""""""""""""""""""""
 
+function! StripTrailingWhite()
+    let l:winview = winsaveview()
+    silent! %s/\s\+$//
+    call winrestview(l:winview)
+endfunction
+
 " Inline a variable
 function! GRB()
     normal ^*``
@@ -367,7 +401,7 @@ function! GRB()
     normal cw^Rz^[
 endfunc
 nnoremap ,z :call GRB()<cr>
-    
+
 
 "Toggle relative number display
 function! NumberToggle()
@@ -415,7 +449,7 @@ function! HourColor()
   let hr = str2nr(strftime('%H'))
   if hr <= 11
     let i = 0
-  elseif hr <= 17 
+  elseif hr <= 17
     let i = 1
   else
     let i = 2
