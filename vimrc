@@ -67,12 +67,6 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'a.vim'
 Bundle 'Gundo'
 
-" other git repos
-Bundle 'git://git.wincent.com/command-t.git'
-
-
-
-
 """""""""""""""""""""""""""""""
 "                             "
 "      GENERAL SETTINGS       "
@@ -195,7 +189,7 @@ map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 nmap <C-h> :NERDTreeToggle<CR>
 nmap <C-l> :TagbarToggle<CR>
 nmap <C-k> :BuffergatorToggle<CR>
-nmap <C-j> :CommandT<CR>
+nmap <C-j> :Gstatus<CR>
 
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
