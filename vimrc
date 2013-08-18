@@ -1,5 +1,13 @@
-"            - http://github.com/lstor/vimfiles-lstor
-"            - http://www.8t8.us/vim/vim.html
+" Author: Nils Peder Korsveien
+" Contact: nilspk@ifi.uio.no
+" Available From: https://github.com/nilspk/dotvim
+"
+" The following urls are some of my sources. They are worthwhile a look
+" (use gx to open url under cursor in vim)
+"
+" http://github.com/lstor/vimfiles-lstor
+" https://github.com/amix/vimrc
+" http://www.8t8.us/vim/vim.html
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -64,6 +72,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'terryma/vim-multiple-cursors'
 
 " vim-scripts repos
 Bundle 'a.vim'
@@ -201,6 +210,12 @@ nmap <Leader>v :source $MYVIMRC<CR>
 
 " Enter timestamp
 nnoremap <leader>d "=strftime("%c")<cr>p
+
+" switch cwd to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" open vimgrep and put cursor in the right position
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 """""""""""""""""""""""""""""""
 " => Higlighting
