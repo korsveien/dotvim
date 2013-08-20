@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#!/usr/bin/env bash
 
 # Author: Nils Peder Korsveien
 # Brief: downloads, compiles and sets up latest vim with all plugins
@@ -26,7 +26,7 @@ libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev \
 mercurial 2>> $HOME/$logfile
 
 if [[ $? != 0 ]]; then
-    echo "Error during installation of prerequisties!"
+    echo -e "\e[00;31Error during installation of prerequisties!\e[00m"
     exit 1
 fi
 
@@ -35,18 +35,17 @@ sudo apt-get -y remove vim-tiny vim-common vim-gui-common \
 vim vim-runtime gvim 2>> $HOME/$logfile
 
 if [[ $? != 0 ]]; then
-    echo "Error during uninstallation old vim!"
+    echo -e "\e[00;31Error during uninstallation old vim!\e[00m"
     exit 1
 fi
 
 # fetch the vim repo and compile the latest version
 hg clone https://code.google.com/p/vim 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo "Error during cloning of vim repo!"
+    echo -e "\e[00;31Error during cloning of vim repo!\e[00m"
     exit 1
 fi
 
-cd vim
 hg up tip
 ./configure --with-features=huge \
             --enable-rubyinterp \
@@ -56,19 +55,19 @@ hg up tip
             --enable-gui=gtk2 --enable-cscope --prefix=/usr 2>>\
 $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo "Error during vim ./configure!"
+    echo -e "\e[00;31Error during vim ./configure!\e[00m"
     exit 1
 fi
 
 make VIMRUNTIMEDIR=/usr/share/vim/vim$version 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo "Error during make"
+    echo -e "\e[00;31Error during make\e[00m"
     exit 1
 fi
 
 sudo make install 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo "Error during make"
+    echo -e "\e[00;31Error during make\e[00m"
     exit 1
 fi
 
@@ -84,10 +83,10 @@ sudo update-alternatives --set vi /usr/bin/vim
 ln -s .vim/vimrc $HOME/.vimrc
 cd .vim
 
-git clone https://git@github.com:gmarik/vundle.git $HOME/bundle/vundle \
+git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle \
 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo "Error during cloning of Vundle repo!"
+    echo -e "\e[00;31Error during cloning of Vundle repo!\e[00m"
     exit 1
 fi
 
@@ -99,5 +98,5 @@ cd bundle/YouCompleteMe/
 ./install.sh --clang-completer
 
 cd $HOME
-echo "Vim $version installation and setup completed successfully!"
+echo -e "\e[00;32Vim $version installation and setup completed successfully!\e[00m"
 
