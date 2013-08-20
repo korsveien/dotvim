@@ -418,6 +418,7 @@ function! StripTrailingWhite()
     silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
+nnoremap <F2> :call StripTrailingWhite()<cr>
 
 " Inline a variable
 function! GRB()
