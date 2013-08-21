@@ -15,18 +15,18 @@ fi
 # as of 20/08/13 21:13:49 this is 74 (7.4)
 version=$1
 
-rm $logfile
 logfile=ubuntu-setup.log
+rm $logfile
 
 #install prerequisites
 sudo apt-get update
 sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
 libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
 libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev \
-mercurial 2>> $HOME/$logfile
+mercurial cmake 2>> $HOME/$logfile
 
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during installation of prerequisties!\e[00m"
+    echo -e "\e[00;31mError during installation of prerequisties!\e[00m"
     exit 1
 fi
 
@@ -35,17 +35,19 @@ sudo apt-get -y remove vim-tiny vim-common vim-gui-common \
 vim vim-runtime gvim 2>> $HOME/$logfile
 
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during uninstallation old vim!\e[00m"
+    echo -e "\e[00;31mError during uninstallation old vim!\e[00m"
     exit 1
 fi
 
 # fetch the vim repo and compile the latest version
+rm -rf vim
 hg clone https://code.google.com/p/vim 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during cloning of vim repo!\e[00m"
+    echo -e "\e[00;31mError during cloning of vim repo!\e[00m"
     exit 1
 fi
 
+cd vim
 hg up tip
 ./configure --with-features=huge \
             --enable-rubyinterp \
@@ -55,19 +57,25 @@ hg up tip
             --enable-gui=gtk2 --enable-cscope --prefix=/usr 2>>\
 $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during vim ./configure!\e[00m"
+    echo -e "\e[00;31mError during vim ./configure!\e[00m"
+    cd $HOME
+    rm -rf vim
     exit 1
 fi
 
 make VIMRUNTIMEDIR=/usr/share/vim/vim$version 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during make\e[00m"
+    echo -e "\e[00;31mError during make\e[00m"
+    cd $HOME
+    rm -rf vim
     exit 1
 fi
 
 sudo make install 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during make\e[00m"
+    echo -e "\e[00;31mError during make\e[00m"
+    cd $HOME
+    rm -rf vim
     exit 1
 fi
 
@@ -80,14 +88,15 @@ sudo update-alternatives --set editor /usr/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 
+rm $HOME/.vimrc
 ln -s .vim/vimrc $HOME/.vimrc
 cd .vim
 
 git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle \
 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
-    echo -e "\e[00;31Error during cloning of Vundle repo!\e[00m"
-    exit 1
+    echo -e "\e[00;31mError during cloning of Vundle repo!\e[00m"
+    exit 0
 fi
 
 # install all vim plugins using vundle
@@ -98,5 +107,5 @@ cd bundle/YouCompleteMe/
 ./install.sh --clang-completer
 
 cd $HOME
-echo -e "\e[00;32Vim $version installation and setup completed successfully!\e[00m"
+echo -e "\e[00;32mVim $version installation and setup completed successfully!\e[00m"
 
