@@ -29,6 +29,12 @@ if has("autocmd")
 
     " strip trailing whitespace when writing to buffer
     autocmd BufWritePre  *.{cpp,h,c,etc}  call StripTrailingWhite()
+
+    augroup gitcommit_filetype
+        autocmd!
+        autocmd FileType gitcommit :set cc=51
+    augroup end
+
 endif
 
 
@@ -161,7 +167,7 @@ match TODOS /TODO\|FIXME\|XXX/
 if has("autocmd")
     " "highlight the 80-column boundary
     if exists('+colorcolumn')
-        set cc=+9
+        set cc=+8
     else
         au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
     endif
