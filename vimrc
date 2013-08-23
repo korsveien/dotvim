@@ -128,7 +128,7 @@ set statusline+=%=
 
 "right side
 " set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 set statusline+=\ %l\:%c\                      " line:column
 set statusline+=
@@ -294,10 +294,8 @@ let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_mode_map = { 'mode': 'passive',
-                            \'active_filetypes': ['c', 'cpp', 'ruby', 'python', 'java'],
+                            \'active_filetypes': ['c', 'cpp','ruby', 'python', 'java'],
                             \'passive_filetypes': [] }
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_cpp_checkers = ['oclint']
 
 
 """""""""""""""""""""""""""""""
@@ -306,7 +304,9 @@ let g:syntastic_cpp_checkers = ['oclint']
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_key_detailed_diagnostics = '<leader>di'
+let g:ycm_confirm_extra_conf = 0
 
+nnoremap <F3> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """""""""""""""""""""""""""""""
 " => Buffergator
