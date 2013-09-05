@@ -229,7 +229,7 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " quickly open a buffer for taking notes
-map <leader>q :e ~/buffer<cr>
+map <leader>q :e ~/ifi-master/buffer<cr>
 
 
 """""""""""""""""""""""""""""""
