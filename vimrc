@@ -225,7 +225,7 @@ nmap <Leader>v :source $MYVIMRC<CR>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " quickly open a buffer for taking notes
-map <leader>q :e ~/buffer<cr>
+map <leader>q :e ~/ifi-master/buffer<cr>
 
 " refresh file
 nmap <F5> :e %<cr>
