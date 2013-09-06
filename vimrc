@@ -58,7 +58,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'godlygeek/tabular'
@@ -195,7 +195,7 @@ map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 nmap <C-h> :NERDTreeToggle<CR>
 nmap <C-l> :TagbarToggle<CR>
 nmap <C-k> :BuffergatorToggle<CR>
-nmap <C-j> :Gstatus<CR>
+nmap <C-j> :GundoToggle<CR>
 
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
@@ -221,15 +221,14 @@ nmap <silent> <Leader>D :call search("[0-9]", "b", line("."))<CR>
 nmap <Leader>V :edit $MYVIMRC<CR>
 nmap <Leader>v :source $MYVIMRC<CR>
 
-
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" open vimgrep and put cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
 " quickly open a buffer for taking notes
 map <leader>q :e ~/buffer<cr>
+
+" refresh file
+nmap <F5> :e %<cr>
 
 
 """""""""""""""""""""""""""""""
@@ -248,13 +247,6 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""
-" => Gundo
-"
-"""""""""""""""""""""""""""""""
-nnoremap <F5> :GundoToggle<CR>
-
 
 """""""""""""""""""""""""""""""
 " => Airline
@@ -288,14 +280,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
-let g:syntastic_auto_loc_list=1
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_mode_map = { 'mode': 'passive',
-                            \'active_filetypes': ['c', 'cpp','ruby', 'python', 'java'],
-                            \'passive_filetypes': [] }
+" let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_enable_signs=1
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_mode_map = { 'mode': 'passive',
+"                             \'active_filetypes': ['ruby', 'python', 'java'],
+"                             \'passive_filetypes': ['c', 'cpp'] }
+" let g:syntastic_cpp_checkers = ['gcc']
 
 
 """""""""""""""""""""""""""""""
