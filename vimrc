@@ -52,6 +52,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
@@ -72,6 +76,7 @@ Bundle 'terryma/vim-multiple-cursors'
 " vim-scripts repos
 Bundle 'a.vim'
 Bundle 'Gundo'
+Bundle 'paredit.vim'
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -139,6 +144,12 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256
+
+" Gay parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " colorscheme zenburn
 " colorscheme railscasts
@@ -248,6 +259,13 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+" => VimClojure
+"
+"""""""""""""""""""""""""""""""
+let g:vimclojure#HighLightBuiltins=1
+let g:vimclojure#RainbowParens=1
 
 """""""""""""""""""""""""""""""
 " => Gundo
