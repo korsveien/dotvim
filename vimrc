@@ -407,6 +407,7 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
+    set guifont=Monaco:h11
     set vb "disable bell
 endif
 
