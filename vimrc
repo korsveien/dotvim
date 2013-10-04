@@ -28,7 +28,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
 
     " strip trailing whitespace when writing to buffer
-    autocmd BufWritePre  *.{cpp,h,c,etc}  call StripTrailingWhite()
+    autocmd BufWritePre  *.{cpp,h,c,etc,clj}  call StripTrailingWhite()
 
     augroup gitcommit_filetype
         autocmd!
@@ -62,7 +62,6 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'godlygeek/tabular'
@@ -72,6 +71,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'mattn/emmet-vim'
 
 " vim-scripts repos
 Bundle 'a.vim'
@@ -161,6 +161,7 @@ au Syntax * RainbowParenthesesLoadBraces
 " colorscheme peaksea
 " colorscheme desert
 colorscheme jellybeans
+" colorscheme distinguished
 
 
 """""""""""""""""""""""""""""""
@@ -284,6 +285,7 @@ let g:airline_linecolumn_prefix = ''
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme = 'jellybeans'
+" let g:airline_theme = 'molokai'
 
 """""""""""""""""""""""""""""""
 " => Alternate
@@ -434,10 +436,10 @@ endif
 
 function! StripTrailingWhite()
     let l:winview = winsaveview()
-    silent! %s/\s\+$//
+    silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
-nnoremap <F2> :call StripTrailingWhite()<cr>
+nnoremap <silent> <expr> <F2> StripTrailingWhite()
 
 " Inline a variable
 function! GRB()
