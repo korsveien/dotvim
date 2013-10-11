@@ -146,7 +146,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 set t_Co=256
 
 " Gay parens
-au VimEnter * RainbowParenthesesToggle
+au BufEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
@@ -262,11 +262,10 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
-" => VimClojure
+" => Paredit
 "
 """""""""""""""""""""""""""""""
-let g:vimclojure#HighLightBuiltins=1
-let g:vimclojure#RainbowParens=1
+let g:paredit_electric_return=1
 
 """""""""""""""""""""""""""""""
 " => Gundo
