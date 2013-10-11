@@ -28,7 +28,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
 
     " strip trailing whitespace when writing to buffer
-    autocmd BufWritePre  *.{cpp,h,c,etc}  call StripTrailingWhite()
+    autocmd BufWritePre  *.{cpp,h,c,etc,clj}  call StripTrailingWhite()
 
     augroup gitcommit_filetype
         autocmd!
@@ -52,13 +52,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
-" Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'godlygeek/tabular'
@@ -68,10 +71,12 @@ Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'mattn/emmet-vim'
 
 " vim-scripts repos
 Bundle 'a.vim'
 Bundle 'Gundo'
+Bundle 'paredit.vim'
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -140,6 +145,12 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 """"""""""""""""""""""""""""""
 set t_Co=256
 
+" Gay parens
+au BufEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " colorscheme zenburn
 " colorscheme railscasts
 " colorscheme ir_black
@@ -150,6 +161,7 @@ set t_Co=256
 " colorscheme peaksea
 " colorscheme desert
 colorscheme jellybeans
+" colorscheme distinguished
 
 
 """""""""""""""""""""""""""""""
@@ -249,8 +261,12 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
+" => Paredit
+"""""""""""""""""""""""""""""""
+let g:paredit_electric_return=1
+
+"""""""""""""""""""""""""""""""
 " => Airline
-"
 """""""""""""""""""""""""""""""
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -258,6 +274,7 @@ let g:airline_linecolumn_prefix = ''
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme = 'jellybeans'
+" let g:airline_theme = 'molokai'
 
 """""""""""""""""""""""""""""""
 " => Alternate
@@ -382,6 +399,7 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
+    set guifont=Monaco:h11
     set vb "disable bell
 endif
 
@@ -408,10 +426,10 @@ endif
 
 function! StripTrailingWhite()
     let l:winview = winsaveview()
-    silent! %s/\s\+$//
+    silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
-nnoremap <F2> :call StripTrailingWhite()<cr>
+nnoremap <silent> <expr> <F2> StripTrailingWhite()
 
 " Inline a variable
 function! GRB()
