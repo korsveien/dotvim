@@ -72,6 +72,7 @@ Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
+Bundle 'altercation/vim-colors-solarized'
 
 " vim-scripts repos
 Bundle 'a.vim'
@@ -144,24 +145,23 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256
+set background=dark
+colorscheme solarized
 
-" Gay parens
-au BufEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
-" colorscheme zenburn
+
+" colorscheme jellybeans
 " colorscheme railscasts
+" colorscheme distinguished
+" colorscheme tomorrow-night
+" colorscheme tomorrow-night-eighties
+" colorscheme peaksea
+" colorscheme zenburn
 " colorscheme ir_black
 " colorscheme wombat256
 " colorscheme molokai
-" colorscheme solarized
 " colorscheme tango2
-" colorscheme peaksea
 " colorscheme desert
-colorscheme jellybeans
-" colorscheme distinguished
 
 
 """""""""""""""""""""""""""""""
@@ -196,6 +196,8 @@ let mapleader=','
 """""""""""""""""""""""""""""""
 " => Normal mode mappings
 """"""""""""""""""""""""""""""
+
+call togglebg#map("<F5>")
 
 " Why haven't I thought about this before?
 nnoremap :Q :q
@@ -265,13 +267,47 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 " => Paredit
 "
 """""""""""""""""""""""""""""""
+
+"Always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+"""""""""""""""""""""""""""""""
+" => Paredit
+"
+"""""""""""""""""""""""""""""""
 let g:paredit_electric_return=1
+let g:paredit_smart_jump=1
 
 """""""""""""""""""""""""""""""
 " => Gundo
 "
 """""""""""""""""""""""""""""""
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F4> :GundoToggle<CR>
 
 
 """""""""""""""""""""""""""""""
@@ -283,8 +319,9 @@ let g:airline_right_sep = ''
 let g:airline_linecolumn_prefix = ''
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
-let g:airline_theme = 'jellybeans'
-" let g:airline_theme = 'molokai'
+" let g:airline_theme = 'jellybeans'
+" let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'solarized'
 
 """""""""""""""""""""""""""""""
 " => Alternate
