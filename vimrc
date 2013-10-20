@@ -148,13 +148,10 @@ set t_Co=256
 set background=dark
 colorscheme solarized
 
-
-
 " colorscheme jellybeans
 " colorscheme railscasts
 " colorscheme distinguished
 " colorscheme tomorrow-night
-" colorscheme tomorrow-night-eighties
 " colorscheme peaksea
 " colorscheme zenburn
 " colorscheme ir_black
