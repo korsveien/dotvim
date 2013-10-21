@@ -444,6 +444,8 @@ if has("gui_running")
     set guioptions =-r
     set guifont=Monaco:h11
     set vb "disable bell
+    colorscheme tomorrow-night
+    let g:airline_theme = 'tomorrow'
 endif
 
 if has("win32")
