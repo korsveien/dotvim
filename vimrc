@@ -28,7 +28,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
 
     " strip trailing whitespace when writing to buffer
-    autocmd BufWritePre  *.{cpp,h,c,etc,clj}  call StripTrailingWhite()
+    autocmd BufWritePre  *.{cpp,h,c,etc,clj,tex}  call StripTrailingWhite()
 
     augroup gitcommit_filetype
         autocmd!
@@ -73,11 +73,13 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'martintreurnicht/vim-gradle'
 
 " vim-scripts repos
 Bundle 'a.vim'
 Bundle 'Gundo'
 Bundle 'paredit.vim'
+Bundle 'groovy.vim'
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -194,7 +196,7 @@ let mapleader=','
 " => Normal mode mappings
 """"""""""""""""""""""""""""""
 
-call togglebg#map("<F5>")
+call togglebg#map("<F2>")
 
 " Why haven't I thought about this before?
 nnoremap :Q :q
