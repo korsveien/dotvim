@@ -474,17 +474,7 @@ function! StripTrailingWhite()
     silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
-nnoremap <silent> <expr> <F2> StripTrailingWhite()
-
-" Inline a variable
-function! GRB()
-    normal ^*``
-    normal 2w
-    normal "zDdd``
-    normal cw^Rz^[
-endfunc
-nnoremap ,z :call GRB()<cr>
-
+nnoremap <silent> <expr> <F6> StripTrailingWhite()
 
 "Toggle relative number display
 function! NumberToggle()
@@ -524,22 +514,6 @@ function! s:align()
     normal! 0
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
-endfunction
-
-" Set color scheme according to current time of day.
-" Source: http://vim.wikia.com/wiki/Switch_color_schemes
-function! HourColor()
-  let hr = str2nr(strftime('%H'))
-  if hr <= 11
-    let i = 0
-  elseif hr <= 17
-    let i = 1
-  else
-    let i = 2
-  endif
-  let nowcolors = 'zenburn peaksea wombat256'
-  execute 'colorscheme '.split(nowcolors)[i]
-  redraw
 endfunction
 
 " highlights all occurences of word without moving cursor
