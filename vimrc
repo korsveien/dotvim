@@ -52,6 +52,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'bling/vim-bufferline'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-fireplace'
@@ -63,7 +64,6 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'godlygeek/tabular'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
@@ -74,6 +74,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'martintreurnicht/vim-gradle'
+Bundle 'marijnh/tern_for_vim'
 
 " vim-scripts repos
 Bundle 'a.vim'
