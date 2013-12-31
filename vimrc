@@ -52,6 +52,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-bufferline'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
@@ -77,6 +78,7 @@ Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
 
 " vim-scripts repos
+Bundle 'EasyMotion'
 Bundle 'a.vim'
 Bundle 'Gundo'
 Bundle 'paredit.vim'
@@ -94,7 +96,7 @@ set ignorecase                  " case insensitive
 set incsearch                   " search while typing
 set noerrorbells                " no noise, please
 set noexrc                      " use local version of .(g)vimrc, .exrc
-set novisualbell                " blink on error
+set visualbell                " blink on error
 set smarttab                    " <TAB> inserts indentation according to 'shiftwidth'
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
@@ -208,8 +210,6 @@ map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 " Essential plugin windows
 nmap <C-h> :NERDTreeToggle<CR>
 nmap <C-l> :TagbarToggle<CR>
-nmap <C-k> :BuffergatorToggle<CR>
-nmap <C-j> :GundoToggle<CR>
 
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
@@ -265,8 +265,12 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 " => Paredit
 """""""""""""""""""""""""""""""
+let g:bufferline_echo = 0
 
-"Always on
+
+"""""""""""""""""""""""""""""""
+" => RainbowParenthesis
+"""""""""""""""""""""""""""""""
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -296,14 +300,12 @@ let g:rbpt_loadcmd_toggle = 0
 
 """""""""""""""""""""""""""""""
 " => Paredit
-"
 """""""""""""""""""""""""""""""
 let g:paredit_electric_return=1
 let g:paredit_smart_jump=1
 
 """""""""""""""""""""""""""""""
 " => Gundo
-"
 """""""""""""""""""""""""""""""
 nnoremap <F4> :GundoToggle<CR>
 
@@ -341,15 +343,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-" let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_enable_signs=1
-" let g:syntastic_error_symbol='✗'
-" let g:syntastic_warning_symbol='⚠'
-" let g:syntastic_mode_map = { 'mode': 'passive',
+let g:syntastic_auto_loc_list=1 " Error window only autoclose
+let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_mode_map = { 'mode': 'active',
 "                             \'active_filetypes': ['ruby', 'python', 'java'],
-"                             \'passive_filetypes': ['c', 'cpp'] }
+"                             \'passive_filetypes': [] }
 " let g:syntastic_cpp_checkers = ['gcc']
+let g:syntastic_javascript_checkers = ['jshint']
 
 
 """""""""""""""""""""""""""""""
