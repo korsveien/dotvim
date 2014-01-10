@@ -76,6 +76,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'wting/rust.vim'
 
 " vim-scripts repos
 Bundle 'EasyMotion'
