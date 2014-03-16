@@ -67,7 +67,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'SirVer/ultisnips'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
@@ -77,11 +76,12 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'wting/rust.vim'
+Bundle 'Blackrush/vim-gocode.git'
+Bundle 'sjl/gundo.vim.git'
 
 " vim-scripts repos
 Bundle 'EasyMotion'
 Bundle 'a.vim'
-Bundle 'Gundo'
 Bundle 'paredit.vim'
 Bundle 'groovy.vim'
 
@@ -356,17 +356,9 @@ let g:syntastic_warning_symbol='⚠'
 "                             \'passive_filetypes': [] }
 " let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_go_checkers = ['gofmt']
 
 
-"""""""""""""""""""""""""""""""
-" => YouCompleteMe
-"""""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_detailed_diagnostics = '<leader>di'
-let g:ycm_confirm_extra_conf = 0
-
-nnoremap <F3> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """""""""""""""""""""""""""""""
 " => Buffergator
