@@ -119,6 +119,8 @@ set nowrap                      " no line wrap
 set nu
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
+set omnifunc=syntaxcompleete#Complete " enable omnicomplete
+set runtimepath+=$GOROOT/misc/vim "Add official go scripts
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
