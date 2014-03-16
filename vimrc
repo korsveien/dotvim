@@ -35,6 +35,8 @@ if has("autocmd")
         autocmd FileType gitcommit :set cc=51
     augroup end
 
+    au BufRead,BufNewFile *.go set filetype=go
+    au FileType go au BufWritePre <buffer> Fmt " Run fmt when saving go files
 endif
 
 
@@ -52,6 +54,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'ervandew/supertab.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-bufferline'
 Bundle 'kien/rainbow_parentheses.vim'
@@ -76,8 +79,12 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'wting/rust.vim'
-Bundle 'Blackrush/vim-gocode.git'
 Bundle 'sjl/gundo.vim.git'
+
+" Go specific bundles
+Bundle 'bradfitz/goimports.git'
+Bundle 'dgryski/vim-godef.git'
+Bundle 'Blackrush/vim-gocode.git'
 
 " vim-scripts repos
 Bundle 'EasyMotion'
@@ -120,7 +127,9 @@ set nu
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
 set omnifunc=syntaxcompleete#Complete " enable omnicomplete
-set runtimepath+=$GOROOT/misc/vim "Add official go scripts
+
+" Go specific settings
+set runtimepath+=$GOROOT/misc/vim          " Add official go scripts
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
@@ -190,6 +199,40 @@ if has("autocmd")
     endif
     highlight ColorColumn ctermbg=8
 endif
+
+"""""""""""""""""""""""""""""""
+" => Go Tagbar Config
+"""""""""""""""""""""""""""""""
+
+" Install with go get -u github.com/jstemmer/gotags
+" let g:tagbar_type_go = {
+"             \ 'ctagstype' : 'go',
+"             \ 'kinds'     : [
+"             \ 'p:package',
+"             \ 'i:imports:1',
+"             \ 'c:constants',
+"             \ 'v:variables',
+"             \ 't:types',
+"             \ 'n:interfaces',
+"             \ 'w:fields',
+"             \ 'e:embedded',
+"             \ 'm:methods',
+"             \ 'r:constructor',
+"             \ 'f:functions'
+"             \ ],
+"             \ 'sro' : '.',
+"             \ 'kind2scope' : {
+"             \ 't' : 'ctype',
+"             \ 'n' : 'ntype'
+"             \ },
+"             \ 'scope2kind' : {
+"             \ 'ctype' : 't',
+"             \ 'ntype' : 'n'
+"             \ },
+"             \ 'ctagsbin'  : 'gotags',
+"             \ 'ctagsargs' : '-sort -silent'
+"             \ }
+
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -264,6 +307,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""
 " => Paredit
@@ -370,13 +414,6 @@ let g:buffergator_sort_regime = "mru"
 let g:buffergator_suppress_keymaps = "true"
 let g:buffergator_split_size = 10
 
-
-"""""""""""""""""""""""""""""""
-" => Command-T
-"""""""""""""""""""""""""""""""
-let g:CommandTMaxHeight = 15
-set wildignore+=*.o,*.obj,.git,*.pyc
-noremap <leader>y :CommandTFlush<cr>
 
 """""""""""""""""""""""""""""""
 " => NERDTree
