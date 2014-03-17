@@ -54,7 +54,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
-Bundle 'ervandew/supertab.git'
+Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-bufferline'
 Bundle 'kien/rainbow_parentheses.vim'
@@ -308,11 +308,6 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""
-" => Supertab
-"""""""""""""""""""""""""""""""
-let g:SuperTabDefaultCompletion="context"
 
 """""""""""""""""""""""""""""""
 " => Paredit
