@@ -98,6 +98,7 @@ Bundle 'groovy.vim'
 "                             "
 """""""""""""""""""""""""""""""
 filetype plugin indent on       " use file specific plugins and indents (required for vundle)
+filetype plugin on
 set autoindent                  " indenting
 set smartindent                 " indenting
 set ignorecase                  " case insensitive
@@ -308,6 +309,10 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "                             "
 """""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""
+" => Supertab
+"""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletion="context"
 
 """""""""""""""""""""""""""""""
 " => Paredit
