@@ -28,15 +28,13 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.clj set filetype=clojure "recognize clj files
 
     " strip trailing whitespace when writing to buffer
-    autocmd BufWritePre  *.{cpp,h,c,etc,clj,tex}  call StripTrailingWhite()
+    autocmd BufWritePre  *.{cpp,h,c,etc,clj,tex,py}  call StripTrailingWhite()
 
     augroup gitcommit_filetype
         autocmd!
         autocmd FileType gitcommit :set cc=51
     augroup end
 
-    au BufRead,BufNewFile *.go set filetype=go
-    au FileType go au BufWritePre <buffer> Fmt " Run fmt when saving go files
 endif
 
 
@@ -54,6 +52,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle 'jiangmiao/auto-pairs.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-bufferline'
@@ -80,6 +79,7 @@ Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'wting/rust.vim'
 Bundle 'sjl/gundo.vim.git'
+Bundle 'plasticboy/vim-markdown'
 
 " Go specific bundles
 Bundle 'bradfitz/goimports.git'
@@ -128,11 +128,17 @@ set nu
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
 set omnifunc=syntaxcompleete#Complete " enable omnicomplete
-
-" Go specific settings
-set runtimepath+=$GOROOT/misc/vim          " Add official go scripts
-
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
+
+"""""""""""""""""""""""""""""""
+" => Go specifics
+""""""""""""""""""""""""""""""
+set runtimepath+=$GOROOT/misc/vim          " Add official go scripts
+au FileType go set nolist!                 " do not list whitespace
+set omnifunc=syntaxcompleete#Complete      " enable omnicomplete
+au BufRead,BufNewFile *.go set filetype=go
+au FileType go au BufWritePre <buffer> Fmt " Run fmt when saving go files
+
 
 """""""""""""""""""""""""""""""
 " => Statusline options
