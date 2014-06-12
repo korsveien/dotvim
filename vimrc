@@ -52,6 +52,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
+Bundle '/sheerun/vim-polyglot.git'
 Bundle 'jiangmiao/auto-pairs.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic'
@@ -486,8 +487,6 @@ if has("gui_running")
     set guioptions =-r
     set guifont=Monaco:h11
     set vb "disable bell
-    colorscheme tomorrow-night
-    let g:airline_theme = 'tomorrow'
 endif
 
 if has("win32")
