@@ -408,6 +408,9 @@ let g:syntastic_warning_symbol='⚠'
 " let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_go_checkers = ['gofmt']
+let g:syntastic_quiet_messages = { "level": "warnings",
+            \ "type":  "style",
+            \ "regex": 'front of parentheses' }
 
 
 
