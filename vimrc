@@ -53,6 +53,7 @@ Bundle 'gmarik/vundle'
 
 " Github repos
 Bundle '/sheerun/vim-polyglot.git'
+Bundle '/sheerun/vim-polyglot.git'
 Bundle 'jiangmiao/auto-pairs.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic'
@@ -88,10 +89,10 @@ Bundle 'dgryski/vim-godef.git'
 Bundle 'Blackrush/vim-gocode.git'
 
 " vim-scripts repos
-Bundle 'EasyMotion'
 Bundle 'a.vim'
 Bundle 'paredit.vim'
 Bundle 'groovy.vim'
+Bundle 'Gundo'
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -292,9 +293,6 @@ nmap <Leader>v :source $MYVIMRC<CR>
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" quickly open a buffer for taking notes
-map <leader>q :e ~/ifi-master/buffer<cr>
-
 " refresh file
 nmap <F5> :e %<cr>
 
@@ -315,6 +313,12 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+" => ctrlp
+"""""""""""""""""""""""""""""""
+noremap <silent> <c-j> :CtrlPBuffer<CR>
+
 
 """""""""""""""""""""""""""""""
 " => Paredit
