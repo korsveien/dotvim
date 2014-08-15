@@ -355,14 +355,17 @@ let g:syntastic_warning_symbol='⚠'
 " let g:syntastic_mode_map = { 'mode': 'active',
 "                             \'active_filetypes': ['ruby', 'python', 'java'],
 "                             \'passive_filetypes': [] }
-" let g:syntastic_cpp_checkers = ['gcc']
-let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_go_checkers = ['gofmt']
-let g:syntastic_quiet_messages = { "level": "warnings",
-            \ "type":  "style",
-            \ "regex": 'front of parentheses' }
+" let g:syntastic_quiet_messages = { "level": "warnings",
+"             \ "type":  "style",
+"             \ "regex": 'front of parentheses' }
 
-
+"""""""""""""""""""""""""""""""
+" => YCM
+"""""""""""""""""""""""""""""""
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extrac_conf=0
+set completeopt-=preview
 
 """""""""""""""""""""""""""""""
 " => Buffergator

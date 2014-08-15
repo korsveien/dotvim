@@ -37,10 +37,14 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
 Bundle 'martintreurnicht/vim-gradle'
-Bundle 'marijnh/tern_for_vim'
 Bundle 'wting/rust.vim'
 Bundle 'sjl/gundo.vim.git'
 Bundle 'plasticboy/vim-markdown'
+
+" Javascript
+Bundle 'pangloss/vim-Javascript'
+Bundle 'Raimondi/delimitMate'
+Bundle 'marijnh/tern_for_vim'
 
 " Go specific bundles
 Bundle 'bradfitz/goimports.git'
