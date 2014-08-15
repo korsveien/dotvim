@@ -3,7 +3,7 @@
 "           VUNDLE            "
 "                             "
 """""""""""""""""""""""""""""""
-"See: http://gmarik.info/blog/2011/05/17/chicken-or-egg-dilemma
+" See: http://gmarik.info/blog/2011/05/17/chicken-or-egg-dilemma
 
 " Required stuff first!
 set nocompatible 
@@ -13,7 +13,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
-Bundle '/sheerun/vim-polyglot.git'
 Bundle '/sheerun/vim-polyglot.git'
 Bundle 'jiangmiao/auto-pairs.git'
 Bundle 'Valloric/YouCompleteMe.git'

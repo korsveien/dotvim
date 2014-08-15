@@ -38,7 +38,7 @@ if has("autocmd")
 endif
 
 " Source a file containing list of Vundle bundles
-source bundles.vim
+source ~/.vim/bundles.vim
 
 """""""""""""""""""""""""""""""
 "                             "
