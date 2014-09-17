@@ -22,7 +22,7 @@ rm $logfile
 sudo apt-get update
 sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
 libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev \
+libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev zsh \
 mercurial cmake 2>> $HOME/$logfile
 
 if [[ $? != 0 ]]; then
@@ -92,6 +92,10 @@ rm $HOME/.vimrc
 ln -s .vim/vimrc $HOME/.vimrc
 cd .vim
 
+if [[ -d "$HOME/.vim/bundle/vundle" ]]; then
+    echo -e "Moving existing vundle directory to vundle.old.."
+    mv $HOME/.vim/bundle/vundle $HOME/.vim/bundle/vundle.old
+fi
 git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle \
 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then

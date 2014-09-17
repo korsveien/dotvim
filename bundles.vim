@@ -36,7 +36,6 @@ Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'martintreurnicht/vim-gradle'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'wting/rust.vim'
@@ -47,6 +46,10 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'bradfitz/goimports.git'
 Bundle 'dgryski/vim-godef.git'
 Bundle 'Blackrush/vim-gocode.git'
+
+" Color themes
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'nanotech/jellybeans.vim'
 
 " vim-scripts repos
 Bundle 'a.vim'

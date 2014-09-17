@@ -118,7 +118,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 """"""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 " colorscheme jellybeans
 " colorscheme railscasts
@@ -130,7 +130,7 @@ colorscheme solarized
 " colorscheme wombat256
 " colorscheme molokai
 " colorscheme tango2
-" colorscheme desert
+ colorscheme desert
 
 
 """""""""""""""""""""""""""""""
@@ -322,9 +322,9 @@ let g:airline_right_sep = ''
 let g:airline_linecolumn_prefix = ''
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
-" let g:airline_theme = 'jellybeans'
 " let g:airline_theme = 'tomorrow'
-let g:airline_theme = 'solarized'
+" let g:airline_theme = 'solarized'
+" let g:airline_theme = 'desert'
 
 """""""""""""""""""""""""""""""
 " => Alternate
@@ -451,6 +451,8 @@ elseif has("mac")
 "Further mac options here
 elseif has("unix")
     "Unix options here
+    colorscheme jellybeans
+    let g:airline_theme = 'jellybeans'
 endif
 
 
