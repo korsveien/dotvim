@@ -7,13 +7,14 @@
 
 cd $HOME
 brew install git, vim
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
+# install vundle
 if [[ -d "$HOME/.vim/bundle/vundle" ]]; then
     echo -e "Moving existing vundle directory to vundle.old.."
     mv $HOME/.vim/bundle/vundle $HOME/.vim/bundle/vundle.old
 fi
-git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle \
-2>> $HOME/$logfile
+git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 if [[ $? != 0 ]]; then
     echo -e "\e[00;31mError during cloning of Vundle repo!\e[00m"
     exit 0
