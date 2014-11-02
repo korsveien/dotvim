@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
 
 # Author: Nils Peder Korsveien
 # Brief: downloads, compiles and sets up latest vim with all plugins
