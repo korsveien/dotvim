@@ -130,7 +130,7 @@ set background=dark
 " colorscheme wombat256
 " colorscheme molokai
 " colorscheme tango2
- colorscheme desert
+" colorscheme desert
 
 
 """""""""""""""""""""""""""""""
