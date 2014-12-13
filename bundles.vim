@@ -49,8 +49,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
 
 " Color themes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
+Plugin 'flazz/vim-colorschemes'
 
 " vim-scripts repos
 Plugin 'a.vim'
