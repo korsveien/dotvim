@@ -261,9 +261,10 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
-" => ctrlp
+" => Emmet
 """""""""""""""""""""""""""""""
-noremap <silent> <c-j> :CtrlPBuffer<CR>
+" let g:user_emmet_leader_key = '<c-s>'
+let g:use_emmet_complete_tag = 1
 
 
 """""""""""""""""""""""""""""""
@@ -347,6 +348,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
+source $HOME/.vim/clint.vim
 let g:syntastic_auto_loc_list=1 " Error window only autoclose
 let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
@@ -469,7 +471,6 @@ endif
 "           FUNCTIONS         "
 "                             "
 """""""""""""""""""""""""""""""
-
 function! StripTrailingWhite()
     let l:winview = winsaveview()
     silent! %s/\s\+$//

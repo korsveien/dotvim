@@ -13,7 +13,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github repos
-Bundle '/sheerun/vim-polyglot.git'
 Bundle 'jiangmiao/auto-pairs.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic'
@@ -35,21 +34,19 @@ Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'mattn/emmet-vim'
 Bundle 'martintreurnicht/vim-gradle'
 Bundle 'wting/rust.vim'
 Bundle 'sjl/gundo.vim.git'
 Bundle 'plasticboy/vim-markdown'
 
-" Javascript
+" C-specific
+
+" Frontend stuff
+Bundle 'marijnh/tern_for_vim'
 Bundle 'pangloss/vim-Javascript'
 Bundle 'Raimondi/delimitMate'
-Bundle 'marijnh/tern_for_vim'
-
-" Go specific bundles
-Bundle 'bradfitz/goimports.git'
-Bundle 'dgryski/vim-godef.git'
-Bundle 'Blackrush/vim-gocode.git'
+Bundle 'mattn/emmet-vim'
+Bundle 'othree/html5.vim'
 
 " Color themes
 Bundle 'altercation/vim-colors-solarized'
