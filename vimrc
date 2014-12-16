@@ -324,6 +324,7 @@ let g:airline_paste_symbol = 'ρ'
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'solarized'
 " let g:airline_theme = 'desert'
+let g:airline_theme = 'molokai'
 
 """""""""""""""""""""""""""""""
 " => Alternate
@@ -448,8 +449,6 @@ if has("win32")
     "Windows options here
 elseif has("mac")
     "Change cursor to bar in insert mode in iTerm2
-    let g:airline_theme = 'jellybeans'
-    colorscheme solarized
     let &t_SI = "\033]50;CursorShape=1\007"
     let &t_EI = "\033]50;CursorShape=0\007"
 "Further mac options here
