@@ -47,6 +47,7 @@ Plugin 'pangloss/vim-Javascript'
 Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
+Plugin 'jaxbot/browserlink.vim'
 
 " Color themes
 Plugin 'flazz/vim-colorschemes'

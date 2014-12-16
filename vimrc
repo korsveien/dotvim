@@ -128,7 +128,7 @@ set background=dark
 " colorscheme zenburn
 " colorscheme ir_black
 " colorscheme wombat256
-" colorscheme molokai
+colorscheme molokai
 " colorscheme tango2
 " colorscheme desert
 
@@ -199,8 +199,6 @@ let mapleader=','
 """""""""""""""""""""""""""""""
 " => Normal mode mappings
 """"""""""""""""""""""""""""""
-
-call togglebg#map("<F2>")
 
 " Why haven't I thought about this before?
 nnoremap :Q :q
@@ -348,7 +346,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-source $HOME/.vim/clint.vim
 let g:syntastic_auto_loc_list=1 " Error window only autoclose
 let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
