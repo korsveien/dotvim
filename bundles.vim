@@ -38,6 +38,7 @@ Plugin 'martintreurnicht/vim-gradle'
 Plugin 'wting/rust.vim'
 Plugin 'sjl/gundo.vim.git'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'honza/vim-snippets'
 
 " C-specific
 
