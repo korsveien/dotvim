@@ -123,12 +123,12 @@ set background=dark
 " colorscheme jellybeans
 " colorscheme railscasts
 " colorscheme distinguished
-" colorscheme tomorrow-night
+colorscheme tomorrow-night
 " colorscheme peaksea
 " colorscheme zenburn
 " colorscheme ir_black
 " colorscheme wombat256
-colorscheme molokai
+" colorscheme monokai
 " colorscheme tango2
 " colorscheme desert
 
@@ -248,10 +248,6 @@ nmap <F5> :e %<cr>
 " insert current date and time
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-
-
-
-
 """""""""""""""""""""""""""""""
 "                             "
 "      PLUGIN SETTINGS        "
@@ -324,7 +320,9 @@ let g:airline_paste_symbol = 'ρ'
 " let g:airline_theme = 'tomorrow'
 " let g:airline_theme = 'solarized'
 " let g:airline_theme = 'desert'
-let g:airline_theme = 'molokai'
+" let g:airline_theme = 'molokai'
+" let g:airline_theme = 'zenburn'
+" let g:airline_theme = 'tomorrow'
 
 """""""""""""""""""""""""""""""
 " => Alternate

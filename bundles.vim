@@ -40,7 +40,7 @@ Plugin 'sjl/gundo.vim.git'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'honza/vim-snippets'
 
-" C-specific
+Plugin 'airblade/vim-gitgutter'
 
 " Frontend stuff
 Plugin 'marijnh/tern_for_vim'
