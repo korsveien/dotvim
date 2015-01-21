@@ -5,6 +5,8 @@
 """""""""""""""""""""""""""""""
 " See: http://gmarik.info/blog/2011/05/17/chicken-or-egg-dilemma
 
+let $GIT_SSL_NO_VERIFY = 'true'
+
 " Required stuff first!
 set nocompatible 
 filetype off
@@ -52,6 +54,7 @@ Plugin 'jaxbot/browserlink.vim'
 
 " Color themes
 Plugin 'flazz/vim-colorschemes'
+Plugin 'chriskempson/vim-tomorrow-theme'
 
 " vim-scripts repos
 Plugin 'a.vim'

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#! /bin/bash
 
 # Author: Nils Peder Korsveien
 # Brief: downloads, compiles and sets up latest vim with all plugins
@@ -96,7 +96,7 @@ if [[ -d "$HOME/.vim/bundle/vundle" ]]; then
     echo -e "Moving existing vundle directory to vundle.old.."
     mv $HOME/.vim/bundle/vundle $HOME/.vim/bundle/vundle.old
 fi
-git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle \
+git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim \
 2>> $HOME/$logfile
 if [[ $? != 0 ]]; then
     echo -e "\e[00;31mError during cloning of Vundle repo!\e[00m"

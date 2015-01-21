@@ -123,7 +123,7 @@ set background=dark
 " colorscheme jellybeans
 " colorscheme railscasts
 " colorscheme distinguished
-colorscheme tomorrow-night
+colorscheme Tomorrow-Night
 " colorscheme peaksea
 " colorscheme zenburn
 " colorscheme ir_black
@@ -452,8 +452,8 @@ elseif has("mac")
 "Further mac options here
 elseif has("unix")
     "Unix options here
-    colorscheme jellybeans
-    let g:airline_theme = 'jellybeans'
+    " colorscheme jellybeans
+    " let g:airline_theme = 'jellybeans'
 endif
 
 
