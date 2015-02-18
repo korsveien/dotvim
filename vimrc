@@ -37,9 +37,6 @@ if has("autocmd")
 
 endif
 
-" Source a file containing list of Vundle bundles
-source ~/.vim/bundles.vim
-
 """""""""""""""""""""""""""""""
 "                             "
 "      GENERAL SETTINGS       "
@@ -72,11 +69,55 @@ set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
-set nu
+set rnu
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
 set omnifunc=syntaxcompleete#Complete " enable omnicomplete
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
+
+"""""""""""""""""""""""""""""""
+"                             "
+"          VIM-PLUG           "
+"                             "
+"""""""""""""""""""""""""""""""
+let g:plug_timeout=1000
+call plug#begin('~/.vim/plugged')
+
+" Github repos
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'bling/vim-bufferline'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'godlygeek/tabular'
+Plug 'SirVer/ultisnips'
+Plug 'bling/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'sjl/gundo.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
+Plug 'Raimondi/delimitMate'
+
+" JS
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
+Plug 'pangloss/vim-Javascript', { 'for': 'javascript'}
+
+Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'jaxbot/browserlink.vim'
+
+" Color themes
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/vim-tomorrow-theme'
+
+call plug#end()
+
 
 """""""""""""""""""""""""""""""
 " => Go specifics
@@ -118,7 +159,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 """"""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-"colorscheme solarized
+" "colorscheme solarized
 
 " colorscheme jellybeans
 " colorscheme railscasts
@@ -206,10 +247,6 @@ nnoremap :W :w
 
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
-" Essential plugin windows
-nmap <C-h> :NERDTreeToggle<CR>
-nmap <C-l> :TagbarToggle<CR>
-
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
 nmap <left>  :echo "do you even hjkl??"<cr>
@@ -262,12 +299,6 @@ let g:use_emmet_complete_tag = 1
 
 
 """""""""""""""""""""""""""""""
-" => Paredit
-"""""""""""""""""""""""""""""""
-let g:bufferline_echo = 0
-
-
-"""""""""""""""""""""""""""""""
 " => RainbowParenthesis
 """""""""""""""""""""""""""""""
 au VimEnter * RainbowParenthesesToggle
@@ -315,21 +346,7 @@ nnoremap <F4> :GundoToggle<CR>
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_linecolumn_prefix = ''
-let g:airline_branch_prefix = '⎇  '
-let g:airline_paste_symbol = 'ρ'
-" let g:airline_theme = 'tomorrow'
-" let g:airline_theme = 'solarized'
-" let g:airline_theme = 'desert'
-" let g:airline_theme = 'molokai'
-" let g:airline_theme = 'zenburn'
-" let g:airline_theme = 'tomorrow'
-
-"""""""""""""""""""""""""""""""
-" => Alternate
-"
-"""""""""""""""""""""""""""""""
-let g:alternateSearchPath='sfr:../Src,sfr:../Inc,sfr:Src,srf:Inc,sfr:src,srf:inc'
-let g:alternateNodefaultAlternate=1
+let g:airline_branch = '⎇  '
 
 
 """""""""""""""""""""""""""""""
@@ -364,37 +381,6 @@ let g:syntastic_go_checkers = ['gofmt']
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extrac_conf=0
 set completeopt-=preview
-
-"""""""""""""""""""""""""""""""
-" => Buffergator
-"""""""""""""""""""""""""""""""
-let g:buffergator_display_regime = "bufname"
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_viewport_split_policy = "T"
-let g:buffergator_sort_regime = "mru"
-let g:buffergator_suppress_keymaps = "true"
-let g:buffergator_split_size = 10
-
-
-"""""""""""""""""""""""""""""""
-" => NERDTree
-"""""""""""""""""""""""""""""""
-let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize = 40
-let g:NERDChristmasTree = 1
-let g:NERDTreeQuitOnOpen = 0
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinPos = "left"
-
-
-"""""""""""""""""""""""""""""""
-" => Tagbar
-"""""""""""""""""""""""""""""""
-let g:tagbar_autoclose=1
-let g:tagbar_width = 40
-let g:tagbar_autofocus = 1
-let g:tagbar_compact = 1
-
 
 """""""""""""""""""""""""""""""
 " => LateX
