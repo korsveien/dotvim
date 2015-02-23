@@ -103,6 +103,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdtree'
 
 " JS
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
@@ -292,6 +293,11 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
+" => NerdTree
+"""""""""""""""""""""""""""""""
+nmap <C-h> :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""
 " => Emmet
 """""""""""""""""""""""""""""""
 " let g:user_emmet_leader_key = '<c-s>'
@@ -367,13 +373,7 @@ let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-" let g:syntastic_mode_map = { 'mode': 'active',
-"                             \'active_filetypes': ['ruby', 'python', 'java'],
-"                             \'passive_filetypes': [] }
-let g:syntastic_go_checkers = ['gofmt']
-" let g:syntastic_quiet_messages = { "level": "warnings",
-"             \ "type":  "style",
-"             \ "regex": 'front of parentheses' }
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 """""""""""""""""""""""""""""""
 " => YCM
@@ -425,21 +425,17 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
-    set guifont=Monaco:h11
     set vb "disable bell
 endif
 
 if has("win32")
     "Windows options here
 elseif has("mac")
-    "Change cursor to bar in insert mode in iTerm2
-    let &t_SI = "\033]50;CursorShape=1\007"
-    let &t_EI = "\033]50;CursorShape=0\007"
-"Further mac options here
+    "mac options here
 elseif has("unix")
+    if !has("gui_running")
+    endif
     "Unix options here
-    " colorscheme jellybeans
-    " let g:airline_theme = 'jellybeans'
 endif
 
 
