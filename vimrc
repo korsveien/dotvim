@@ -159,7 +159,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 """"""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-" "colorscheme solarized
+" colorscheme solarized
 
 " colorscheme jellybeans
 " colorscheme railscasts
@@ -399,6 +399,8 @@ if has("win32")
     "Windows options here
 elseif has("mac")
     "mac options here
+    set background=dark
+    colorscheme solarized
 elseif has("unix")
     if !has("gui_running")
     endif
