@@ -86,7 +86,6 @@ call plug#begin('~/.vim/plugged')
 " Github repos
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
-Plug 'bling/vim-bufferline'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -107,7 +106,7 @@ Plug 'scrooloose/nerdtree'
 
 " JS
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
-Plug 'pangloss/vim-Javascript', { 'for': 'javascript'}
+Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
 
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'othree/html5.vim', {'for': 'html'}
