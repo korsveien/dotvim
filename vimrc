@@ -290,6 +290,11 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
+" => CtrlP
+"""""""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_custom_ignore = '*/node_modules/*'
 
 """""""""""""""""""""""""""""""
 " => NerdTree
