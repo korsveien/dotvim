@@ -103,6 +103,7 @@ Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 
 " JS
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
@@ -110,7 +111,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
 
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'jaxbot/browserlink.vim'
+" Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
 
 " Color themes
 Plug 'altercation/vim-colors-solarized'
@@ -196,39 +197,6 @@ if has("autocmd")
     highlight ColorColumn ctermbg=8
 endif
 
-"""""""""""""""""""""""""""""""
-" => Go Tagbar Config
-"""""""""""""""""""""""""""""""
-
-" Install with go get -u github.com/jstemmer/gotags
-" let g:tagbar_type_go = {
-"             \ 'ctagstype' : 'go',
-"             \ 'kinds'     : [
-"             \ 'p:package',
-"             \ 'i:imports:1',
-"             \ 'c:constants',
-"             \ 'v:variables',
-"             \ 't:types',
-"             \ 'n:interfaces',
-"             \ 'w:fields',
-"             \ 'e:embedded',
-"             \ 'm:methods',
-"             \ 'r:constructor',
-"             \ 'f:functions'
-"             \ ],
-"             \ 'sro' : '.',
-"             \ 'kind2scope' : {
-"             \ 't' : 'ctype',
-"             \ 'n' : 'ntype'
-"             \ },
-"             \ 'scope2kind' : {
-"             \ 'ctype' : 't',
-"             \ 'ntype' : 'n'
-"             \ },
-"             \ 'ctagsbin'  : 'gotags',
-"             \ 'ctagsargs' : '-sort -silent'
-"             \ }
-
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -293,8 +261,9 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 " => CtrlP
 """""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 'c'
-let g:ctrlp_custom_ignore = '*/node_modules/*'
+let g:ctrlp_working_path_mode = 0
+set wildignore=*/node_modules/*
+nmap <C-e> :CtrlPMRU<CR>
 
 """""""""""""""""""""""""""""""
 " => NerdTree
@@ -410,6 +379,12 @@ nmap <Leader>& :Tabularize /&<Enter>
 vmap <Leader>& :Tabularize /&<Enter>
 nmap <Leader>" :Tabularize /"<Enter>
 vmap <Leader>" :Tabularize /"<Enter>
+
+"""""""""""""""""""""""""""""""
+" => Tagbar
+"""""""""""""""""""""""""""""""
+nmap <C-l> :TagbarToggle<CR>
+" let g:tagbar_ctags_bin = 
 
 
 """""""""""""""""""""""""""""""
