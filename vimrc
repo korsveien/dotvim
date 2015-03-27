@@ -111,7 +111,6 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
 
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'othree/html5.vim', {'for': 'html'}
-" Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
 
 " Color themes
 Plug 'altercation/vim-colors-solarized'
@@ -186,17 +185,6 @@ highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
 match TODOS /TODO\|FIXME\|XXX/
-
-if has("autocmd")
-    " "highlight the 80-column boundary
-    if exists('+colorcolumn')
-        set cc=+8
-    else
-        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    endif
-    highlight ColorColumn ctermbg=8
-endif
-
 
 """""""""""""""""""""""""""""""
 "                             "
@@ -383,7 +371,7 @@ vmap <Leader>" :Tabularize /"<Enter>
 """""""""""""""""""""""""""""""
 " => Tagbar
 """""""""""""""""""""""""""""""
-nmap <C-l> :TagbarToggle<CR>
+" nmap <C-l> :TagbarToggle<CR>
 " let g:tagbar_ctags_bin = 
 
 
