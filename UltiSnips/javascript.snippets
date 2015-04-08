@@ -39,9 +39,15 @@ componentDidMount: function() {
 },
 endsnippet
 
-snippet pt = "propTypes" b
+snippet pt "propTypes" b
 propTypes: {
     $0
 },
+endsnippet
+
+snippet for "for (var i ...)" b
+for (var i = 0; i < $1.length; i++) {
+    $2
+}
 endsnippet
 
