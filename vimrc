@@ -199,6 +199,7 @@ let mapleader=','
 " Why haven't I thought about this before?
 nnoremap :Q :q
 nnoremap :W :w
+nnoremap :X :x
 
 map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
@@ -333,7 +334,7 @@ let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 """""""""""""""""""""""""""""""
 " => YCM
