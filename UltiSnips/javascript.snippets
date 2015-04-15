@@ -41,12 +41,18 @@ endsnippet
 
 snippet pt "propTypes" b
 propTypes: {
-    $0
+    $1: React.PropTypes.$2
 },
 endsnippet
 
 snippet for "for (var i ...)" b
 for (var i = 0; i < $1.length; i++) {
+    $2
+}
+endsnippet
+
+snippet if "if (..) {...}" b
+if ($1) {
     $2
 }
 endsnippet
