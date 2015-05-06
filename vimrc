@@ -157,7 +157,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256
-set background=light
+set background=dark
 " colorscheme solarized
 
 " colorscheme jellybeans
@@ -405,7 +405,7 @@ if has("win32")
     "Windows options here
 elseif has("mac")
     "mac options here
-    set background=dark
+    set background=light
     colorscheme solarized
 elseif has("unix")
     if !has("gui_running")
