@@ -157,7 +157,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256
-set background=dark
+set background=light
 " colorscheme solarized
 
 " colorscheme jellybeans
