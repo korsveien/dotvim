@@ -105,11 +105,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
 " JS
-Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
-Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
+Plug 'marijnh/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
-Plug 'mattn/emmet-vim', {'for': 'html'}
-Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'mattn/emmet-vim'
+Plug 'othree/html5.vim'
 
 " Color themes
 Plug 'altercation/vim-colors-solarized'
