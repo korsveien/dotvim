@@ -1,4 +1,3 @@
-" Author: Nils Peder Korsveien
 " Contact: nilspk@ifi.uio.no
 " Available From: https://github.com/nilspk/dotvim
 "
@@ -111,6 +110,7 @@ Plug 'mxw/vim-jsx'
 
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
+Plug 'gorodinskiy/vim-coloresque'
 
 " Color themes
 Plug 'altercation/vim-colors-solarized'
@@ -159,12 +159,12 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 """"""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-" colorscheme solarized
+colorscheme solarized
 
 " colorscheme jellybeans
 " colorscheme railscasts
 " colorscheme distinguished
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 " colorscheme peaksea
 " colorscheme zenburn
 " colorscheme ir_black
@@ -233,6 +233,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " refresh file
 nmap <F5> :e %<cr>
+
+call togglebg#map("<F3>")
 
 
 """""""""""""""""""""""""""""""
@@ -406,8 +408,6 @@ if has("win32")
     "Windows options here
 elseif has("mac")
     "mac options here
-    set background=light
-    colorscheme solarized
 elseif has("unix")
     if !has("gui_running")
     endif
