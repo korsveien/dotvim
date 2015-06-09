@@ -103,6 +103,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
+Plug 'Lokaltog/vim-easymotion'
 
 " JS
 Plug 'marijnh/tern_for_vim'
@@ -258,6 +259,12 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+" => EasyMotion
+"""""""""""""""""""""""""""""""
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
 
 """""""""""""""""""""""""""""""
 " => Fugitive
