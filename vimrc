@@ -1,5 +1,5 @@
-" Contact: nilspk@ifi.uio.no
-" Available From: https://github.com/nilspk/dotvim
+" Contact: nipeko@gmail.com
+" Available From: https://github.com/nipeko/dotvim
 "
 " The following urls are some of my sources. They are worthwhile a look
 " (use gx to open url under cursor in vim)
@@ -102,6 +102,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
 
 " JS
 Plug 'marijnh/tern_for_vim'
@@ -158,7 +159,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 " => Colors
 """"""""""""""""""""""""""""""
 set t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
 
 " colorscheme jellybeans
@@ -202,7 +203,6 @@ nnoremap :Q :q
 nnoremap :W :w
 nnoremap :X :x
 
-map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
@@ -232,9 +232,18 @@ nmap <Leader>v :source $MYVIMRC<CR>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " refresh file
+nmap <F2> :difft<cr>
+nmap <F3> :diffoff<cr>
+nnoremap <F4> :GundoToggle<CR>
 nmap <F5> :e %<cr>
+nnoremap <silent> <expr> <F6> StripTrailingWhite()
+nnoremap <silent> <expr> <F7> NumberToggle()
+nnoremap <silent> <expr> <F8> Highlighting()
+map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+call togglebg#map("<F10>")
 
-call togglebg#map("<F3>")
+
+nmap  :diffoff<cr>
 
 
 """""""""""""""""""""""""""""""
@@ -313,7 +322,6 @@ let g:paredit_smart_jump=1
 """""""""""""""""""""""""""""""
 " => Gundo
 """""""""""""""""""""""""""""""
-nnoremap <F4> :GundoToggle<CR>
 
 
 """""""""""""""""""""""""""""""
@@ -336,6 +344,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
+" => ack.vim
+"""""""""""""""""""""""""""""""
+if executable('ag')
+      let g:ackprg = 'ag --vimgrep'
+endif
+
+"""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
 let g:syntastic_auto_loc_list=1 " Error window only autoclose
@@ -343,7 +358,8 @@ let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = []
 
 """""""""""""""""""""""""""""""
 " => YCM
@@ -408,6 +424,10 @@ if has("win32")
     "Windows options here
 elseif has("mac")
     "mac options here
+    if has("gui_running")
+    "mvim options here
+    set guifont=Inconsolata:h15
+    endif
 elseif has("unix")
     if !has("gui_running")
     endif
@@ -428,7 +448,6 @@ function! StripTrailingWhite()
     silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
-nnoremap <silent> <expr> <F6> StripTrailingWhite()
 
 "Toggle relative number display
 function! NumberToggle()
@@ -438,7 +457,6 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
-nnoremap <silent> <expr> <F7> NumberToggle()
 
 " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " mark the start and end of folds.
@@ -481,4 +499,3 @@ function! Highlighting()
   let g:highlighting = 1
   return ":silent set hlsearch\<CR>"
 endfunction
-nnoremap <silent> <expr> <F8> Highlighting()
