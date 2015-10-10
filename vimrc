@@ -68,7 +68,12 @@ set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
+
+" this combination give relative number over and under cursor,
+" and the absolute line number on the cursor line
 set rnu
+set nu
+
 set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
 set omnifunc=syntaxcompleete#Complete " enable omnicomplete
@@ -203,6 +208,8 @@ let mapleader=','
 nnoremap :Q :q
 nnoremap :W :w
 nnoremap :X :x
+nnoremap :Vs :vs
+nnoremap :S :s
 
 
 "speak the truth
@@ -263,6 +270,8 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""
+
+" 2-key search
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
 
@@ -365,8 +374,7 @@ let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-" let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
 
 """""""""""""""""""""""""""""""
 " => YCM
@@ -433,7 +441,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h15
+    set guifont=Inconsolata:h18
     endif
 elseif has("unix")
     if !has("gui_running")
@@ -455,15 +463,6 @@ function! StripTrailingWhite()
     silent! %s/\s\+$//
     call winrestview(l:winview)
 endfunction
-
-"Toggle relative number display
-function! NumberToggle()
-    if(&relativenumber == 1)
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
 
 " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " mark the start and end of folds.
