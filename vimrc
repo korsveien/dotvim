@@ -450,9 +450,6 @@ elseif has("unix")
 endif
 
 
-
-
-
 """""""""""""""""""""""""""""""
 "                             "
 "           FUNCTIONS         "
@@ -464,24 +461,6 @@ function! StripTrailingWhite()
     call winrestview(l:winview)
 endfunction
 
-" Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
-" mark the start and end of folds.
-" All other lines simply take the fold level that is going so far.
-function! MyFoldLevel( lineNumber )
-  let thisLine = getline( a:lineNumber )
-  " Don't create fold if entire Javadoc comment or {} pair is on one line.
-  if ( thisLine =~ '\%(\%(/\*\*\).*\%(\*/\)\)\|\%({.*}\)' )
-    return '='
-  elseif ( thisLine =~ '\%(^\s*/\*\*\s*$\)\|{' )
-    return "a1"
-  elseif ( thisLine =~ '\%(^\s*\*/\s*$\)\|}' )
-    return "s1"
-  endif
-  return '='
-endfunction
-setlocal foldexpr=MyFoldLevel(v:lnum)
-setlocal foldmethod=expr
-
 " aligns a character when inserted, courtesy of the Pope
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -492,16 +471,4 @@ function! s:align()
     normal! 0
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
-endfunction
-
-" highlights all occurences of word without moving cursor
-let g:highlighting = 0
-function! Highlighting()
-  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
-    let g:highlighting = 0
-    return ":silent nohlsearch\<CR>"
-  endif
-  let @/ = '\<'.expand('<cword>').'\>'
-  let g:highlighting = 1
-  return ":silent set hlsearch\<CR>"
 endfunction
