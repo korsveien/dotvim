@@ -88,35 +88,40 @@ let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
 " Github repos
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'kien/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'sjl/gundo.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-gitgutter'
+
+" Automatic closing of parens, quotes etc.
 Plug 'Raimondi/delimitMate'
+
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
-Plug 'mileszs/ack.vim'
-Plug 'Lokaltog/vim-easymotion'
+
+" Search your code
+Plug 'rking/ag.vim'
 
 " JS
 Plug 'marijnh/tern_for_vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
-Plug 'mattn/emmet-vim'
+" omnicomplete and syntax for html5
 Plug 'othree/html5.vim'
+
+" css color preview
 Plug 'gorodinskiy/vim-coloresque'
 
 " Color themes
@@ -124,17 +129,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/vim-tomorrow-theme'
 
 call plug#end()
-
-
-"""""""""""""""""""""""""""""""
-" => Go specifics
-""""""""""""""""""""""""""""""
-set runtimepath+=$GOROOT/misc/vim          " Add official go scripts
-au FileType go set nolist!                 " do not list whitespace
-set omnifunc=syntaxcompleete#Complete      " enable omnicomplete
-au BufRead,BufNewFile *.go set filetype=go
-au FileType go au BufWritePre <buffer> Fmt " Run fmt when saving go files
-
 
 """""""""""""""""""""""""""""""
 " => Statusline options
@@ -150,12 +144,10 @@ set statusline+=%<%F                     " full path,
 set statusline+=%m%r%w                   " modified? read only?
 set statusline+=%{fugitive#statusline()} " git branch
 
+" middle
 set statusline+=%=
 
 "right side
-" set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
 set statusline+=\ %l\:%c\                      " line:column
 set statusline+=
 set statusline+=[%{&ff}]                      " file format
@@ -188,6 +180,8 @@ syntax on                       " use syntax highlighting
 set hlsearch                    " highlight search
 set nocursorcolumn              " no highligted cursor column
 set cursorline                  " highlight the line we are on
+
+" Higlight todo, fixme and xxx
 highlight TODOS cterm=bold term=bold ctermbg=green ctermfg=black
 highlight Search cterm=bold term=bold ctermbg=yellow ctermfg=black
 highlight IncSearch cterm=bold term=bold ctermbg=yellow ctermfg=black
@@ -211,16 +205,11 @@ nnoremap :X :x
 nnoremap :Vs :vs
 nnoremap :S :s
 
-
 "speak the truth
 nmap <right> :echo "do you even hjkl??"<cr>
 nmap <left>  :echo "do you even hjkl??"<cr>
 nmap <up>    :echo "do you even hjkl??"<cr>
 nmap <down>  :echo "do you even hjkl??"<cr>
-
-" Fold/unfold JavaDoc
-nmap <leader>fj :g/\/\*\*/ foldo<CR>:nohls<CR>
-nmap <leader>Fj :g/\/\*\*/ foldc<CR>:nohls<CR>
 
 " Remove ^M from dos files
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -239,41 +228,11 @@ nmap <Leader>v :source $MYVIMRC<CR>
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" refresh file
-nmap <F2> :difft<cr>
-nmap <F3> :diffoff<cr>
-nnoremap <F4> :GundoToggle<CR>
-nmap <F5> :e %<cr>
-nnoremap <silent> <expr> <F6> StripTrailingWhite()
-nnoremap <silent> <expr> <F7> NumberToggle()
-nnoremap <silent> <expr> <F8> Highlighting()
-map <F9> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-call togglebg#map("<F10>")
-
-
-nmap  :diffoff<cr>
-
-
-"""""""""""""""""""""""""""""""
-" => Insert mode mappings
-""""""""""""""""""""""""""""""
-
-" insert current date and time
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
 """""""""""""""""""""""""""""""
 "                             "
 "      PLUGIN SETTINGS        "
 "                             "
 """""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""
-" => EasyMotion
-"""""""""""""""""""""""""""""""
-
-" 2-key search
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
 
 """""""""""""""""""""""""""""""
 " => Fugitive
@@ -336,11 +295,6 @@ let g:paredit_electric_return=1
 let g:paredit_smart_jump=1
 
 """""""""""""""""""""""""""""""
-" => Gundo
-"""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""
 let g:airline_left_sep = ''
@@ -382,38 +336,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extrac_conf=0
 set completeopt-=preview
-
-"""""""""""""""""""""""""""""""
-" => LateX
-"""""""""""""""""""""""""""""""
-let g:tex_flavor='latex'
-let g:Tex_BibtexFlavor = 'biber'
-
-
-"""""""""""""""""""""""""""""""
-" => Tabularize
-"""""""""""""""""""""""""""""""
-nmap <Leader>: :Tabularize /:<Enter>
-vmap <Leader>: :Tabularize /:<Enter>
-nmap <Leader>; :Tabularize /;<Enter>
-vmap <Leader>; :Tabularize /;<Enter>
-nmap <Leader># :Tabularize /#<Enter>
-vmap <Leader># :Tabularize /#<Enter>
-nmap <Leader>/ :Tabularize /\/\/<Enter>
-vmap <Leader>/ :Tabularize /\/\/<Enter>
-nmap <Leader>= :Tabularize /=<Enter>
-vmap <Leader>= :Tabularize /=<Enter>
-nmap <Leader>& :Tabularize /&<Enter>
-vmap <Leader>& :Tabularize /&<Enter>
-nmap <Leader>" :Tabularize /"<Enter>
-vmap <Leader>" :Tabularize /"<Enter>
-
-"""""""""""""""""""""""""""""""
-" => Tagbar
-"""""""""""""""""""""""""""""""
-" nmap <C-l> :TagbarToggle<CR>
-" let g:tagbar_ctags_bin = 
-
 
 """""""""""""""""""""""""""""""
 "                             "
