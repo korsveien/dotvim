@@ -181,7 +181,6 @@ let g:paredit_smart_jump=1
 """""""""""""""""""""""""""""""
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_linecolumn_prefix = ''
 let g:airline_branch = '⎇  '
 
 
@@ -241,6 +240,7 @@ set statusline+=[%{&ff}]                      " file format
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}] " encoding
 "}}}
 " Folding {{{
+set nofoldenable " disable folding
 set modelines=1
 "}}}
 " Colors {{{
@@ -356,4 +356,4 @@ function! s:align()
 endfunction
 "}}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel:foldenable
