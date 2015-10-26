@@ -6,6 +6,10 @@ snippet re "require" b
 var $0 = require('$1');
 endsnippet
 
+snippet im "import" b
+import $1 from '$2';
+endsnippet
+
 snippet me "module.exports" b
 module.exports = $1
 endsnippet
@@ -81,4 +85,13 @@ endsnippet
 
 snippet rea "var React = require(...)" b
 import React from 'react';
+endsnippet
+
+snippet sw "switch() {}" b
+switch(action.type) {
+    case '$1':
+	$2;
+    default:
+	$3
+}
 endsnippet

@@ -100,10 +100,12 @@ Plug 'rking/ag.vim'
 " JS
 Plug 'marijnh/tern_for_vim'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw,vvim-jsx'
+Plug 'mxw/vim-jsx'
 
 " omnicomplete and syntax for html5
 Plug 'othree/html5.vim'
+
+Plug 'mattn/emmet-vim'
 
 " css color preview
 Plug 'gorodinskiy/vim-coloresque'
@@ -115,6 +117,13 @@ Plug 'chriskempson/vim-tomorrow-theme'
 call plug#end()
 "}}}
 " Plugin Settings {{{
+
+"""""""""""""""""""""""""""""""
+" => Tern
+"""""""""""""""""""""""""""""""
+let g:tern_show_argument_hints=1
+let g:tern_show_signature_in_pum=1
+" set noshowmode
 
 """""""""""""""""""""""""""""""
 " => Fugitive
@@ -195,16 +204,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
-" => ack.vim
-"""""""""""""""""""""""""""""""
-if executable('ag')
-      let g:ackprg = 'ag --vimgrep'
-endif
-
-"""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-let g:syntastic_auto_loc_list=1 " Error window only autoclose
+let g:syntastic_auto_loc_list=0 " Error window only autoclose
 let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
@@ -246,19 +248,12 @@ set modelines=1
 " Colors {{{
 set t_Co=256
 set background=dark
-colorscheme solarized
 
+" colorscheme solarized
 " colorscheme jellybeans
-" colorscheme railscasts
-" colorscheme distinguished
-" colorscheme Tomorrow-Night
-" colorscheme peaksea
-" colorscheme zenburn
-" colorscheme ir_black
-" colorscheme wombat256
-" colorscheme monokai
-" colorscheme tango2
+colorscheme Tomorrow-Night
 " colorscheme desert
+
 " }}}
 " Highlighting {{{
 syntax on                       " use syntax highlighting
@@ -328,7 +323,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h18
+    set guifont=Inconsolata:h24
     endif
 elseif has("unix")
     if !has("gui_running")
