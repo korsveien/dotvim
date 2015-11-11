@@ -104,15 +104,15 @@ Plug 'mxw/vim-jsx'
 
 " omnicomplete and syntax for html5
 Plug 'othree/html5.vim'
-
 Plug 'mattn/emmet-vim'
 
 " css color preview
 Plug 'gorodinskiy/vim-coloresque'
 
 " Color themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'flazz/vim-colorschemes'
+
+Plug 'lambdatoast/elm.vim'
 
 call plug#end()
 "}}}
@@ -250,7 +250,6 @@ set t_Co=256
 set background=dark
 
 " colorscheme solarized
-" colorscheme jellybeans
 colorscheme Tomorrow-Night
 " colorscheme desert
 
@@ -323,7 +322,8 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h24
+    set guifont=Inconsolata:h20
+    colorscheme jellybeans
     endif
 elseif has("unix")
     if !has("gui_running")
