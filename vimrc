@@ -62,9 +62,8 @@ set encoding=utf-8
 set nowrap                      " no line wrap
 set nu
 
-set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
-set omnifunc=syntaxcompleete#Complete " enable omnicomplete
+
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 "}}}
 " Plugins {{{
@@ -112,7 +111,11 @@ Plug 'gorodinskiy/vim-coloresque'
 " Color themes
 Plug 'flazz/vim-colorschemes'
 
-Plug 'lambdatoast/elm.vim'
+" Official repo
+" Plug 'elmcast/elm-vim' 
+
+" Bugfix repo
+Plug 'ggVGc/elm-vim', {'branch': 'fix_elm_oracle_elmstuff_dir'}
 
 call plug#end()
 "}}}
@@ -216,7 +219,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 """""""""""""""""""""""""""""""
 " => YCM
 """""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt=0
+let g:ycm_add_preview_to_completeopt=1
 let g:ycm_confirm_extrac_conf=0
 set completeopt-=preview
 "}}}
@@ -276,12 +279,6 @@ nnoremap :X :x
 nnoremap :Vs :vs
 nnoremap :S :s
 
-"speak the truth
-nmap <right> :echo "do you even hjkl??"<cr>
-nmap <left>  :echo "do you even hjkl??"<cr>
-nmap <up>    :echo "do you even hjkl??"<cr>
-nmap <down>  :echo "do you even hjkl??"<cr>
-
 " Remove ^M from dos files
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -322,7 +319,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h20
+    set guifont=Inconsolata:h18
     colorscheme jellybeans
     endif
 elseif has("unix")
