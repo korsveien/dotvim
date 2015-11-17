@@ -47,7 +47,7 @@ set smarttab                    " <TAB> inserts indentation according to 'shiftw
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
 set softtabstop=4               " Affects what happens when <TAB> is pressed
-set textwidth=72                " set wordwrap to 72 characters
+" set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
 set showmode                    " shows current mode in bottom right corner
 set nobackup                    " turn backup off
@@ -323,7 +323,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h24
+    set guifont=Inconsolata:h18
     endif
 elseif has("unix")
     if !has("gui_running")
