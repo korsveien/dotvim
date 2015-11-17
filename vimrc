@@ -71,7 +71,6 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
-" Github repos
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
@@ -88,11 +87,10 @@ Plug 'kien/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
 
 " Automatic closing of parens, quotes etc.
 Plug 'Raimondi/delimitMate'
-
-Plug 'scrooloose/nerdtree'
 
 " Search your code
 Plug 'rking/ag.vim'
@@ -104,7 +102,6 @@ Plug 'mxw/vim-jsx'
 
 " omnicomplete and syntax for html5
 Plug 'othree/html5.vim'
-
 Plug 'mattn/emmet-vim'
 
 " css color preview
@@ -113,6 +110,9 @@ Plug 'gorodinskiy/vim-coloresque'
 " Color themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/vim-tomorrow-theme'
+
+" Live editing of markdown
+Plug 'shime/vim-livedown'
 
 call plug#end()
 "}}}
