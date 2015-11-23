@@ -124,8 +124,9 @@ call plug#end()
 """""""""""""""""""""""""""""""
 " => Tern
 """""""""""""""""""""""""""""""
-let g:tern_show_argument_hints=1
+let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
+let g:tern_map_keys=1
 " set noshowmode
 
 """""""""""""""""""""""""""""""
@@ -209,7 +210,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-let g:syntastic_auto_loc_list=0 " Error window only autoclose
 let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
@@ -226,7 +226,7 @@ set completeopt-=preview
 """""""""""""""""""""""""""""""
 " => Ag
 """""""""""""""""""""""""""""""
-nnoremap <C-g> :Ag 
+nnoremap <leader>a :Ag 
 
 "}}}
 " Statusline {{{
