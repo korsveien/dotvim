@@ -222,6 +222,12 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:ycm_add_preview_to_completeopt=1
 let g:ycm_confirm_extrac_conf=0
 set completeopt-=preview
+
+"""""""""""""""""""""""""""""""
+" => Ag
+"""""""""""""""""""""""""""""""
+nnoremap <C-g> :Ag 
+
 "}}}
 " Statusline {{{
 set ruler        " statusline
