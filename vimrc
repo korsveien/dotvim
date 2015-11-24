@@ -62,9 +62,8 @@ set encoding=utf-8
 set nowrap                      " no line wrap
 set nu
 
-set path=$HOME/Development/Inc,$HOME/Development/Libraries/SDK-9.4.1/inc,.
 set list listchars=tab:»·,trail:·
-set omnifunc=syntaxcompleete#Complete " enable omnicomplete
+
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 "}}}
 " Plugins {{{
@@ -108,8 +107,13 @@ Plug 'mattn/emmet-vim'
 Plug 'gorodinskiy/vim-coloresque'
 
 " Color themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'flazz/vim-colorschemes'
+
+" Official repo
+" Plug 'elmcast/elm-vim' 
+
+" Bugfix repo
+Plug 'ggVGc/elm-vim', {'branch': 'fix_elm_oracle_elmstuff_dir'}
 
 " Live editing of markdown
 Plug 'shime/vim-livedown'
@@ -121,8 +125,9 @@ call plug#end()
 """""""""""""""""""""""""""""""
 " => Tern
 """""""""""""""""""""""""""""""
-let g:tern_show_argument_hints=1
+let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
+let g:tern_map_keys=1
 " set noshowmode
 
 """""""""""""""""""""""""""""""
@@ -206,7 +211,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-let g:syntastic_auto_loc_list=0 " Error window only autoclose
 let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
@@ -216,9 +220,15 @@ let g:syntastic_javascript_checkers = ['eslint']
 """""""""""""""""""""""""""""""
 " => YCM
 """""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt=0
+let g:ycm_add_preview_to_completeopt=1
 let g:ycm_confirm_extrac_conf=0
 set completeopt-=preview
+
+"""""""""""""""""""""""""""""""
+" => Ag
+"""""""""""""""""""""""""""""""
+nnoremap <leader>a :Ag 
+
 "}}}
 " Statusline {{{
 set ruler        " statusline
@@ -250,7 +260,6 @@ set t_Co=256
 set background=dark
 
 " colorscheme solarized
-" colorscheme jellybeans
 colorscheme Tomorrow-Night
 " colorscheme desert
 
@@ -276,12 +285,6 @@ nnoremap :W :w
 nnoremap :X :x
 nnoremap :Vs :vs
 nnoremap :S :s
-
-"speak the truth
-nmap <right> :echo "do you even hjkl??"<cr>
-nmap <left>  :echo "do you even hjkl??"<cr>
-nmap <up>    :echo "do you even hjkl??"<cr>
-nmap <down>  :echo "do you even hjkl??"<cr>
 
 " Remove ^M from dos files
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -324,6 +327,7 @@ elseif has("mac")
     if has("gui_running")
     "mvim options here
     set guifont=Inconsolata:h18
+    colorscheme jellybeans
     endif
 elseif has("unix")
     if !has("gui_running")
