@@ -211,7 +211,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 """""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""
-let g:syntastic_check_on_wq=0 " Skip syntax check on :wq, :x and :ZZ
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq=0
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
@@ -304,6 +306,8 @@ nmap <Leader>v :source $MYVIMRC<CR>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 "}}}
 " System specifics {{{
+
+au FileType ruby nnoremap <leader>r :!ruby %<CR>
 
 " Toggle pastemode if in terminal
 if !has("gui_running")
