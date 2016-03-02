@@ -75,6 +75,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
