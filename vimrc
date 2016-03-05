@@ -1,5 +1,5 @@
-" Contact: nipeko@gmail.com
-" Available From: https://github.com/nipeko/dotvim
+" Contact: peder.korsveien@gmail.com
+" Available From: https://github.com/pederpus/dotvim
 "
 " The following urls are some of my inspirational sources for setting up
 " this vimrc. They are worthwhile a look (use gx to open url under cursor in vim)
@@ -110,11 +110,8 @@ Plug 'gorodinskiy/vim-coloresque'
 " Color themes
 Plug 'flazz/vim-colorschemes'
 
-" Official repo
-" Plug 'elmcast/elm-vim' 
-
-" Bugfix repo
-Plug 'ggVGc/elm-vim', {'branch': 'fix_elm_oracle_elmstuff_dir'}
+" Elm
+Plug 'elmcast/elm-vim' 
 
 " Live editing of markdown
 Plug 'shime/vim-livedown'
@@ -122,6 +119,13 @@ Plug 'shime/vim-livedown'
 call plug#end()
 "}}}
 " Plugin Settings {{{
+
+"""""""""""""""""""""""""""""""
+" => elm-vim
+"""""""""""""""""""""""""""""""
+let g:elm_format_autosave=1
+let g:elm_detailed_complete = 1
+let g:elm_make_show_warnings = 1
 
 """""""""""""""""""""""""""""""
 " => Tern
@@ -219,6 +223,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_elm_checkers = ['elm-make']
 
 """""""""""""""""""""""""""""""
 " => YCM
@@ -331,7 +336,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h18
+    set guifont=Inconsolata:h14
     colorscheme jellybeans
     endif
 elseif has("unix")
