@@ -123,9 +123,20 @@ call plug#end()
 """""""""""""""""""""""""""""""
 " => elm-vim
 """""""""""""""""""""""""""""""
-let g:elm_format_autosave=1
-let g:elm_detailed_complete = 1
-let g:elm_make_show_warnings = 1
+au FileType elm nmap <leader>b <Plug>(elm-make)
+au FileType elm nmap <leader>m <Plug>(elm-make-main)
+au FileType elm nmap <leader>t <Plug>(elm-test)
+au FileType elm nmap <leader>r <Plug>(elm-repl)
+au FileType elm nmap <leader>e <Plug>(elm-error-detail)
+au FileType elm nmap <leader>d <Plug>(elm-show-docs)
+au FileType elm nmap <leader>w <Plug>(elm-browse-docs)
+
+let g:elm_jump_to_error = 1
+let g:elm_make_output_file = "elm.js"
+let g:elm_make_show_warnings = 0
+let g:elm_browser_command = ""
+let g:elm_detailed_complete = 0
+let g:elm_format_autosave = 1
 
 """""""""""""""""""""""""""""""
 " => Tern
@@ -223,7 +234,6 @@ let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_elm_checkers = ['elm-make']
 
 """""""""""""""""""""""""""""""
 " => YCM
@@ -336,7 +346,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h14
+    set guifont=Inconsolata:h18
     colorscheme jellybeans
     endif
 elseif has("unix")
