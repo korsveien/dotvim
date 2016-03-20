@@ -9,6 +9,7 @@
 " http://www.8t8.us/vim/vim.html
 " http://dougblack.io/words/a-good-vimrc.html
 
+" gf to move to file under cursor
 source $HOME/.vim/conf/preamble.vim
 source $HOME/.vim/conf/general.vim
 source $HOME/.vim/conf/plugins.vim

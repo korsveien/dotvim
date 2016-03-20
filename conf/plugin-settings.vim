@@ -37,9 +37,14 @@ nmap <Leader>g :Gst<CR>
 """""""""""""""""""""""""""""""
 " => CtrlP
 """""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 0
-set wildignore=*/node_modules/*
+let g:ctrlp_working_path_mode = 'ra'
 nmap <C-e> :CtrlPMRU<CR>
+set wildignore+=**/node_modules/**
+set wildignore+=**/elm-stuff/**
+set wildignore+=**/bin/**
+set wildignore+=**/pkg/**
+set wildignore+=**/build/**
+set wildignore+=*.o,*.obj,*.a,*.iml
 
 """""""""""""""""""""""""""""""
 " => NerdTree
