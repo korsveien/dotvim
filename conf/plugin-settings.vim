@@ -63,12 +63,6 @@ nmap <C-h> :NERDTreeToggle<CR>
 let g:use_emmet_complete_tag = 1
 
 """""""""""""""""""""""""""""""
-" => Paredit
-"""""""""""""""""""""""""""""""
-let g:paredit_electric_return=1
-let g:paredit_smart_jump=1
-
-"""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""
 let g:airline_left_sep = ''
