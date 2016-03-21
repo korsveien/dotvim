@@ -73,11 +73,12 @@ let g:paredit_smart_jump=1
 """""""""""""""""""""""""""""""
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_branch = '⎇  '
+let g:airline_section_b = '%{getcwd()}'
+let g:airline_section_c = '%t'
+let g:airline_section_z='%{fugitive#head()}'
 
 " Displays all buffers when only one tab is open
 let g:airline#extensions#tabline#enabled = 1
-
 
 
 """""""""""""""""""""""""""""""
