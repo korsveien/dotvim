@@ -6,7 +6,7 @@ au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 """""""""""""""""""""""""""""""
 " => Tagbar
 """""""""""""""""""""""""""""""
-nmap <leader>l :TagbarToggle<cr>
+nmap <C-l> :TagbarToggle<cr>
 
 """""""""""""""""""""""""""""""
 " => elm-vim
