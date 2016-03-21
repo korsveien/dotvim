@@ -10,7 +10,6 @@ Plug 'tpope/vim-jdaddy'
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
@@ -37,7 +36,6 @@ Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim'
 
-
 " css color preview
 Plug 'gorodinskiy/vim-coloresque'
 
@@ -50,7 +48,7 @@ Plug 'elmcast/elm-vim'
 " Golang
 Plug 'fatih/vim-go'
 
-" Live editing of markdown
+" Live editing of markdown and html/css
 Plug 'shime/vim-livedown'
 Plug 'jaxbot/browserlink.vim'
 
