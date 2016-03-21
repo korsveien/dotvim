@@ -75,6 +75,10 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_branch = '⎇  '
 
+" Displays all buffers when only one tab is open
+let g:airline#extensions#tabline#enabled = 1
+
+
 
 """""""""""""""""""""""""""""""
 " => UltiSnip
@@ -107,4 +111,4 @@ set completeopt-=preview
 """""""""""""""""""""""""""""""
 " => Ag
 """""""""""""""""""""""""""""""
-nnoremap <leader>a :Ag 
+nnoremap <leader>a :Ag
