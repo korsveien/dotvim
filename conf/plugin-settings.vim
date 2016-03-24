@@ -1,6 +1,10 @@
 """""""""""""""""""""""""""""""
 " => DelimitMate
 """""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+" => DelimitMate
+"""""""""""""""""""""""""""""""
 au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 """""""""""""""""""""""""""""""
@@ -36,8 +40,6 @@ nmap <Leader>g :Gst<CR>
 """""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 'r'
 
-nmap <C-e> :CtrlPBuffer<CR>
-
 set wildignore+=**/node_modules/**
 set wildignore+=**/elm-stuff/**
 set wildignore+=**/bin/**
@@ -48,12 +50,11 @@ set wildignore+=*.o,*.obj,*.a,*.iml
 """""""""""""""""""""""""""""""
 " => NerdTree
 """""""""""""""""""""""""""""""
-nmap <C-h> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""
 " => Emmet
 """""""""""""""""""""""""""""""
-" let g:user_emmet_leader_key = '<c-s>'
 let g:use_emmet_complete_tag = 1
 
 """""""""""""""""""""""""""""""
