@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""
 " => DelimitMate
 """""""""""""""""""""""""""""""
-au FileType vim,html,elm let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 """""""""""""""""""""""""""""""
 " => Tagbar
@@ -36,7 +36,7 @@ nmap <Leader>g :Gst<CR>
 """""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 'r'
 
-nmap <C-o> :CtrlPBuffer<CR>
+nmap <C-e> :CtrlPBuffer<CR>
 
 set wildignore+=**/node_modules/**
 set wildignore+=**/elm-stuff/**
@@ -89,6 +89,10 @@ let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_mode_map = { "mode": "passive",
+            \"active_filetypes": ['javascript'],
+            \"passive_filetypes": [] }
 
 """""""""""""""""""""""""""""""
 " => YCM

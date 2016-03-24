@@ -18,3 +18,5 @@ source $HOME/.vim/conf/plugin-settings.vim
 source $HOME/.vim/conf/highlighting.vim
 source $HOME/.vim/conf/keyboard-mappings.vim
 source $HOME/.vim/conf/system-specifics.vim
+colorscheme Tomorrow-Night
+
