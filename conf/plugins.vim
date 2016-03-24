@@ -8,7 +8,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-jdaddy'
 
-Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
@@ -21,6 +20,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
 Plug 'Shougo/deoplete.nvim'
+Plug 'benekastah/neomake'
 
 " Automatic closing of parens, quotes etc.
 Plug 'Raimondi/delimitMate'

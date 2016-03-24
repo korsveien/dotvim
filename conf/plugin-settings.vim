@@ -81,26 +81,15 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
-" => Syntastic
+" => neomake
 """""""""""""""""""""""""""""""
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq=0
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['eslint']
+autocmd! BufWritePost * Neomake
 
-let g:syntastic_mode_map = { "mode": "passive",
-            \"active_filetypes": ['javascript'],
-            \"passive_filetypes": [] }
+let g:neomake_elm_make_maker = {
+            \ 'exe': 'elm-make',
+            \ 'errorformat': '%f:%l:%c: %m',
+            \ }
 
-"""""""""""""""""""""""""""""""
-" => YCM
-"""""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extrac_conf=0
-set completeopt-=preview
 
 """""""""""""""""""""""""""""""
 " => Ag
