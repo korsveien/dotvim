@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""
 " => DelimitMate
 """""""""""""""""""""""""""""""
-au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+au FileType vim,html,elm let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 """""""""""""""""""""""""""""""
 " => Tagbar
@@ -11,14 +11,6 @@ nmap <C-l> :TagbarToggle<cr>
 """""""""""""""""""""""""""""""
 " => elm-vim
 """""""""""""""""""""""""""""""
-au FileType elm nmap <leader>b <Plug>(elm-make)
-au FileType elm nmap <leader>m <Plug>(elm-make-main)
-au FileType elm nmap <leader>t <Plug>(elm-test)
-au FileType elm nmap <leader>r <Plug>(elm-repl)
-au FileType elm nmap <leader>e <Plug>(elm-error-detail)
-au FileType elm nmap <leader>d <Plug>(elm-show-docs)
-au FileType elm nmap <leader>w <Plug>(elm-browse-docs)
-
 let g:elm_jump_to_error = 1
 let g:elm_make_output_file = "/tmp"
 let g:elm_make_show_warnings = 0
@@ -43,7 +35,9 @@ nmap <Leader>g :Gst<CR>
 " => CtrlP
 """""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 'r'
-nmap <C-e> :CtrlPMRU<CR>
+
+nmap <C-o> :CtrlPBuffer<CR>
+
 set wildignore+=**/node_modules/**
 set wildignore+=**/elm-stuff/**
 set wildignore+=**/bin/**
