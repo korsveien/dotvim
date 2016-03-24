@@ -1,5 +1,7 @@
 let mapleader=','
 
+nnoremap :sh :terminal
+
 " Why haven't I thought about this before?
 nnoremap :Q :q
 nnoremap :W :w
