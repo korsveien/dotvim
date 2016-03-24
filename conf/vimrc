@@ -15,8 +15,6 @@ source $HOME/.vim/conf/general.vim
 source $HOME/.vim/conf/plugins.vim
 source $HOME/.vim/conf/golang.vim
 source $HOME/.vim/conf/plugin-settings.vim
-source $HOME/.vim/conf/colors.vim
 source $HOME/.vim/conf/highlighting.vim
 source $HOME/.vim/conf/keyboard-mappings.vim
-source $HOME/.vim/conf/system-specifics.vim
 source $HOME/.vim/conf/system-specifics.vim

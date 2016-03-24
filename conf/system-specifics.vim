@@ -1,5 +1,3 @@
- au FileType ruby nnoremap <leader>r :!ruby %<CR>
-
 " Toggle pastemode if in terminal
 if !has("gui_running")
     nnoremap <Leader>p :set invpaste paste?<CR>
@@ -20,13 +18,11 @@ if has("win32")
 elseif has("mac")
     "mac options here
     if has("gui_running")
-    "mvim options here
-    set guifont=Inconsolata:h18
-    " colorscheme jellybeans
-    colorscheme solarized
+        "mvim options here
+        set guifont=Inconsolata:h18
     endif
 elseif has("unix")
     if !has("gui_running")
     endif
     "Unix options here
-endif                                       
+endif

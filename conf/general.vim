@@ -36,6 +36,8 @@ set ruler        " statusline
 set laststatus=2 " statusline is always enabled
 set showcmd      " display keystrokes in statusline
 
-" set list listchars=tab:»·,
+set list listchars=tab:»·
 set list listchars=trail:·
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
+
+colorscheme Tomorrow-Night
