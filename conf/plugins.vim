@@ -19,7 +19,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
-Plug 'Shougo/deoplete.nvim'
+Plug 'Valloric/YouCompleteMe'
 Plug 'benekastah/neomake'
 
 " Automatic closing of parens, quotes etc.

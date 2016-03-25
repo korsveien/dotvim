@@ -1,4 +1,9 @@
-let g:deoplete#enable_at_startup=1
+"""""""""""""""""""""""""""""""
+" => YCM
+"""""""""""""""""""""""""""""""
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
 
 """""""""""""""""""""""""""""""
 " => DelimitMate
@@ -48,7 +53,7 @@ set wildignore+=*.o,*.obj,*.a,*.iml
 """""""""""""""""""""""""""""""
 " => NerdTree
 """""""""""""""""""""""""""""""
-nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-h> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""
 " => Emmet
