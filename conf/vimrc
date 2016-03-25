@@ -10,8 +10,6 @@
 " http://dougblack.io/words/a-good-vimrc.html
 
 
-colorscheme Tomorrow-Night
-set wildignorecase
 
 " gf to move to file under cursor
 source $HOME/.vim/conf/plugins.vim
@@ -20,4 +18,9 @@ source $HOME/.vim/conf/plugin-settings.vim
 source $HOME/.vim/conf/highlighting.vim
 source $HOME/.vim/conf/keyboard-mappings.vim
 source $HOME/.vim/conf/system-specifics.vim
+
+set wildignorecase
+set nu
+set noswapfile
+colorscheme Tomorrow-Night
 
