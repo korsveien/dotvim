@@ -331,7 +331,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h18
+    set guifont=Inconsolata:h14
     colorscheme jellybeans
     endif
 elseif has("unix")
