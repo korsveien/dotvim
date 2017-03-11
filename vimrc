@@ -70,168 +70,173 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-jdaddy'
+"""""""""""""""""""""""""""""""
+" => Elm
+"""""""""""""""""""""""""""""""
+Plug 'elmcast/elm-vim'
+Plug 'bitterjug/vim-tagbar-ctags-elm'
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'godlygeek/tabular'
-Plug 'SirVer/ultisnips'
-Plug 'bling/vim-airline'
-Plug 'kien/ctrlp.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'plasticboy/vim-markdown'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
+let g:elm_jump_to_error = 0
+let g:elm_make_output_file = "make/out.js"
+let g:elm_make_show_warnings = 0
+" let g:elm_browser_command = ""
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
 
-" Automatic closing of parens, quotes etc.
-Plug 'Raimondi/delimitMate'
 
-" Search your code
-Plug 'rking/ag.vim'
+"""""""""""""""""""""""""""""""
+" => Ale
+"""""""""""""""""""""""""""""""
+Plug 'w0rp/ale'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" JS
-Plug 'marijnh/tern_for_vim'
+"""""""""""""""""""""""""""""""
+" => UltiSnips
+"""""""""""""""""""""""""""""""
+Plug 'SirVer/UltiSnips'
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+
+"""""""""""""""""""""""""""""""
+" => JS (tern, jsx)
+"""""""""""""""""""""""""""""""
 Plug 'pangloss/vim-javascript'
+Plug 'marijnh/tern_for_vim'
 Plug 'mxw/vim-jsx'
-
-" omnicomplete and syntax for html5
-Plug 'othree/html5.vim'
-Plug 'mattn/emmet-vim'
-
-" css color preview
-Plug 'gorodinskiy/vim-coloresque'
-
-" Color themes
-Plug 'flazz/vim-colorschemes'
-
-" Official repo
-" Plug 'elmcast/elm-vim' 
-
-" Bugfix repo
-Plug 'ggVGc/elm-vim', {'branch': 'fix_elm_oracle_elmstuff_dir'}
-
-" Live editing of markdown
-Plug 'shime/vim-livedown'
-
-call plug#end()
-"}}}
-" Plugin Settings {{{
-
-"""""""""""""""""""""""""""""""
-" => Tern
-"""""""""""""""""""""""""""""""
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 let g:tern_map_keys=1
 " set noshowmode
 
-"""""""""""""""""""""""""""""""
-" => Fugitive
-"""""""""""""""""""""""""""""""
-nmap <Leader>g :Gst<CR>
 
 """""""""""""""""""""""""""""""
 " => CtrlP
 """""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 0
-set wildignore=*/node_modules/*
-nmap <C-e> :CtrlPMRU<CR>
+Plug 'kien/ctrlp.vim'
+let g:ctrlp_working_path_mode = 'r'
 
-"""""""""""""""""""""""""""""""
-" => NerdTree
-"""""""""""""""""""""""""""""""
-nmap <C-h> :NERDTreeToggle<CR>
+set wildignore+=**/node_modules/**
+set wildignore+=**/elm-stuff/**
+set wildignore+=**/bin/**
+set wildignore+=**/pkg/**
+set wildignore+=**/build/**
+set wildignore+=*.o,*.obj,*.a,*.iml
+
 
 """""""""""""""""""""""""""""""
 " => Emmet
 """""""""""""""""""""""""""""""
-" let g:user_emmet_leader_key = '<c-s>'
+Plug 'mattn/emmet-vim'
 let g:use_emmet_complete_tag = 1
+"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-
-"""""""""""""""""""""""""""""""
-" => RainbowParenthesis
-"""""""""""""""""""""""""""""""
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-
-"""""""""""""""""""""""""""""""
-" => Paredit
-"""""""""""""""""""""""""""""""
-let g:paredit_electric_return=1
-let g:paredit_smart_jump=1
 
 """""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_branch = '⎇  '
+let g:airline_section_b = '%{getcwd()}'
+let g:airline_section_c = '%t'
+let g:airline_section_z='%{fugitive#head()}'
+
+" Enable/Disable buffer display on top bar
+let g:airline#extensions#tabline#enabled = 0
+
+" Displays all buffers when only one tab is open
+" let g:airline#extensions#tabline#show_buffers = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+
+"""""""""""""""""""""""""""""""
+" => Ag (searching code)
+"""""""""""""""""""""""""""""""
+Plug 'rking/ag.vim'
+nnoremap <leader>a :Ag
+
+"""""""""""""""""""""""""""""""
+" => Markdown
+"""""""""""""""""""""""""""""""
+Plug 'shime/vim-livedown'
+Plug 'plasticboy/vim-markdown'
 
 
 """""""""""""""""""""""""""""""
-" => UltiSnip
-"
+" => Sublimeish features
 """""""""""""""""""""""""""""""
-
-" This plugins conflicts with ycm when using tab
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+Plug 'terryma/vim-multiple-cursors'
 
 """""""""""""""""""""""""""""""
-" => Syntastic
+" => Tim Pope essentials
 """""""""""""""""""""""""""""""
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq=0
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_javascript_checkers = ['eslint']
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-fugitive'
+
+nmap <Leader>g :Gst<CR>
 
 """""""""""""""""""""""""""""""
-" => YCM
+" => NERDTree + Tagbar = <3
 """""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt=1
-let g:ycm_confirm_extrac_conf=0
-set completeopt-=preview
+Plug 'scrooloose/nerdtree'
+Plug 'pseewald/nerdtree-tagbar-combined'
+Plug 'majutsushi/tagbar'
+nmap <C-h> :ToggleNERDTreeAndTagbar<CR>
 
 """""""""""""""""""""""""""""""
-" => Ag
+" => Misc.
 """""""""""""""""""""""""""""""
-nnoremap <leader>a :Ag 
+" Automatic closing of parens, quotes etc.
+Plug 'Raimondi/delimitMate'
+au FileType vim,html,elm let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
+" Automatically generate tags
+Plug 'fntlnz/atags.vim'
+let g:atags_build_commands_list = [
+    \"ctags --exclude=node_modules -R -f tags.tmp",
+    \"awk 'length($0) < 400' tags.tmp > tags",
+    \"rm tags.tmp"
+    \]
+" Generate tags on each file write
+" autocmd BufWritePost * call atags#generate()
+
+map <Leader>t :call atags#generate()<cr>
+
+Plug 'godlygeek/tabular'
+Plug 'airblade/vim-gitgutter'
+
+" Haskell
+Plug 'neovimhaskell/haskell-vim'
+Plug 'eagletmt/neco-ghc'
+
+" Omnicomplete and syntax for html5
+Plug 'othree/html5.vim'
+
+" css inline color preview
+Plug 'gorodinskiy/vim-coloresque'
+
+
+
+"""""""""""""""""""""""""""""""
+" => Color themes
+"""""""""""""""""""""""""""""""
+" Color themes
+Plug 'flazz/vim-colorschemes'
+let g:jellybeans_overrides = {
+\		'Search': { 'guifg': '303030', 'guibg': 'f0f000',
+\				    'ctermfg': 'Black', 'ctermbg': 'Yellow',
+\			        'attr': 'bold' }
+\}
+
+call plug#end()
 "}}}
 " Statusline {{{
 set ruler        " statusline
@@ -331,8 +336,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
-    set guifont=Inconsolata:h14
-    colorscheme jellybeans
+    set guifont=Inconsolata:h18
     endif
 elseif has("unix")
     if !has("gui_running")
