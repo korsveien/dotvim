@@ -1,6 +1,3 @@
-" Contact: nipeko@gmail.com
-" Available From: https://github.com/nipeko/dotvim
-"
 " The following urls are some of my inspirational sources for setting up
 " this vimrc. They are worthwhile a look (use gx to open url under cursor in vim)
 "
@@ -98,7 +95,12 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 """""""""""""""""""""""""""""""
 Plug 'maralla/completor.vim'
 
-let g:completor_elm_omni_trigger = '\.'
+let g:completor_elm_omni_trigger = '\. '
+
+" Use tab to trigger completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 """""""""""""""""""""""""""""""
 " => UltiSnips
@@ -276,7 +278,8 @@ set t_Co=256
 set background=dark
 
 " colorscheme solarized
-colorscheme Tomorrow-Night
+ colorscheme jellybeans
+" colorscheme Tomorrow-Night
 " colorscheme desert
 
 " }}}
