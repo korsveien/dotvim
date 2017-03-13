@@ -44,7 +44,7 @@ set smarttab                    " <TAB> inserts indentation according to 'shiftw
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
 set softtabstop=4               " Affects what happens when <TAB> is pressed
-" set textwidth=72                " set wordwrap to 72 characters
+set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
 set showmode                    " shows current mode in bottom right corner
 set nobackup                    " turn backup off
@@ -95,18 +95,22 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 """""""""""""""""""""""""""""""
 Plug 'maralla/completor.vim'
 
-let g:completor_elm_omni_trigger = '\. '
+let g:completor_elm_omni_trigger = '[^ \t]+'
 
-" Use tab to trigger completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+"""""""""""""""""""""""""""""""
+" => Supertab
+"""""""""""""""""""""""""""""""
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 
 """""""""""""""""""""""""""""""
 " => UltiSnips
 """""""""""""""""""""""""""""""
 Plug 'SirVer/UltiSnips'
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+
 
 """""""""""""""""""""""""""""""
 " => JS (tern, jsx)
@@ -321,6 +325,10 @@ nmap <Leader>v :source $MYVIMRC<CR>
 
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Toggle dark and ligth background
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
 "}}}
 " System specifics {{{
 
@@ -347,6 +355,7 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
     "mvim options here
+    colorscheme solarized
     set guifont=Inconsolata:h18
     endif
 elseif has("unix")
