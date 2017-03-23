@@ -357,7 +357,8 @@ elseif has("mac")
     if has("gui_running")
         "mvim options here
         colorscheme solarized
-        set guifont=Inconsolata:h16
+        set macligatures
+        set guifont=Fira\ Code:h14
     endif
 elseif has("unix")
     if !has("gui_running")
