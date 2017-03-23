@@ -355,9 +355,9 @@ if has("win32")
 elseif has("mac")
     "mac options here
     if has("gui_running")
-    "mvim options here
-    colorscheme solarized
-    set guifont=Inconsolata:h18
+        "mvim options here
+        colorscheme solarized
+        set guifont=Inconsolata:h16
     endif
 elseif has("unix")
     if !has("gui_running")
