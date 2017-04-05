@@ -81,6 +81,12 @@ let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 
+"""""""""""""""""""""""""""""""
+" => NeoFormat
+"""""""""""""""""""""""""""""""
+Plug 'sbdchd/neoformat'
+
+autocmd BufWritePre *.js Neoformat
 
 """""""""""""""""""""""""""""""
 " => Ale
@@ -95,7 +101,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 """""""""""""""""""""""""""""""
 Plug 'maralla/completor.vim'
 
-let g:completor_elm_omni_trigger = '[^ \t]+'
+let g:completor_elm_omni_trigger = '[^\t\.]+'
 let g:completor_min_chars =3
 
 
@@ -198,6 +204,8 @@ Plug 'tpope/vim-fugitive'
 
 nmap <Leader>g :Gst<CR>
 
+Plug 'junegunn/gv.vim'
+
 """""""""""""""""""""""""""""""
 " => NERDTree + Tagbar = <3
 """""""""""""""""""""""""""""""
@@ -282,8 +290,8 @@ set modelines=1
 set t_Co=256
 set background=dark
 
-" colorscheme solarized
- colorscheme jellybeans
+colorscheme solarized
+ " colorscheme jellybeans
 " colorscheme Tomorrow-Night
 " colorscheme desert
 
