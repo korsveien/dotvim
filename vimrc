@@ -101,8 +101,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 """""""""""""""""""""""""""""""
 Plug 'maralla/completor.vim'
 
-let g:completor_elm_omni_trigger = '[^\t\.]+'
-let g:completor_min_chars =3
+" let g:completor_elm_omni_trigger = '[^\t\.]+'
+let g:completor_node_binary = '/usr/local/bin/node'
 
 
 """""""""""""""""""""""""""""""
