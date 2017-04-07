@@ -68,6 +68,14 @@ let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
 """""""""""""""""""""""""""""""
+" => YouCompleteMe
+"""""""""""""""""""""""""""""""
+Plug 'Valloric/YouCompleteMe'
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
+
+"""""""""""""""""""""""""""""""
 " => Elm
 """""""""""""""""""""""""""""""
 Plug 'elmcast/elm-vim'
@@ -94,15 +102,6 @@ autocmd BufWritePre *.js Neoformat
 Plug 'w0rp/ale'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-
-"""""""""""""""""""""""""""""""
-" => Completor
-"""""""""""""""""""""""""""""""
-Plug 'maralla/completor.vim'
-
-" let g:completor_elm_omni_trigger = '[^\t\.]+'
-let g:completor_node_binary = '/usr/local/bin/node'
 
 
 """""""""""""""""""""""""""""""
