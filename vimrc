@@ -115,8 +115,11 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " => UltiSnips
 """""""""""""""""""""""""""""""
 Plug 'SirVer/UltiSnips'
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 """""""""""""""""""""""""""""""
 " => JS (tern, jsx)
