@@ -58,7 +58,7 @@ set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
-set nu
+set rnu
 
 set list listchars=tab:»·,trail:·
 
@@ -204,17 +204,19 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-fugitive'
 
-nmap <Leader>g :Gst<CR>
+nmap <Leader>g :Gstatus<CR>
 
 Plug 'junegunn/gv.vim'
 
 """""""""""""""""""""""""""""""
-" => NERDTree + Tagbar = <3
+" => NERDTree + Tagbar
 """""""""""""""""""""""""""""""
 Plug 'scrooloose/nerdtree'
-Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'majutsushi/tagbar'
-nmap <C-h> :ToggleNERDTreeAndTagbar<CR>
+
+nnoremap <silent> <c-h> :NERDTreeToggle<CR>
+nnoremap <silent> <right> :TagbarToggle<CR>
+
 
 """""""""""""""""""""""""""""""
 " => Misc.
@@ -290,10 +292,18 @@ set modelines=1
 "}}}
 " Colors {{{
 set t_Co=256
-set background=dark
 
 " colorscheme solarized
 colorscheme jellybeans
+
+let hour = strftime("%H")
+if hour < 20 && hour > 7
+    set background=light
+else
+    set background=dark
+endif
+
+ " colorscheme jellybeans
 " colorscheme Tomorrow-Night
 " colorscheme desert
 
@@ -337,13 +347,11 @@ nmap <Leader>v :source $MYVIMRC<CR>
 " switch cwd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Toggle dark and ligth background
+" Toggle dark and light background
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 "}}}
 " System specifics {{{
-
-au FileType ruby nnoremap <leader>r :!ruby %<CR>
 
 " Toggle pastemode if in terminal
 if !has("gui_running")
@@ -378,6 +386,7 @@ elseif has("unix")
 endif
 "}}}
 " Functions {{{
+
 function! StripTrailingWhite()
     let l:winview = winsaveview()
     silent! %s/\s\+$//
