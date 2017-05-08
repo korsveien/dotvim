@@ -291,9 +291,9 @@ set modelines=1
 set t_Co=256
 set background=dark
 
-colorscheme solarized
- " colorscheme jellybeans
-" colorscheme Tomorrow-Night
+" colorscheme solarized
+" colorscheme jellybeans
+colorscheme Tomorrow-Night
 " colorscheme desert
 
 " }}}
