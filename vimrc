@@ -39,7 +39,8 @@ set ignorecase                  " case insensitive
 set incsearch                   " search while typing
 set noerrorbells                " no noise, please
 set noexrc                      " use local version of .(g)vimrc, .exrc
-set visualbell                " blink on error
+set visualbell                  " blink on error
+set visualbell t_vb=
 set smarttab                    " <TAB> inserts indentation according to 'shiftwidth'
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
@@ -292,8 +293,8 @@ set t_Co=256
 set background=dark
 
 " colorscheme solarized
-" colorscheme jellybeans
-colorscheme Tomorrow-Night
+colorscheme jellybeans
+" colorscheme Tomorrow-Night
 " colorscheme desert
 
 " }}}
@@ -370,7 +371,8 @@ elseif has("mac")
         set guifont=Fira\ Code:h14
     endif
 elseif has("unix")
-    if !has("gui_running")
+    if has("gui_running")
+        colorscheme jellybeans
     endif
     "Unix options here
 endif
