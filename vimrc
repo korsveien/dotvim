@@ -293,9 +293,6 @@ set modelines=1
 " Colors {{{
 set t_Co=256
 
-" colorscheme solarized
-colorscheme jellybeans
-
 let hour = strftime("%H")
 if hour < 20 && hour > 7
     set background=light
@@ -303,7 +300,7 @@ else
     set background=dark
 endif
 
- " colorscheme jellybeans
+colorscheme jellybeans
 " colorscheme Tomorrow-Night
 " colorscheme desert
 
@@ -374,13 +371,11 @@ elseif has("mac")
     "mac options here
     if has("gui_running")
         "mvim options here
-        colorscheme solarized
         set macligatures
         set guifont=Fira\ Code:h14
     endif
 elseif has("unix")
     if has("gui_running")
-        colorscheme jellybeans
     endif
     "Unix options here
 endif
