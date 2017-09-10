@@ -1,4 +1,4 @@
- following urls are some of my inspirational sources for setting up
+ " following urls are some of my inspirational sources for setting up
 " this vimrc. They are worthwhile a look (use gx to open url under cursor in vim)
 "
 " http://github.com/lstor/vimfiles-lstor
@@ -69,6 +69,11 @@ let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
 """""""""""""""""""""""""""""""
+" => AutoComplete
+"""""""""""""""""""""""""""""""
+Plug 'sheerun/vim-polyglot'
+
+"""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""
 Plug 'Valloric/YouCompleteMe'
@@ -82,6 +87,7 @@ let g:ycm_semantic_triggers = {
 Plug 'elmcast/elm-vim'
 Plug 'bitterjug/vim-tagbar-ctags-elm'
 
+let g:polyglot_disabled = ['elm']
 let g:elm_jump_to_error = 0
 let g:elm_make_output_file = "make/out.js"
 let g:elm_make_show_warnings = 0
@@ -91,14 +97,14 @@ let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 
 """""""""""""""""""""""""""""""
-" => NeoFormat
+" => Formatting files
 """""""""""""""""""""""""""""""
 Plug 'sbdchd/neoformat'
 
 autocmd BufWritePre *.js Neoformat
 
 """""""""""""""""""""""""""""""
-" => Ale
+" => Linting, errros and warnings
 """""""""""""""""""""""""""""""
 Plug 'w0rp/ale'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -120,17 +126,6 @@ Plug 'SirVer/UltiSnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
-
-"""""""""""""""""""""""""""""""
-" => JS (tern, jsx)
-"""""""""""""""""""""""""""""""
-Plug 'pangloss/vim-javascript'
-Plug 'marijnh/tern_for_vim'
-Plug 'mxw/vim-jsx'
-let g:tern_show_argument_hints='on_hold'
-let g:tern_show_signature_in_pum=1
-let g:tern_map_keys=1
-" set noshowmode
 
 
 """""""""""""""""""""""""""""""
@@ -175,19 +170,11 @@ let g:airline#extensions#tabline#enabled = 0
 " let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
-
 """""""""""""""""""""""""""""""
-" => Ag (searching code)
+" => Searching code
 """""""""""""""""""""""""""""""
 Plug 'rking/ag.vim'
 nnoremap <leader>a :Ag
-
-"""""""""""""""""""""""""""""""
-" => Markdown
-"""""""""""""""""""""""""""""""
-Plug 'shime/vim-livedown'
-Plug 'plasticboy/vim-markdown'
-
 
 """""""""""""""""""""""""""""""
 " => Sublimeish features
@@ -240,18 +227,6 @@ map <Leader>t :call atags#generate()<cr>
 
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
-
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
-Plug 'eagletmt/neco-ghc'
-
-" Omnicomplete and syntax for html5
-Plug 'othree/html5.vim'
-
-" css inline color preview
-Plug 'gorodinskiy/vim-coloresque'
-
-
 
 """""""""""""""""""""""""""""""
 " => Color themes
