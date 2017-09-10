@@ -1,4 +1,4 @@
-" The following urls are some of my inspirational sources for setting up
+ following urls are some of my inspirational sources for setting up
 " this vimrc. They are worthwhile a look (use gx to open url under cursor in vim)
 "
 " http://github.com/lstor/vimfiles-lstor
@@ -297,7 +297,7 @@ set t_Co=256
 " colorscheme solarized
 " colorscheme jellybeans
 " colorscheme Tomorrow-Night
-colorscheme railscasts
+colorscheme onedark
 " colorscheme desert
 
 " }}}
