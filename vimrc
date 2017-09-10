@@ -344,7 +344,8 @@ if has("gui_running")
     set guioptions =-m
     set guioptions =-T
     set guioptions =-r
-    set vb "disable bell
+    set vb
+    set visualbell t_vb=
 endif
 
 if has("win32")
