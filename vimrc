@@ -203,6 +203,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 
 nmap <Leader>g :Gstatus<CR>
 
@@ -293,15 +294,10 @@ set modelines=1
 " Colors {{{
 set t_Co=256
 
-let hour = strftime("%H")
-if hour < 20 && hour > 7
-    set background=light
-else
-    set background=dark
-endif
-
-colorscheme jellybeans
+" colorscheme solarized
+" colorscheme jellybeans
 " colorscheme Tomorrow-Night
+colorscheme railscasts
 " colorscheme desert
 
 " }}}
