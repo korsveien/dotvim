@@ -186,6 +186,7 @@ elseif has("mac")
     endif
 elseif has("unix")
     if has("gui_running")
+        set guifont=Inconsolata\ 13
     endif
     "Unix options here
 endif
