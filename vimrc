@@ -80,12 +80,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 
 """""""""""""""""""""""""""""""
-" => YouCompleteMe
+" => Deoplete
 """""""""""""""""""""""""""""""
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_semantic_triggers = {
-     \ 'elm' : ['.'],
-     \}
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 """""""""""""""""""""""""""""""
 " => Elm
