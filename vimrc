@@ -74,10 +74,11 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
+
 """""""""""""""""""""""""""""""
-" => AutoComplete
+" => Golang
 """""""""""""""""""""""""""""""
-Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
 
 """""""""""""""""""""""""""""""
 " => Deoplete
@@ -104,6 +105,11 @@ let g:elm_make_show_warnings = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
+
+"""""""""""""""""""""""""""""""
+" => AutoComplete
+"""""""""""""""""""""""""""""""
+Plug 'sheerun/vim-polyglot'
 
 """""""""""""""""""""""""""""""
 " => Formatting files
