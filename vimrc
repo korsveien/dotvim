@@ -31,7 +31,6 @@ if has("autocmd")
 
 endif
 
-
 """""""""""""""""""""""""""""""
 " => General settings
 """""""""""""""""""""""""""""""
@@ -49,7 +48,7 @@ set smarttab                    " <TAB> inserts indentation according to 'shiftw
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
 set softtabstop=4               " Affects what happens when <TAB> is pressed
-set textwidth=72                " set wordwrap to 72 characters
+"set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
 set showmode                    " shows current mode in bottom right corner
 set nobackup                    " turn backup off
@@ -65,6 +64,8 @@ set nowrap                      " no line wrap
 set rnu
 
 set list listchars=tab:»·,trail:·
+
+let &colorcolumn=join(range(81,999),",")
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
