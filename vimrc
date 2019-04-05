@@ -290,8 +290,8 @@ set t_Co=256
 
 " colorscheme solarized
 " colorscheme jellybeans
-" colorscheme Tomorrow-Night
-colorscheme onedark
+colorscheme Tomorrow-Night
+" colorscheme onedark
 " colorscheme desert
 
 syntax on                       " use syntax highlighting
