@@ -48,7 +48,6 @@ set smarttab                    " <TAB> inserts indentation according to 'shiftw
 set expandtab                   " convert tabs to spaces
 set shiftwidth=4                " Affects automatic indenting and pressing <<,>> or ==
 set softtabstop=4               " Affects what happens when <TAB> is pressed
-"set textwidth=72                " set wordwrap to 72 characters
 set virtualedit=all             " let the cursor stray beyond defined text
 set showmode                    " shows current mode in bottom right corner
 set nobackup                    " turn backup off
@@ -61,11 +60,11 @@ set bs=indent,eol,start         " fix misbehaving backspace
 set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
-set rnu
+set nu
 
 set list listchars=tab:»·,trail:·
 
-let &colorcolumn=join(range(81,999),",")
+"let &colorcolumn=join(range(81,999),",")
 
 let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 
@@ -77,20 +76,19 @@ call plug#begin('~/.vim/plugged')
 
 
 """""""""""""""""""""""""""""""
+" => Typescript/JS
+"""""""""""""""""""""""""""""""
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+"""""""""""""""""""""""""""""""
 " => Golang
 """""""""""""""""""""""""""""""
 Plug 'fatih/vim-go'
-
-"""""""""""""""""""""""""""""""
-" => Deoplete
-"""""""""""""""""""""""""""""""
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
 """""""""""""""""""""""""""""""
 " => Elm
@@ -118,14 +116,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sbdchd/neoformat'
 
 autocmd BufWritePre *.js Neoformat
-
-"""""""""""""""""""""""""""""""
-" => Linting, errros and warnings
-"""""""""""""""""""""""""""""""
-Plug 'w0rp/ale'
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 
 """""""""""""""""""""""""""""""
 " => Supertab
@@ -287,12 +277,7 @@ set modelines=1
 " => Colors and highlighting 
 """""""""""""""""""""""""""""""
 set t_Co=256
-
-" colorscheme solarized
-" colorscheme jellybeans
-colorscheme Tomorrow-Night
-" colorscheme onedark
-" colorscheme desert
+colorscheme ir_black
 
 syntax on                       " use syntax highlighting
 set hlsearch                    " highlight search
