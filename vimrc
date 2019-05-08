@@ -277,7 +277,7 @@ set modelines=1
 " => Colors and highlighting 
 """""""""""""""""""""""""""""""
 set t_Co=256
-colorscheme ir_black
+colorscheme Tomorrow-Night
 
 syntax on                       " use syntax highlighting
 set hlsearch                    " highlight search
