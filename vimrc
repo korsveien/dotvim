@@ -61,6 +61,8 @@ set tildeop                     " use tilde as an operator (i.e 5~)
 set encoding=utf-8
 set nowrap                      " no line wrap
 set nu
+set clipboard=unnamed
+set colorcolumn=72
 
 set list listchars=tab:»·,trail:·
 
@@ -74,6 +76,15 @@ let g:jah_Quickfix_Win_Height=10 "set height of quickfix window
 let g:plug_timeout=1000
 call plug#begin('~/.vim/plugged')
 
+"""""""""""""""""""""""""""""""
+" => Linting
+"""""""""""""""""""""""""""""""
+Plug 'w0rp/ale'
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fix_on_save = 1
 
 """""""""""""""""""""""""""""""
 " => Typescript/JS
@@ -88,7 +99,9 @@ Plug 'prettier/vim-prettier', {
 """""""""""""""""""""""""""""""
 " => Golang
 """""""""""""""""""""""""""""""
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>i  <Plug>(go-install)
 
 """""""""""""""""""""""""""""""
 " => Elm
@@ -106,16 +119,9 @@ let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 
 """""""""""""""""""""""""""""""
-" => AutoComplete
+" => Syntax support
 """""""""""""""""""""""""""""""
 Plug 'sheerun/vim-polyglot'
-
-"""""""""""""""""""""""""""""""
-" => Formatting files
-"""""""""""""""""""""""""""""""
-Plug 'sbdchd/neoformat'
-
-autocmd BufWritePre *.js Neoformat
 
 """""""""""""""""""""""""""""""
 " => Supertab
@@ -135,17 +141,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-l>"
 
 
 """""""""""""""""""""""""""""""
-" => CtrlP
+" => File Searching
 """""""""""""""""""""""""""""""
-Plug 'kien/ctrlp.vim'
-let g:ctrlp_working_path_mode = 'r'
-
-set wildignore+=**/node_modules/**
-set wildignore+=**/elm-stuff/**
-set wildignore+=**/bin/**
-set wildignore+=**/pkg/**
-set wildignore+=**/build/**
-set wildignore+=*.o,*.obj,*.a,*.iml
+Plug 'junegunn/fzf.vim'
+set rtp+=/usr/local/opt/fzf
+nnoremap <C-p> :Files<Cr>
 
 
 """"""""""""""""""""""""""""""" " => Emmet """""""""""""""""""""""""""""""
